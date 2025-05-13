@@ -7,6 +7,7 @@
   <meta name="description" content="Welcome to my personal website. You can learn about my projects and about me!" />
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -14,7 +15,7 @@
   <nav class="navbar">
     <div class="navbar__container">
       <a href="#home" id="navbar__logo">Priyan Shah | 2025</a>
-      <div class="navbar__toggle" id="total-menu">
+      <div class="navbar__toggle" id="menu-toggle">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
@@ -62,85 +63,86 @@
   </section>
   <!-- Projects Section -->
     <section id="projects" class="projects__section" style="padding: 2rem;">
-    <div class="projects__container">
+      <div class="projects__container">
         <div class="projects__content">
-        <h2>Projects</h2>
-        <p>Below are projects I have worked on:</p>
+          <h2>Projects</h2>
+          <p>Below are projects I have worked on:</p>
 
-        <div class="projects-grid">
+          <div class="projects-grid">
 
             <!-- Card 1 -->
-            <div class="project-card">
-            <div class="card-inner">
+            <div class="project-card" data-aos="fade-right" data-aos-delay="0">
+              <div class="card-inner">
                 <div class="card-front">
-                <h3>Analog Audio Equalizer</h3>
-                <p><em>Aug 2024 – Dec 2024</em></p>
+                  <h3>Analog Audio Equalizer</h3>
+                  <p><em>Aug 2024 – Dec 2024</em></p>
                 </div>
                 <div class="card-back">
-                <ul>
+                  <ul>
                     <li>Built a hardware-based audio equalizer using a breadboard, op-amps, and a 555 timer.</li>
                     <li>Designed and tested analog signal processing circuits for bass, mid, and treble frequency control.</li>
                     <li>Soldered components to ensure stable audio output to connected speakers.</li>
-                </ul>
+                  </ul>
                 </div>
-            </div>
+              </div>
             </div>
 
             <!-- Card 2 -->
-            <div class="project-card">
-            <div class="card-inner">
+            <div class="project-card" data-aos="fade-right" data-aos-delay="500">
+              <div class="card-inner">
                 <div class="card-front">
-                <h3>Traffic Light Simulator</h3>
-                <p><em>Aug 2024 – Dec 2024</em></p>
+                  <h3>Traffic Light Simulator</h3>
+                  <p><em>Aug 2024 – Dec 2024</em></p>
                 </div>
                 <div class="card-back">
-                <ul>
+                  <ul>
                     <li>Developed a timer-driven LED system replicating real-world traffic light sequences using a 555 timer IC.</li>
                     <li>Assembled and tested the circuit on a breadboard with resistors and LEDs.</li>
                     <li>Verified timing logic and optimized power distribution for reliable operation.</li>
-                </ul>
+                  </ul>
                 </div>
-            </div>
+              </div>
             </div>
 
             <!-- Card 3 -->
-            <div class="project-card">
-            <div class="card-inner">
+            <div class="project-card" data-aos="fade-right" data-aos-delay="1000">
+              <div class="card-inner">
                 <div class="card-front">
-                <h3>Self-Driving Data Tool</h3>
-                <p><em>Jan 2024 – May 2024</em></p>
+                  <h3>Self-Driving Data Tool</h3>
+                  <p><em>Jan 2024 – May 2024</em></p>
                 </div>
                 <div class="card-back">
-                <ul>
+                  <ul>
                     <li>Collaborated on a Python-based tool for parsing and visualizing sensor data from autonomous vehicles.</li>
                     <li>Implemented data-cleaning, analysis, and plotting modules to identify driving patterns and anomalies.</li>
                     <li>Supported team collaboration using version control and regular code reviews.</li>
-                </ul>
+                  </ul>
                 </div>
+              </div>
             </div>
-            </div>
-             <!-- Card 4 -->
-            <div class="project-card">
-                <div class="card-inner">
+
+            <!-- Card 4 -->
+            <div class="project-card" data-aos="fade-right" data-aos-delay="1500">
+              <div class="card-inner">
                 <div class="card-front">
-                    <h3>Parkinson's Pressure Brace</h3>
-                    <p><em>Jan 2023 – May 2023</em></p>
+                  <h3>Parkinson's Pressure Brace</h3>
+                  <p><em>Jan 2023 – May 2023</em></p>
                 </div>
                 <div class="card-back">
-                    <ul>
+                  <ul>
                     <li>Designed and prototyped a wearable brace intended to assist individuals with Parkinson’s disease by providing steady pressure and vibration-based feedback.</li>
                     <li>Integrated sensors and microcontrollers to monitor tremor patterns and respond with localized pressure modulation.</li>
                     <li>Collaborated on hardware design and data testing for user responsiveness and comfort.</li>
-                    </ul>
+                  </ul>
                 </div>
-                </div>
+              </div>
             </div>
 
-            </div> <!-- end .projects-grid -->
+          </div> <!-- end .projects-grid -->
         </div>
-        </div>
-    </div>
+      </div>
     </section>
+
     <script>
         const toggle = document.getElementById('darkModeToggle');
         toggle.addEventListener('click', () => {
@@ -200,5 +202,21 @@
         }
       });
     </script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+      <script>
+        AOS.init({
+          duration: 800,      // Animation duration
+          once: true,         // Only animate once
+          easing: 'ease-in-out',
+        });
+      </script>
+      <script>
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.querySelector('.navbar__menu');
+
+        toggle.addEventListener('click', () => {
+          menu.classList.toggle('active');
+        });
+      </script>
 </body>
 </html>
