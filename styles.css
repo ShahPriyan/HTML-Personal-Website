@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
-    color: #131313;
     scroll-behavior: smooth;
 }
 
@@ -69,10 +68,11 @@
 
 /* ===== About Section ===== */
 .About__mesection {
-    background: #1a202c;
+    background: #d0bdf4; /* same as projects section */
     padding: 0 60px;
-    color: #e2e8f0;
+    color: #131313;
 }
+
 
 .about__wrapper {
     display: grid;
@@ -154,9 +154,7 @@
 }
 
 .projects__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    display: block;
 }
 
 .projects__container h2 {
@@ -168,33 +166,24 @@
     margin-bottom: 32px;
 }
 
-.projects__text p {
-    line-height: 2.3;
-    color: #fff;
-}
-
-.projects__image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.projects__image img {
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-}
-
 .projects-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* force 2 columns on desktop */
+  gap: 2rem;
+  justify-items: center;
   margin-top: 2rem;
 }
 
+/* Mobile Responsive Adjustment */
+@media screen and (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr; /* stack cards on mobile */
+  }
+}
+
 .project-card {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   height: 300px;
   perspective: 1000px;
 }
@@ -220,7 +209,7 @@
   backface-visibility: hidden;
   padding: 1rem;
   background-color: #c5b4e3;
-  color: #1a202c;
+  color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
@@ -228,7 +217,6 @@
   justify-content: center;
   overflow: hidden;
 }
-
 
 .card-front {
   text-align: center;
@@ -249,5 +237,66 @@
 
 .card-back li {
   margin-bottom: 0.5rem;
+}
+
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Dark Mode: Background Only ===== */
+body.dark-mode {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body.dark-mode .navbar {
+  background-color: #000000;
+}
+
+body.dark-mode .navbar__links {
+  color: #ffffff;
+}
+
+body.dark-mode .About__mesection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body.dark-mode .projects__section {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body.dark-mode .card-front,
+body.dark-mode .card-back {
+  background-color: #111111;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Optional: Match toggle button */
+.theme-toggle {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+#darkModeToggle {
+  padding: 0.5rem 1rem;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#darkModeToggle:hover {
+  background: #555;
 }
 

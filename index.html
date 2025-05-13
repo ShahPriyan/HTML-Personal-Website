@@ -12,6 +12,9 @@
 <body>
   <!-- Navigation Bar -->
   <nav class="navbar">
+    <div class="theme-toggle">
+        <button id="darkModeToggle">Toggle Dark Mode</button>
+    </div>
     <div class="navbar__container">
       <a href="#home" id="navbar__logo">Priyan Shah</a>
       <div class="navbar__toggle" id="total-menu">
@@ -21,9 +24,6 @@
       </div>
       <ul class="navbar__menu">
         <li class="navbar__item">
-          <a href="#home" class="navbar__links" id="home-page">Home</a>
-        </li>
-        <li class="navbar__item">
           <a href="#about" class="navbar__links" id="about-page">About</a>
         </li>
         <li class="navbar__item">
@@ -31,6 +31,9 @@
         </li>
         <li class="navbar__item">
           <a href="#experiences" class="navbar__links" id="experiences-page">Experiences</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#contact" class="navbar__links" id="contact-page">Contact Us</a>
         </li>
       </ul>
     </div>
@@ -110,10 +113,33 @@
                 </div>
             </div>
             </div>
+             <!-- Card 4 -->
+            <div class="project-card">
+                <div class="card-inner">
+                <div class="card-front">
+                    <h3>Parkinson's Pressure Brace</h3>
+                    <p><em>Jan 2023 – May 2023</em></p>
+                </div>
+                <div class="card-back">
+                    <ul>
+                    <li>Designed and prototyped a wearable brace intended to assist individuals with Parkinson’s disease by providing steady pressure and vibration-based feedback.</li>
+                    <li>Integrated sensors and microcontrollers to monitor tremor patterns and respond with localized pressure modulation.</li>
+                    <li>Collaborated on hardware design and data testing for user responsiveness and comfort.</li>
+                    </ul>
+                </div>
+                </div>
+            </div>
 
+            </div> <!-- end .projects-grid -->
         </div>
         </div>
     </div>
     </section>
+    <script>
+        const toggle = document.getElementById('darkModeToggle');
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
 </body>
 </html>
