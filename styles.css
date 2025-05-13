@@ -124,11 +124,11 @@ body {
 }
 
 .intro-label {
-  font-size: 0.9rem;
-  color: #b0aeb8;
-  letter-spacing: 1px;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: #a0aec0;
   text-transform: uppercase;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
 }
 
 .overview-title {
@@ -140,6 +140,13 @@ body {
 
 .overview-title .dot {
   color: #ffffff;
+}
+
+.overview-paragraph {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: #e2e8f0;
+  max-width: 750px;
 }
 
 .overview-description {
