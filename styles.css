@@ -7,9 +7,16 @@
     scroll-behavior: smooth;
 }
 
+body {
+  background: linear-gradient(to bottom right, #7b4397, #dc2430);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 /* ===== Navbar Styles ===== */
 .navbar {
-    background: #131313;
+    /*background:linear-gradient(to bottom right, #7b4397, #dc2430);*/
     height: 80px;
     display: flex;
     justify-content: center;
@@ -68,7 +75,7 @@
 
 /* ===== About Section ===== */
 .About__mesection {
-    background: #d0bdf4; /* same as projects section */
+    /*background: #d0bdf4;  same as projects section */
     padding: 0 60px;
     color: #131313;
 }
@@ -148,7 +155,7 @@
 
 /* ===== Projects Section ===== */
 .projects__section {
-    background: #d0bdf4;
+    /*background: #d0bdf4;*/
     padding: 60px;
     color: #fff;
 }
@@ -248,8 +255,57 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* ===== Contact Section ===== */
+
+.contact__section {
+ /* background: #d0bdf4;*/
+  padding: 60px;
+  color: #131313;
+  text-align: center;
+}
+
+.contact__container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact__form label {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.contact__form input,
+.contact__form textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.contact__form button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact__form button:hover {
+  background-color: #666;
+}
+
 /* ===== Dark Mode: Background Only ===== */
-body.dark-mode {
+/*body.dark-mode {
   background-color: #000000;
   color: #ffffff;
 }
@@ -279,7 +335,6 @@ body.dark-mode .card-back {
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* Optional: Match toggle button */
 .theme-toggle {
   display: flex;
   justify-content: center;
@@ -300,3 +355,22 @@ body.dark-mode .card-back {
   background: #555;
 }
 
+body.dark-mode .contact__section {
+  background-color: #000;
+  color: #fff;
+}
+
+body.dark-mode .contact__form input,
+body.dark-mode .contact__form textarea {
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+body.dark-mode .contact__form button {
+  background-color: #222;
+}
+
+body.dark-mode .contact__form button:hover {
+  background-color: #444;
+} */
