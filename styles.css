@@ -318,6 +318,9 @@ body {
 .setup__image {
   max-width: 100%;
   height: auto;
+  display: block;
+  margin: 0 auto;
+  pointer-events: none;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
