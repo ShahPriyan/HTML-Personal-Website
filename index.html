@@ -1,64 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Website</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Priyan Shah's Website</title>
+  <meta name="description" content="Welcome to my personal website. You can learn about my projects and about me!" />
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@600&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="About__mesection">
-        <div class="about__wrapper">
-            <div class="about__me">
-                <h1 class="about__me--name">Priyan Shah</h1>
-                <h2>About Me</h2>
-                <p>Hello! I am a Junior at Purdue University West Lafayette studying Computer Engineering.</p>
-                <p>I am passionate about technology and love to learn new things, and I have experience in various programming languages and frameworks. </p>
-                <p>In my free time, I enjoy working on personal projects, as well as hanging out with friends!</p>
-            </div>
-            <div class="about__image">
-                <img src="/images/Headshot.jpg" alt="Profile Picture" class="about__img">
-            </div>
-        </div>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar__container">
+      <a href="#home" id="navbar__logo">Priyan Shah</a>
+      <div class="navbar__toggle" id="total-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item">
+          <a href="#home" class="navbar__links" id="home-page">Home</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#about" class="navbar__links" id="about-page">About</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#projects" class="navbar__links" id="projects-page">Projects</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#experiences" class="navbar__links" id="experiences-page">Experiences</a>
+        </li>
+      </ul>
     </div>
-    <div class="projects__section" style="padding: 2rem;">
-        <div class="projects__container">
-            <div class="projects__content">
-            <h2>Projects</h2>
-            <p>Here are some of the projects I have worked on:</p>
+  </nav>
 
-            <div style="margin-bottom: 1.5rem;">
-                <h3>Analog Audio Equalizer (Class Project)</h3>
+  <!-- About Section -->
+  <section id="about" class="About__mesection">
+    <div class="about__wrapper">
+      <div class="about__me">
+        <h1 class="about__me--name">Priyan Shah</h1>
+        <h2>About Me</h2>
+        <p>Hello! I am a Junior at Purdue University West Lafayette studying Computer Engineering.</p>
+        <p>I am passionate about technology and love to learn new things, and I have experience in various programming languages and frameworks.</p>
+        <p>In my free time, I enjoy working on personal projects, as well as hanging out with friends!</p>
+      </div>
+      <div class="about__image">
+        <img src="/images/Headshot.jpg" alt="Profile Picture" class="about__img" />
+      </div>
+    </div>
+  </section>
+
+    <section id="projects" class="projects__section" style="padding: 2rem;">
+    <div class="projects__container">
+        <div class="projects__content">
+        <h2>Projects</h2>
+        <p>Below are projects I have worked on:</p>
+
+        <div class="projects-grid">
+
+            <!-- Card 1 -->
+            <div class="project-card">
+            <div class="card-inner">
+                <div class="card-front">
+                <h3>Analog Audio Equalizer</h3>
                 <p><em>Aug 2024 – Dec 2024</em></p>
+                </div>
+                <div class="card-back">
                 <ul>
-                <li>Built a hardware-based audio equalizer using a breadboard, op-amps, and a 555 timer.</li>
-                <li>Designed and tested analog signal processing circuits for bass, mid, and treble frequency control.</li>
-                <li>Soldered components to ensure stable audio output to connected speakers.</li>
+                    <li>Built a hardware-based audio equalizer using a breadboard, op-amps, and a 555 timer.</li>
+                    <li>Designed and tested analog signal processing circuits for bass, mid, and treble frequency control.</li>
+                    <li>Soldered components to ensure stable audio output to connected speakers.</li>
                 </ul>
+                </div>
+            </div>
             </div>
 
-            <div style="margin-bottom: 1.5rem;">
-                <h3>Traffic Light Simulator (Class Project)</h3>
+            <!-- Card 2 -->
+            <div class="project-card">
+            <div class="card-inner">
+                <div class="card-front">
+                <h3>Traffic Light Simulator</h3>
                 <p><em>Aug 2024 – Dec 2024</em></p>
+                </div>
+                <div class="card-back">
                 <ul>
-                <li>Developed a timer-driven LED system replicating real-world traffic light sequences using a 555 timer IC.</li>
-                <li>Assembled and tested the circuit on a breadboard with resistors and LEDs.</li>
-                <li>Verified timing logic and optimized power distribution for reliable operation.</li>
+                    <li>Developed a timer-driven LED system replicating real-world traffic light sequences using a 555 timer IC.</li>
+                    <li>Assembled and tested the circuit on a breadboard with resistors and LEDs.</li>
+                    <li>Verified timing logic and optimized power distribution for reliable operation.</li>
                 </ul>
+                </div>
+            </div>
             </div>
 
-            <div style="margin-bottom: 1.5rem;">
-                <h3>Self-Driving Data Analysis Tool (College Project)</h3>
+            <!-- Card 3 -->
+            <div class="project-card">
+            <div class="card-inner">
+                <div class="card-front">
+                <h3>Self-Driving Data Tool</h3>
                 <p><em>Jan 2024 – May 2024</em></p>
+                </div>
+                <div class="card-back">
                 <ul>
-                <li>Collaborated on a Python-based tool for parsing and visualizing sensor data from autonomous vehicles.</li>
-                <li>Implemented data-cleaning, analysis, and plotting modules to identify driving patterns and anomalies.</li>
-                <li>Supported team collaboration using version control and regular code reviews.</li>
+                    <li>Collaborated on a Python-based tool for parsing and visualizing sensor data from autonomous vehicles.</li>
+                    <li>Implemented data-cleaning, analysis, and plotting modules to identify driving patterns and anomalies.</li>
+                    <li>Supported team collaboration using version control and regular code reviews.</li>
                 </ul>
+                </div>
             </div>
             </div>
+
+        </div>
         </div>
     </div>
+    </section>
 </body>
 </html>
