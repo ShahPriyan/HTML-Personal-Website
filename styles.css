@@ -16,29 +16,31 @@ body {
 
 /* ===== Navbar Styles ===== */
 .navbar {
-    background-color: rgba(0, 0, 0, 0.25); /* subtle contrast */
-    backdrop-filter: blur(8px);            /* frosted glass effect */
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background-color: rgba(255, 255, 255, 0.1); /* translucent background */
+  backdrop-filter: blur(10px);               /* blur effect */
+  -webkit-backdrop-filter: blur(10px);       /* Safari support */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* subtle border */
 }
 
 .navbar__container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 80px;
     z-index: 1;
     width: 100%;
     max-width: 1300px;
     margin: 0 auto;
-    padding: 0 50px;
+    padding: 0 20px;
 }
 
 #navbar__logo {
@@ -71,17 +73,33 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 16px; /* add some padding for spacing */
+    padding: 0 1rem;
     height: 100%;
     text-decoration: none;
+    white-space: nowrap;
 }
+
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.3s ease;
+}
+
 
 @media screen and (max-width: 768px) {
   .navbar__menu {
     flex-direction: column;
     width: 100%;
     position: absolute;
-    top: 80px; /* height of navbar */
+    top: 80px;
     left: 0;
     background: linear-gradient(to right, #7b4397, #dc2430);
     display: none;
@@ -150,30 +168,21 @@ body {
   color: #ffffff;
 }
 
-.overview-paragraph {
+.overview-description {
   font-size: 1.1rem;
   line-height: 1.9;
   color: #e2e8f0;
   max-width: 750px;
 }
 
-.about__image {
-  display: flex;
-  justify-content: center;
-}
-
 .overview-bullets {
   list-style: none;
   padding-left: 0;
-  margin-top: 1.5rem;
-  font-size: 1rem;
-  color: #ffffff;
-  line-height: 1.7;
 }
 
-.overview-bullets li {
-  margin-bottom: 0.6rem;
-  display: block;
+.about__image {
+  display: flex;
+  justify-content: center;
 }
 
 .about__image img {
@@ -183,7 +192,6 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
-/* ===== Responsive About Section ===== */
 @media screen and (max-width: 1100px) {
   .About__mesection {
     padding: 0 30px;
@@ -383,6 +391,119 @@ body {
 
 .setup__image:hover {
   transform: scale(1.02);
+}
+
+.timeline-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.modern-timeline {
+  position: relative;
+  margin: 3rem auto;
+  max-width: 900px;
+  padding-left: 30px;
+}
+
+.modern-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 30px;
+  width: 4px;
+  height: 100%;
+  background: white;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: 11px;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  background: #111;
+  border: 3px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.timeline-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+
+.timeline-card {
+  margin-left: 80px;
+  background: #1a1a2e;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.timeline-card:hover {
+  transform: scale(1.01);
+  transition: 0.3s ease;
+}
+
+.job-title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.company {
+  margin: 0.3rem 0 1rem;
+  font-weight: 600;
+  color: #cccccc;
+}
+
+.job-desc {
+  padding-left: 1.2rem;
+  margin: 0;
+  list-style: disc;
+}
+
+.job-desc li {
+  margin-bottom: 0.5rem;
+  color: #f0f0f0;
+  font-size: 0.95rem;
+}
+
+.timeline-date {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+@media screen and (max-width: 768px) {
+  .modern-timeline::before {
+    left: 20px;
+  }
+
+  .timeline-icon {
+    left: 0;
+  }
+
+  .timeline-card {
+    margin-left: 70px;
+  }
 }
 
 /* ===== Dark Mode: Background Only ===== */
