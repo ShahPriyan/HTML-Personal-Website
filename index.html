@@ -199,10 +199,10 @@
     </section>
   <!-- Experiences Section -->
    <section id="experiences" style="scroll-margin-top: 100px;">
-    <h2 class="timeline-title">Work Experience.</h2>
+    <h2 class="timeline-title">Experiences</h2>
         <div class="modern-timeline">
 
-          <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
             <div class="timeline-icon">
               <img src="https://via.placeholder.com/40?text=Vid" alt="Video Analysis" />
             </div>
@@ -249,6 +249,14 @@
           <p class="timeline-date">Aug 2019 – May 2023</p>
           </div>
         </div>
+      </div>
+    </section>
+    <!-- Animated Image Section -->
+     <section class="image-placeholder-section">
+      <div class="placeholder-wrapper" data-aos="fade-up">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWZkcmN2bjUzOXoxdTkwbWx2cWc1b24xNXd2b3Y2dHZvMmV5MGRzNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tn33aiTi1jkl6H6/giphy.gif" 
+            alt="Animated Transition" 
+            class="placeholder-img" />
       </div>
     </section>
 
@@ -346,24 +354,26 @@
             document.body.classList.toggle('dark-mode');
         });
     </script>
-    <section id="contact" class="contact__section">
-      <div class="contact__container">
-        <h2>Contact Me</h2>
+    <section id="contact" data-aos="fade-up">
+      <div class="contact-bubble">
+        <h3 class="contact-subtitle">GET IN TOUCH</h3>
+        <h2 class="contact-title">Contact<span class="dot">.</span></h2>
+        
         <form id="contactForm" class="contact__form">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required />
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="What's your name?" required />
 
-          <label for="email">Email</label>
-          <input type="email" id="email" name="_replyto" required />
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="What's your email?" required />
 
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="What do you want to say?" required></textarea>
 
-          <button type="submit">Send Message</button>
-          <p id="formMessage" style="display:none; color: green; margin-top: 1rem;"></p>
+          <button type="submit">Send</button>
         </form>
       </div>
     </section>
+
     <script>
     const form = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
