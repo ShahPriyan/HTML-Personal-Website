@@ -347,7 +347,7 @@
             document.body.classList.toggle('dark-mode');
         });
     </script>
-    <section id="contact" data-aos="fade-up">
+    <section id="contact" data-aos="fade-right", data-aos-delay="100">
       <div class="contact-bubble">
         <h3 class="contact-subtitle">GET IN TOUCH</h3>
         <h2 class="contact-title">Contact<span class="dot">.</span></h2>
@@ -402,12 +402,12 @@
     });
 
     document.addEventListener("DOMContentLoaded", () => {
-      const menuToggle = document.getElementById('menu-toggle');
+      const toggle = document.getElementById('menu-toggle');
       const menu = document.querySelector('.navbar__menu');
 
-      menuToggle.addEventListener('click', () => {
+      toggle.addEventListener('click', () => {
         menu.classList.toggle('active');
-        menuToggle.classList.toggle('active');
+        toggle.classList.toggle('active');
       });
     });
   </script>
@@ -419,5 +419,17 @@
       easing: 'ease-in-out',
     });
   </script>
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navbarMenu = document.querySelector('.navbar__menu');
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        menuToggle.classList.remove('active');
+        navbarMenu.classList.remove('active');
+      }
+    });
+  </script>
+
 </body>
 </html>
