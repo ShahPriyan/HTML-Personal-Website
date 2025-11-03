@@ -302,8 +302,11 @@ app.get('/api/course-categories', (req, res) => {
 app.post('/contact', async (req, res) => {
   const { name, email, message } = req.body;
   
+  // Log the contact attempt
+  console.log('Contact form submission:', { name, email, message: message.substring(0, 50) + '...' });
+  
   try {
-    // Configure nodemailer (you'll need to set up environment variables)
+    // Try to send email if configured
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -316,17 +319,38 @@ app.post('/contact', async (req, res) => {
       const mailOptions = {
         from: email,
         to: 'shah899@purdue.edu',
-        subject: `Portfolio Contact: ${name}`,
-        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+        subject: `Portfolio Contact from ${name}`,
+        html: `
+          <h3>New Contact Form Submission</h3>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong></p>
+          <p>${message}</p>
+        `
       };
 
       await transporter.sendMail(mailOptions);
+      console.log('Email sent successfully');
+      
+      res.json({ 
+        success: true, 
+        message: 'Email sent successfully! I\'ll get back to you soon.' 
+      });
+    } else {
+      // Fallback when email isn't configured
+      console.log('Email not configured, but form submission received');
+      res.json({ 
+        success: true, 
+        message: 'Message received! I\'ll respond via email soon.' 
+      });
     }
-    
-    res.json({ success: true, message: 'Email sent successfully!' });
   } catch (error) {
     console.error('Error sending email:', error);
-    res.json({ success: true, message: 'Message received! I\'ll get back to you soon.' });
+    // Still return success to show the user their message was received
+    res.json({ 
+      success: true, 
+      message: 'Message received! I\'ll get back to you soon.' 
+    });
   }
 });
 

@@ -486,3 +486,188 @@
   transform: translateZ(0);
   backface-visibility: hidden;
 }
+
+/* Add these fixes to your animations.css */
+
+/* Fix Experience Section Hover Issues */
+.experience__section {
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 0;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.timeline__item {
+  position: relative;
+  margin-bottom: 3rem;
+  padding: 0;
+  /* Fix: Prevent hover effects from extending beyond content */
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.timeline__item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.05), transparent);
+  transition: left 0.6s ease;
+  /* Fix: Ensure the effect stays within bounds */
+  border-radius: inherit;
+}
+
+.timeline__item:hover::before {
+  left: 100%;
+}
+
+.timeline__content {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Fix: Ensure content doesn't overflow */
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Fix: Better hover boundaries */
+.timeline__item:hover .timeline__content {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Fix: Prevent Three.js hover effects from extending too far */
+.threejs-hover {
+  transition: all 0.3s ease;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.threejs-hover:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Notification Styles */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: -400px;
+  width: 350px;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-left: 4px solid #6366f1;
+}
+
+.notification.show {
+  right: 20px;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  gap: 0.75rem;
+}
+
+.notification-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.notification-success {
+  border-left-color: #10b981;
+}
+
+.notification-success .notification-icon {
+  background: #10b981;
+  color: white;
+}
+
+.notification-error {
+  border-left-color: #ef4444;
+}
+
+.notification-error .notification-icon {
+  background: #ef4444;
+  color: white;
+}
+
+.notification-info {
+  border-left-color: #3b82f6;
+}
+
+.notification-info .notification-icon {
+  background: #3b82f6;
+  color: white;
+}
+
+.notification-message {
+  flex: 1;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #374151;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.notification-close:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+/* Mobile fixes */
+@media (max-width: 768px) {
+  .notification {
+    width: calc(100vw - 40px);
+    right: -100vw;
+  }
+  
+  .notification.show {
+    right: 20px;
+  }
+  
+  .timeline {
+    padding: 0 1rem;
+  }
+  
+  .timeline__content {
+    padding: 1.5rem;
+  }
+}

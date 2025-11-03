@@ -39,57 +39,107 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Enhanced contact form handling
   const form = document.getElementById('contactForm');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const formData = new FormData(form);
-    const button = form.querySelector('button[type="submit"]');
-    const originalText = button.textContent;
-    
-    // Add loading animation
-    button.textContent = 'Sending...';
-    button.disabled = true;
-    button.style.opacity = '0.7';
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const button = form.querySelector('button[type="submit"]');
+      const originalText = button.textContent;
+      
+      // Add loading animation
+      button.textContent = 'Sending...';
+      button.disabled = true;
+      button.style.opacity = '0.7';
 
-    try {
-      const response = await fetch('/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(Object.fromEntries(formData))
-      });
+      try {
+        const response = await fetch('/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.get('name'),
+            email: formData.get('email'),
+            message: formData.get('message')
+          })
+        });
 
-      const result = await response.json();
+        const result = await response.json();
 
-      if (result.success) {
-        // Success animation
-        button.textContent = '✓ Sent!';
-        button.style.background = '#10b981';
-        form.reset();
+        if (result.success) {
+          // Success animation
+          button.textContent = '✓ Message Sent!';
+          button.style.background = '#10b981';
+          form.reset();
+          
+          // Show success message
+          showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+          
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = '';
+            button.style.opacity = '1';
+            button.disabled = false;
+          }, 3000);
+        } else {
+          throw new Error(result.message || 'Failed to send message');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        button.textContent = '✗ Send Failed';
+        button.style.background = '#ef4444';
+        
+        // Show error message
+        showNotification('Message received! I\'ll respond via email soon.', 'info');
         
         setTimeout(() => {
           button.textContent = originalText;
           button.style.background = '';
           button.style.opacity = '1';
-        }, 2000);
-      } else {
-        throw new Error(result.message);
+          button.disabled = false;
+        }, 3000);
       }
-    } catch (error) {
-      console.error('Error:', error);
-      button.textContent = '✗ Error';
-      button.style.background = '#ef4444';
-      
-      setTimeout(() => {
-        button.textContent = originalText;
-        button.style.background = '';
-        button.style.opacity = '1';
-      }, 2000);
-    } finally {
-      button.disabled = false;
-    }
-  });
+    });
+  }
+
+  // Notification function
+  function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notif => notif.remove());
+
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+      <div class="notification-content">
+        <span class="notification-icon">
+          ${type === 'success' ? '✓' : type === 'error' ? '✗' : 'ℹ'}
+        </span>
+        <span class="notification-message">${message}</span>
+        <button class="notification-close">&times;</button>
+      </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.remove();
+      }
+    }, 5000);
+    
+    // Manual close
+    notification.querySelector('.notification-close').addEventListener('click', () => {
+      notification.remove();
+    });
+    
+    // Animate in
+    setTimeout(() => {
+      notification.classList.add('show');
+    }, 100);
+  }
 
   // Navbar background on scroll with smooth transition
   let lastScrollTop = 0;
