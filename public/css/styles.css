@@ -1,21 +1,239 @@
 /* ===== CSS Variables ===== */
 :root {
-  --primary-color: #6366f1;
-  --secondary-color: #8b5cf6;
-  --accent-color: #06b6d4;
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --text-light: #ffffff;
+  /* Light theme (default) */
   --bg-primary: #ffffff;
-  --bg-secondary: #f9fafb;
-  --bg-dark: #111827;
-  --border-color: #e5e7eb;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-  --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #e2e8f0;
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --text-accent: #6366f1;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --primary-color: #6366f1;
+  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  
+  /* Theme transition */
+  --theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-accent: #8b5cf6;
+  --border-color: #334155;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  --primary-color: #8b5cf6;
+  --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+}
+
+/* Surprise theme */
+[data-theme="surprise"] {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-tertiary: #0f3460;
+  --text-primary: #eee;
+  --text-secondary: #16a085;
+  --text-accent: #e74c3c;
+  --border-color: #e74c3c;
+  --shadow-sm: 0 1px 2px 0 rgba(231, 76, 60, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(231, 76, 60, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(231, 76, 60, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(231, 76, 60, 0.5);
+  --primary-color: #e74c3c;
+  --gradient-primary: linear-gradient(135deg, #e74c3c 0%, #f39c12 50%, #9b59b6 100%);
+}
+
+/* Theme Toggle Styles */
+.theme-toggle {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 1000;
+  transition: var(--theme-transition);
+}
+
+.theme-toggle__button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: var(--theme-transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.theme-toggle__button:hover {
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: var(--shadow-xl);
+}
+
+.theme-toggle__container {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bg-primary);
+  border-radius: 2rem;
+  padding: 0.5rem;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) translateX(20px) scale(0.9);
+  transition: var(--theme-transition);
+  min-width: 200px;
+}
+
+.theme-toggle.open .theme-toggle__container {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+.theme-toggle__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 1.5rem;
+  transition: var(--theme-transition);
+  font-size: 0.9rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}
+
+.theme-option:hover {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+.theme-option.active {
+  color: white;
+}
+
+.theme-option i {
+  width: 20px;
+  text-align: center;
+}
+
+.theme-toggle__indicator {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  height: calc(33.333% - 0.33rem);
+  background: var(--gradient-primary);
+  border-radius: 1.5rem;
+  transition: var(--theme-transition);
+  transform: translateY(0);
+  z-index: 1;
+}
+
+.theme-toggle__indicator.dark {
+  transform: translateY(calc(100% + 0.5rem));
+}
+
+.theme-toggle__indicator.surprise {
+  transform: translateY(calc(200% + 1rem));
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .theme-toggle__container {
+    right: 70px;
+    bottom: 0;
+    top: auto;
+    transform: translateX(20px) scale(0.9);
+  }
+  
+  .theme-toggle.open .theme-toggle__container {
+    transform: translateX(0) scale(1);
+  }
+  
+  .theme-toggle__button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+}
+
+/* Apply theme transitions to all elements */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Update existing elements to use theme variables */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: var(--theme-transition);
+}
+
+.navbar {
+  background: rgba(var(--bg-primary-rgb, 255, 255, 255), 0.95);
+  color: var(--text-primary);
+}
+
+.hero {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.courses__section,
+.projects__section,
+.experience__section {
+  background: var(--bg-secondary);
+}
+
+.course__card,
+.project__card {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  box-shadow: var(--shadow-md);
+}
+
+.timeline__content {
+  background: rgba(var(--bg-primary-rgb, 255, 255, 255), 0.95);
+  color: var(--text-primary);
+  border-color: var(--border-color);
 }
 
 /* ===== Global Styles ===== */

@@ -290,4 +290,174 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.setProperty('--mouse-y', `${y}%`);
     });
   });
+
+  // Theme Toggle Functionality
+  const themeToggle = document.getElementById('themeToggle');
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const themeOptions = document.querySelectorAll('.theme-option');
+  const themeIndicator = document.querySelector('.theme-toggle__indicator');
+
+  // Get saved theme or default to light
+  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+  // Apply saved theme on load
+  applyTheme(currentTheme);
+
+  // Toggle theme panel
+  themeToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    themeToggle.classList.toggle('open');
+  });
+
+  // Close theme panel when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!themeToggle.contains(e.target)) {
+      themeToggle.classList.remove('open');
+    }
+  });
+
+  // Handle theme selection
+  themeOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      const selectedTheme = option.dataset.theme;
+      applyTheme(selectedTheme);
+      themeToggle.classList.remove('open');
+    });
+  });
+
+  function applyTheme(theme) {
+    currentTheme = theme;
+    
+    // Update document theme
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    // Update active button
+    themeOptions.forEach(option => {
+      option.classList.remove('active');
+      if (option.dataset.theme === theme) {
+        option.classList.add('active');
+      }
+    });
+
+    // Update indicator position
+    themeIndicator.className = 'theme-toggle__indicator';
+    if (theme === 'dark') {
+      themeIndicator.classList.add('dark');
+    } else if (theme === 'surprise') {
+      themeIndicator.classList.add('surprise');
+    }
+
+    // Apply theme-specific animations
+    applyThemeAnimations(theme);
+    
+    // Save theme
+    localStorage.setItem('theme', theme);
+    
+    // Update Three.js scenes for theme
+    updateThreeJSForTheme(theme);
+  }
+
+  function applyThemeAnimations(theme) {
+    const body = document.body;
+    
+    // Add theme-specific classes
+    body.classList.remove('light-theme', 'dark-theme', 'surprise-theme');
+    body.classList.add(`${theme}-theme`);
+
+    // Surprise theme special effects
+    if (theme === 'surprise') {
+      startSurpriseEffects();
+    } else {
+      stopSurpriseEffects();
+    }
+  }
+
+  function startSurpriseEffects() {
+    // Add rainbow border animation
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      navbar.style.borderBottom = '2px solid';
+      navbar.style.borderImage = 'linear-gradient(45deg, #e74c3c, #f39c12, #f1c40f, #27ae60, #3498db, #9b59b6, #e74c3c) 1';
+      navbar.style.animation = 'rainbowBorder 3s linear infinite';
+    }
+
+    // Add floating particles
+    createFloatingParticles();
+    
+    // Add subtle screen glow
+    document.body.style.boxShadow = 'inset 0 0 100px rgba(231, 76, 60, 0.1)';
+  }
+
+  function stopSurpriseEffects() {
+    // Remove effects
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      navbar.style.borderImage = 'none';
+      navbar.style.animation = 'none';
+      navbar.style.borderBottom = 'none';
+    }
+    
+    // Remove particles
+    document.querySelectorAll('.floating-particle').forEach(particle => {
+      particle.remove();
+    });
+    
+    // Remove screen glow
+    document.body.style.boxShadow = 'none';
+  }
+
+  function createFloatingParticles() {
+    const particleCount = 20;
+    
+    for (let i = 0; i < particleCount; i++) {
+      setTimeout(() => {
+        const particle = document.createElement('div');
+        particle.className = 'floating-particle';
+        particle.innerHTML = ['✨', '🌟', '💫', '⭐'][Math.floor(Math.random() * 4)];
+        
+        particle.style.cssText = `
+          position: fixed;
+          font-size: ${Math.random() * 20 + 10}px;
+          left: ${Math.random() * 100}vw;
+          top: 100vh;
+          pointer-events: none;
+          z-index: 999;
+          animation: floatUp ${Math.random() * 10 + 15}s linear infinite;
+          opacity: ${Math.random() * 0.7 + 0.3};
+        `;
+        
+        document.body.appendChild(particle);
+        
+        // Remove particle after animation
+        setTimeout(() => {
+          particle.remove();
+        }, 25000);
+      }, Math.random() * 2000);
+    }
+  }
+
+  function updateThreeJSForTheme(theme) {
+    // Update Three.js colors based on theme
+    if (window.threeJSAnimations) {
+      const colors = {
+        light: { primary: 0x6366f1, secondary: 0x8b5cf6 },
+        dark: { primary: 0x8b5cf6, secondary: 0xec4899 },
+        surprise: { primary: 0xe74c3c, secondary: 0xf39c12 }
+      };
+      
+      // This would update your Three.js materials
+      // Implementation depends on your Three.js setup
+    }
+  }
+
+  // Keyboard shortcut for theme toggle
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.key === 't') {
+      e.preventDefault();
+      const themes = ['light', 'dark', 'surprise'];
+      const currentIndex = themes.indexOf(currentTheme);
+      const nextTheme = themes[(currentIndex + 1) % themes.length];
+      applyTheme(nextTheme);
+    }
+  });
 });
