@@ -11,10 +11,25 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// IMPORTANT: Static files middleware MUST come before routes
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+
+// Add explicit static routes for Vercel
+app.get('/css/:file', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'css', req.params.file));
+});
+
+app.get('/js/:file', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'js', req.params.file));
+});
+
+app.get('/images/:file', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'images', req.params.file));
+});
 
 // Sample data for courses
 const courses = [
