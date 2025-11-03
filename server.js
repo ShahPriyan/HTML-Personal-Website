@@ -32,50 +32,110 @@ app.get('/images/:file', (req, res) => {
 });
 
 // Sample data for courses
-const courses = [
-  {
-    code: 'ECE 264',
-    name: 'Advanced C Programming',
-    semester: 'Fall 2024',
-    description: 'Advanced programming concepts in C including data structures, algorithms, and memory management.',
-    skills: ['C Programming', 'Data Structures', 'Memory Management', 'Debugging']
+const courseCategories = {
+  'core-engineering': {
+    title: 'Core Engineering',
+    description: 'Fundamental engineering courses',
+    icon: 'fas fa-cogs',
+    lottieUrl: 'https://lottie.host/4e4b5930-07c5-4ad5-8b34-7cafbaac2ed0/dGhEFTWHj8.json',
+    courses: [
+      {
+        code: 'ENGR 132',
+        name: 'Transforming Ideas to Innovation II',
+        semester: 'Spring 2023',
+        description: 'Engineering design process, project management, and team collaboration.',
+        skills: ['Design Thinking', 'Project Management', 'CAD', 'Team Leadership']
+      }
+    ]
   },
-  {
-    code: 'ECE 270',
-    name: 'Introduction to Digital System Design',
-    semester: 'Spring 2025',
-    description: 'Digital logic design, Boolean algebra, combinational and sequential circuits.',
-    skills: ['Digital Logic', 'Verilog', 'FPGA', 'Circuit Design']
+  'electrical-computer': {
+    title: 'Electrical & Computer Engineering',
+    description: 'ECE core and advanced courses',
+    icon: 'fas fa-microchip',
+    lottieUrl: 'https://lottie.host/embed/4e4b5930-07c5-4ad5-8b34-7cafbaac2ed0/dGhEFTWHj8.json',
+    courses: [
+      {
+        code: 'ECE 20001',
+        name: 'Electrical Engineering Fundamentals I',
+        semester: 'Fall 2023',
+        description: 'Introduction to electrical engineering concepts, circuit analysis, and basic electronics.',
+        skills: ['Circuit Analysis', 'Ohm\'s Law', 'Basic Electronics', 'Problem Solving']
+      },
+      {
+        code: 'ECE 20002',
+        name: 'Electrical Engineering Fundamentals II',
+        semester: 'Spring 2024',
+        description: 'Advanced circuit analysis, AC circuits, and introduction to signals.',
+        skills: ['AC Analysis', 'Phasors', 'Signal Processing', 'Circuit Design']
+      },
+      {
+        code: 'ECE 264',
+        name: 'Advanced C Programming',
+        semester: 'Fall 2024',
+        description: 'Advanced programming concepts in C including data structures, algorithms, and memory management.',
+        skills: ['C Programming', 'Data Structures', 'Memory Management', 'Debugging']
+      },
+      {
+        code: 'ECE 270',
+        name: 'Introduction to Digital System Design',
+        semester: 'Spring 2025',
+        description: 'Digital logic design, Boolean algebra, combinational and sequential circuits.',
+        skills: ['Digital Logic', 'Verilog', 'FPGA', 'Circuit Design']
+      },
+      {
+        code: 'ECE 362',
+        name: 'Microprocessor Systems',
+        semester: 'Fall 2025',
+        description: 'Microprocessor architecture, assembly language programming, and embedded systems.',
+        skills: ['Assembly Language', 'Embedded Systems', 'Microcontrollers', 'Hardware Interface']
+      },
+      {
+        code: 'ECE 368',
+        name: 'Data Structures',
+        semester: 'Fall 2025',
+        description: 'Implementation and analysis of fundamental data structures and algorithms.',
+        skills: ['Algorithms', 'Data Structures', 'C/C++', 'Algorithm Analysis']
+      }
+    ]
   },
-  {
-    code: 'ECE 368',
-    name: 'Data Structures',
-    semester: 'Fall 2025',
-    description: 'Implementation and analysis of fundamental data structures and algorithms.',
-    skills: ['Algorithms', 'Data Structures', 'C/C++', 'Algorithm Analysis']
+  'data-science': {
+    title: 'Data Science & Analytics',
+    description: 'Data analysis and machine learning courses',
+    icon: 'fas fa-chart-line',
+    lottieUrl: 'https://assets4.lottiefiles.com/packages/lf20_qp1q7mct.json',
+    courses: [
+      {
+        code: 'ECE 20875',
+        name: 'Python for Data Science',
+        semester: 'Fall 2024',
+        description: 'Introduction to Python programming with focus on data analysis and visualization.',
+        skills: ['Python', 'Pandas', 'NumPy', 'Data Visualization', 'Machine Learning Basics']
+      },
+      {
+        code: 'ECE 36900',
+        name: 'Discrete Mathematics',
+        semester: 'Spring 2024',
+        description: 'Mathematical foundations for computer science and engineering.',
+        skills: ['Logic', 'Set Theory', 'Graph Theory', 'Combinatorics', 'Proof Techniques']
+      }
+    ]
   },
-  {
-    code: 'ECE 362',
-    name: 'Microprocessor Systems',
-    semester: 'Fall 2025',
-    description: 'Microprocessor architecture, assembly language programming, and embedded systems.',
-    skills: ['Assembly Language', 'Embedded Systems', 'Microcontrollers', 'Hardware Interface']
-  },
-  {
-    code: 'ENGR 132',
-    name: 'Transforming Ideas to Innovation II',
-    semester: 'Spring 2023',
-    description: 'Engineering design process, project management, and team collaboration.',
-    skills: ['Design Thinking', 'Project Management', 'CAD', 'Team Leadership']
-  },
-  {
-    code: 'MA 261',
-    name: 'Multivariate Calculus',
-    semester: 'Spring 2023',
-    description: 'Vector calculus, partial derivatives, multiple integrals, and applications.',
-    skills: ['Mathematical Analysis', 'Vector Calculus', 'Problem Solving', 'Mathematical Modeling']
+  'mathematics': {
+    title: 'Mathematics',
+    description: 'Core mathematical foundations',
+    icon: 'fas fa-calculator',
+    lottieUrl: 'https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json',
+    courses: [
+      {
+        code: 'MA 261',
+        name: 'Multivariate Calculus',
+        semester: 'Spring 2023',
+        description: 'Vector calculus, partial derivatives, multiple integrals, and applications.',
+        skills: ['Mathematical Analysis', 'Vector Calculus', 'Problem Solving', 'Mathematical Modeling']
+      }
+    ]
   }
-];
+};
 
 // Sample projects data
 const projects = [
@@ -204,16 +264,12 @@ app.get('/', (req, res) => {
     title: 'Priyan Shah | Portfolio',
     projects: projects,
     experiences: experiences,
-    courses: courses
+    courseCategories: courseCategories
   });
 });
 
-app.get('/api/courses', (req, res) => {
-  res.json(courses);
-});
-
-app.get('/api/projects', (req, res) => {
-  res.json(projects);
+app.get('/api/course-categories', (req, res) => {
+  res.json(courseCategories);
 });
 
 // Contact form handling

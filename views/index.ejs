@@ -10,6 +10,7 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="/css/animations.css">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 
 <body>
@@ -143,22 +144,58 @@
     <div class="container">
       <div class="section__header" data-aos="fade-up">
         <span class="section__tag bounce-in">Education</span>
-        <h2 class="section__title">Relevant Coursework</h2>
-        <p class="section__description">Key courses that have shaped my technical foundation</p>
+        <h2 class="section__title">Academic Journey</h2>
+        <p class="section__description">Click on categories to explore my coursework</p>
       </div>
       
-      <div class="courses__grid">
-        <% courses.forEach((course, index) => { %>
-        <div class="course__card card-hover" data-aos="fade-up" data-aos-delay="<%= (index + 1) * 100 %>">
-          <div class="course__header">
-            <h3 class="course__code"><%= course.code %></h3>
-            <span class="course__semester"><%= course.semester %></span>
+      <!-- Category Tabs -->
+      <div class="education__tabs" data-aos="fade-up" data-aos-delay="200">
+        <% Object.keys(courseCategories).forEach((categoryKey, index) => { %>
+        <div class="education__tab <%= index === 0 ? 'active' : '' %>" 
+             data-category="<%= categoryKey %>" 
+             data-aos="zoom-in" 
+             data-aos-delay="<%= (index + 1) * 100 %>">
+          <div class="tab__animation">
+            <lottie-player
+              src="<%= courseCategories[categoryKey].lottieUrl %>"
+              background="transparent"
+              speed="1"
+              style="width: 60px; height: 60px;"
+              loop
+              autoplay>
+            </lottie-player>
           </div>
-          <h4 class="course__name"><%= course.name %></h4>
-          <p class="course__description"><%= course.description %></p>
-          <div class="course__skills">
-            <% course.skills.forEach(skill => { %>
-            <span class="skill__tag skill-hover"><%= skill %></span>
+          <h3><%= courseCategories[categoryKey].title %></h3>
+          <p><%= courseCategories[categoryKey].description %></p>
+        </div>
+        <% }); %>
+      </div>
+
+      <!-- Course Content -->
+      <div class="education__content">
+        <% Object.keys(courseCategories).forEach((categoryKey, categoryIndex) => { %>
+        <div class="course__category-content <%= categoryIndex === 0 ? 'active' : '' %>" 
+             id="category-<%= categoryKey %>">
+          <div class="courses__grid">
+            <% courseCategories[categoryKey].courses.forEach((course, courseIndex) => { %>
+            <div class="course__card card-hover interactive-course" 
+                 data-aos="fade-up" 
+                 data-aos-delay="<%= (courseIndex + 1) * 100 %>">
+              <div class="course__header">
+                <h3 class="course__code"><%= course.code %></h3>
+                <span class="course__semester"><%= course.semester %></span>
+              </div>
+              <h4 class="course__name"><%= course.name %></h4>
+              <p class="course__description"><%= course.description %></p>
+              <div class="course__skills">
+                <% course.skills.forEach(skill => { %>
+                <span class="skill__tag skill-hover"><%= skill %></span>
+                <% }); %>
+              </div>
+              <div class="course__grade">
+                <span class="grade__indicator">A</span>
+              </div>
+            </div>
             <% }); %>
           </div>
         </div>

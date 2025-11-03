@@ -117,4 +117,74 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', () => {
     document.body.classList.add('loaded');
   });
+
+  // Interactive Education Tabs
+  const educationTabs = document.querySelectorAll('.education__tab');
+  const courseContents = document.querySelectorAll('.course__category-content');
+
+  educationTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const category = tab.dataset.category;
+      
+      // Remove active class from all tabs and contents
+      educationTabs.forEach(t => t.classList.remove('active'));
+      courseContents.forEach(c => c.classList.remove('active'));
+      
+      // Add active class to clicked tab and corresponding content
+      tab.classList.add('active');
+      document.getElementById(`category-${category}`).classList.add('active');
+      
+      // Add subtle animation
+      const activeContent = document.getElementById(`category-${category}`);
+      activeContent.style.animation = 'none';
+      activeContent.offsetHeight; // Trigger reflow
+      activeContent.style.animation = 'fadeInUp 0.6s ease-out';
+    });
+
+    // Add hover effects for Lottie animations
+    tab.addEventListener('mouseenter', () => {
+      const lottiePlayer = tab.querySelector('lottie-player');
+      if (lottiePlayer) {
+        lottiePlayer.setSpeed(1.5);
+      }
+    });
+
+    tab.addEventListener('mouseleave', () => {
+      const lottiePlayer = tab.querySelector('lottie-player');
+      if (lottiePlayer) {
+        lottiePlayer.setSpeed(1);
+      }
+    });
+  });
+
+  // Interactive course cards
+  const courseCards = document.querySelectorAll('.interactive-course');
+  courseCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      // Add particle effect
+      createParticles(card);
+    });
+  });
+
+  // Particle effect function
+  function createParticles(element) {
+    const particles = document.createElement('div');
+    particles.className = 'particles';
+    particles.innerHTML = '✨';
+    particles.style.cssText = `
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.2rem;
+      animation: float 2s ease-out forwards;
+      pointer-events: none;
+      z-index: 10;
+    `;
+    
+    element.appendChild(particles);
+    
+    setTimeout(() => {
+      particles.remove();
+    }, 2000);
+  }
 });

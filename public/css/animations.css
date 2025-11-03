@@ -295,3 +295,25 @@
     border-right: none;
   }
 }
+
+/* Add this to your animations.css file */
+
+@keyframes float {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.8);
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+.interactive-course * {
+  transition: all 0.3s ease;
+}
