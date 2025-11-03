@@ -671,3 +671,69 @@
     padding: 1.5rem;
   }
 }
+
+/* Add these timeline enhancements to your animations.css */
+
+/* Timeline Marker Pulse Animation */
+.timeline__marker {
+  animation: markerPulse 2s ease-in-out infinite;
+}
+
+@keyframes markerPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(99, 102, 241, 0.1);
+  }
+}
+
+/* Timeline Item Entrance Animation */
+.timeline__item {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideInTimeline 0.8s ease-out forwards;
+}
+
+.timeline__item:nth-child(even) {
+  transform: translateX(50px);
+}
+
+@keyframes slideInTimeline {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Enhanced Timeline Line Animation */
+.timeline::before {
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: drawLine 1.5s ease-out 0.5s forwards;
+}
+
+@keyframes drawLine {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Fix: Better hover boundaries for timeline items */
+.timeline__item {
+  position: relative;
+  margin-bottom: 4rem;
+  padding-left: 80px;
+  /* Better containment */
+  isolation: isolate;
+}
+
+.timeline__content {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  overflow: hidden;
+  /* Ensure proper stacking */
+  z-index: 2;
+}
