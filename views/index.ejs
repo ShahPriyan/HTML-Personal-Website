@@ -62,7 +62,12 @@
       </div>
       <div class="hero__image" data-aos="fade-left" data-aos-delay="200">
         <div class="hero__img-container floating-animation">
-          <img src="/images/Headshot.jpg" alt="Priyan Shah" class="hero__img" />
+          <!-- Try both image formats, browser will use whichever exists -->
+          <img src="/images/Headshot.jpg" 
+               alt="Priyan Shah" 
+               class="hero__img" 
+               onerror="this.onerror=null; this.src='/images/Headshot.png';" 
+               loading="lazy" />
           <div class="hero__img-overlay"></div>
         </div>
       </div>
@@ -143,7 +148,7 @@
       
       <div class="courses__grid">
         <% courses.forEach((course, index) => { %>
-        <div class="course__card card-hover" data-aos="fade-up" data-aos-delay="<%= index * 100 %>">
+        <div class="course__card card-hover" data-aos="fade-up" data-aos-delay="<%= (index + 1) * 100 %>">
           <div class="course__header">
             <h3 class="course__code"><%= course.code %></h3>
             <span class="course__semester"><%= course.semester %></span>
@@ -153,10 +158,10 @@
           <div class="course__skills">
             <% course.skills.forEach(skill => { %>
             <span class="skill__tag skill-hover"><%= skill %></span>
-            <% }) %>
+            <% }); %>
           </div>
         </div>
-        <% }) %>
+        <% }); %>
       </div>
     </div>
   </section>
@@ -184,15 +189,15 @@
           <ul class="project__features">
             <% project.features.forEach(feature => { %>
             <li><%= feature %></li>
-            <% }) %>
+            <% }); %>
           </ul>
           <div class="project__tech">
             <% project.technologies.forEach(tech => { %>
             <span class="tech__tag"><%= tech %></span>
-            <% }) %>
+            <% }); %>
           </div>
         </div>
-        <% }) %>
+        <% }); %>
       </div>
     </div>
   </section>
@@ -206,28 +211,28 @@
       </div>
       
       <div class="timeline">
-        <% experiences.forEach((exp, index) => { %>
+        <% experiences.forEach((experience, index) => { %>
         <div class="timeline__item slide-in-left" data-aos="fade-up" data-aos-delay="<%= (index + 1) * 100 %>">
           <div class="timeline__marker pulse-dot"></div>
           <div class="timeline__content">
             <div class="timeline__header">
-              <h3 class="timeline__title"><%= exp.title %></h3>
-              <span class="timeline__company"><%= exp.company %></span>
-              <span class="timeline__date"><%= exp.date %></span>
+              <h3 class="timeline__title"><%= experience.title %></h3>
+              <span class="timeline__company"><%= experience.company %></span>
+              <span class="timeline__date"><%= experience.date %></span>
             </div>
             <ul class="timeline__description">
-              <% exp.description.forEach(desc => { %>
+              <% experience.description.forEach(desc => { %>
               <li><%= desc %></li>
-              <% }) %>
+              <% }); %>
             </ul>
             <div class="timeline__skills">
-              <% exp.skills.forEach(skill => { %>
+              <% experience.skills.forEach(skill => { %>
               <span class="skill__tag skill-hover"><%= skill %></span>
-              <% }) %>
+              <% }); %>
             </div>
           </div>
         </div>
-        <% }) %>
+        <% }); %>
       </div>
     </div>
   </section>
