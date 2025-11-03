@@ -17,53 +17,10 @@ class UltraGraphicsAnimations {
     });
   }
 
-  // Lightweight text animation system (performance optimized)
+  // Minimal text animation system (text corruption fixed)
   setupTextAnimations() {
-    // Only add subtle animations to hero headings to reduce lag
-    const heroHeadings = document.querySelectorAll('.hero h1, .hero h2');
-    heroHeadings.forEach((heading, index) => {
-      heading.style.animationDelay = `${index * 0.3}s`;
-      heading.style.transition = 'all 0.2s ease';
-      
-      // Add hover effects
-      heading.addEventListener('mouseenter', () => {
-        heading.style.transform = 'perspective(1000px) rotateX(10deg) scale(1.05)';
-        heading.style.textShadow = '0 10px 30px rgba(99, 102, 241, 0.8), 0 0 50px rgba(99, 102, 241, 0.5)';
-      });
-      
-      heading.addEventListener('mouseleave', () => {
-        heading.style.transform = 'perspective(1000px) rotateX(0deg) scale(1)';
-        heading.style.textShadow = '';
-      });
-    });
-
-    // Simplified icon animations (performance optimized)
-    const icons = document.querySelectorAll('.hero .fab, .hero .fas, .hero .far');
-    icons.forEach((icon, index) => {
-      icon.style.transition = 'all 0.2s ease';
-      
-      icon.addEventListener('mouseenter', () => {
-        icon.style.transform = 'scale(1.2)';
-      });
-      
-      icon.addEventListener('mouseleave', () => {
-        icon.style.transform = 'scale(1)';
-      });
-    });
-
-    // Lightweight CSS animations (performance optimized)
-    const style = document.createElement('style');
-    style.textContent = `
-      .hero h1 {
-        animation: subtleFloat 4s ease-in-out infinite;
-      }
-      
-      @keyframes subtleFloat {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-5px); }
-      }
-    `;
-    document.head.appendChild(style);
+    // No animations to prevent text corruption
+    console.log('Text animations disabled to prevent corruption');
   }
 
   // MASSIVE Particle Galaxy with Nebula Effects for Education

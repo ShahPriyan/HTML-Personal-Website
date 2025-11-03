@@ -730,6 +730,13 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  color: var(--text-primary) !important;
+  text-shadow: none !important;
+  animation: none !important;
+  transform: none !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
 }
 
 .hero__subtitle {
