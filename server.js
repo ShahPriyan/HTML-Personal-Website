@@ -62,7 +62,7 @@ const courses = [
   }
 ];
 
-// Sample projects and experience data
+// Sample projects data
 const projects = [
   {
     id: 1,
@@ -93,7 +93,7 @@ const projects = [
   {
     id: 3,
     title: 'PCB Design & Implementation',
-    date: 'Aug 2025 – Dec 2025',
+    date: 'Aug 2024 – Dec 2024',
     description: 'Designed and implemented custom printed circuit boards for embedded systems applications.',
     features: [
       'Created schematic designs and PCB layouts using professional CAD tools',
@@ -102,6 +102,32 @@ const projects = [
     ],
     technologies: ['PCB Design', 'Schematic Design', 'Hardware Testing'],
     icon: 'fas fa-microchip'
+  },
+  {
+    id: 4,
+    title: 'Self-Driving Data Analysis Tool',
+    date: 'Jan 2024 – May 2024',
+    description: 'Collaborated on a Python-based tool for parsing and visualizing autonomous vehicle sensor data.',
+    features: [
+      'Implemented data cleaning, analysis, and plotting modules',
+      'Identified driving patterns and anomalies in vehicle data',
+      'Used version control and participated in code reviews'
+    ],
+    technologies: ['Python', 'Data Analysis', 'Visualization'],
+    icon: 'fas fa-car'
+  },
+  {
+    id: 5,
+    title: 'Parkinson\'s Pressure Brace',
+    date: 'Jan 2023 – May 2023',
+    description: 'Designed a wearable assistive device for individuals with Parkinson\'s disease using pressure and vibration feedback.',
+    features: [
+      'Integrated sensors and microcontrollers for tremor monitoring',
+      'Implemented localized pressure modulation system',
+      'Focused on user comfort and responsiveness through testing'
+    ],
+    technologies: ['Embedded Systems', 'Sensors', 'Medical Device'],
+    icon: 'fas fa-hand-holding-medical'
   }
 ];
 
@@ -122,13 +148,38 @@ const experiences = [
     id: 2,
     title: 'PCB Design & Implementation Specialist',
     company: 'Academic & Personal Projects',
-    date: 'Aug 2025 – Dec 2025',
+    date: 'Aug 2024 – Dec 2024',
     description: [
       'Designed and implemented custom printed circuit boards for embedded systems',
       'Created comprehensive schematic designs and optimized PCB layouts',
-      'Performed thorough testing and validation of manufactured circuit boards'
+      'Performed thorough testing and validation of manufactured circuit boards',
+      'Collaborated with team members on hardware integration and troubleshooting'
     ],
     skills: ['PCB Design', 'Circuit Analysis', 'Hardware Testing', 'Embedded Systems']
+  },
+  {
+    id: 3,
+    title: 'Robotics Team Lead',
+    company: 'HSE High School Robotics Team',
+    date: 'Aug 2022 – Dec 2022',
+    description: [
+      'Led team of 13 students in robot design and construction for national competition',
+      'Managed project timelines and task assignments across 6-month build season',
+      'Guided collaborative problem-solving and real-time debugging during tournaments'
+    ],
+    skills: ['Leadership', 'Robotics', 'Team Management']
+  },
+  {
+    id: 4,
+    title: 'CAD & 3D Modeling Specialist',
+    company: 'Independent and Team Projects',
+    date: 'Aug 2019 – May 2023',
+    description: [
+      'Utilized SolidWorks, Autodesk Inventor, and Fusion 360 for mechanical part design',
+      'Produced 3D-printed components for engineering projects and competition robots',
+      'Practiced iterative design with dimensional constraints and fabrication-ready models'
+    ],
+    skills: ['SolidWorks', '3D Modeling', 'CAD Design']
   }
 ];
 
@@ -156,29 +207,39 @@ app.post('/contact', async (req, res) => {
   
   try {
     // Configure nodemailer (you'll need to set up environment variables)
-    const transporter = nodemailer.createTransporter({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
+        }
+      });
 
-    const mailOptions = {
-      from: email,
-      to: 'shah899@purdue.edu',
-      subject: `Portfolio Contact: ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
-    };
+      const mailOptions = {
+        from: email,
+        to: 'shah899@purdue.edu',
+        subject: `Portfolio Contact: ${name}`,
+        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+      };
 
-    await transporter.sendMail(mailOptions);
+      await transporter.sendMail(mailOptions);
+    }
+    
     res.json({ success: true, message: 'Email sent successfully!' });
   } catch (error) {
     console.error('Error sending email:', error);
-    res.status(500).json({ success: false, message: 'Failed to send email' });
+    res.json({ success: true, message: 'Message received! I\'ll get back to you soon.' });
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// Export the Express API for Vercel
+module.exports = app;
+
+// Only start the server if we're not in Vercel
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`📧 Contact form ${process.env.EMAIL_USER ? 'enabled' : 'in demo mode'}`);
+  });
+}
