@@ -1,9 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize AOS
+  // Initialize Enhanced Text & Icon Animations
+  initializeEnhancedAnimations();
+  
+  // Initialize AOS with enhanced settings
   AOS.init({
-    duration: 800,
+    duration: 1000,
     once: true,
-    easing: 'ease-in-out',
+    easing: 'ease-out-cubic',
+    offset: 50,
+    delay: 100
   });
 
   // Mobile menu toggle
@@ -807,6 +812,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const sectionId = entry.target.id;
         
         switch(sectionId) {
+          case 'home':
+            window.threeJSAnimations.initHeroAnimation('hero-animation');
+            break;
           case 'courses':
             window.threeJSAnimations.initEducationAnimation('education-animation');
             break;
@@ -822,7 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, observerOptions);
 
   // Observe sections
-  ['courses', 'projects', 'experience'].forEach(id => {
+  ['home', 'courses', 'projects', 'experience'].forEach(id => {
     const section = document.getElementById(id);
     if (section) {
       threeJSObserver.observe(section);
@@ -880,4 +888,193 @@ document.addEventListener('DOMContentLoaded', () => {
       particles.remove();
     }, 2000);
   }
+
+  // Enhanced Text & Icon Animation System
+  function initializeEnhancedAnimations() {
+    // Add dynamic text effects to all headings
+    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headings.forEach((heading, index) => {
+      // Stagger the animation delays
+      heading.style.animationDelay = `${index * 0.2}s`;
+      
+      // Add interactive hover effects
+      heading.addEventListener('mouseenter', () => {
+        heading.style.animation = 'none';
+        heading.style.transform = 'perspective(1000px) rotateX(10deg) scale(1.05)';
+        heading.style.textShadow = `
+          0 10px 30px rgba(99, 102, 241, 0.8),
+          0 0 50px rgba(99, 102, 241, 0.5),
+          0 0 100px rgba(99, 102, 241, 0.3)
+        `;
+      });
+      
+      heading.addEventListener('mouseleave', () => {
+        heading.style.animation = 'floatText 4s ease-in-out infinite';
+        heading.style.transform = 'perspective(1000px) rotateX(0deg) scale(1)';
+        heading.style.textShadow = '0 5px 15px rgba(99, 102, 241, 0.3)';
+      });
+    });
+
+    // Enhanced icon animations
+    const icons = document.querySelectorAll('.fab, .fas, .far, i[class*="fa"], i[class*="icon"], .icon');
+    icons.forEach((icon, index) => {
+      icon.style.animationDelay = `${index * 0.1}s`;
+      
+      // Add magnetic hover effect
+      icon.addEventListener('mouseenter', () => {
+        icon.style.animation = 'iconExplosion 0.6s ease-out';
+        icon.style.transform = 'perspective(1000px) rotateY(360deg) scale(1.4)';
+        icon.style.filter = `
+          drop-shadow(0 0 20px currentColor) 
+          drop-shadow(0 0 40px currentColor)
+          brightness(1.5) 
+          saturate(1.3)
+        `;
+      });
+      
+      icon.addEventListener('mouseleave', () => {
+        icon.style.animation = 'pulseIcon 3s ease-in-out infinite';
+        icon.style.transform = 'perspective(1000px) scale(1)';
+        icon.style.filter = 'drop-shadow(0 5px 15px rgba(99, 102, 241, 0.4))';
+      });
+    });
+
+    // Add particle effects to buttons
+    const buttons = document.querySelectorAll('button, .btn, .button');
+    buttons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        createParticleExplosion(e.target, e.clientX, e.clientY);
+      });
+    });
+
+    // Enhanced scroll-triggered animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          
+          // Add text typing effect for paragraphs
+          if (entry.target.tagName === 'P') {
+            addTypingEffect(entry.target);
+          }
+          
+          // Add number counting effect
+          if (entry.target.classList.contains('stat-number')) {
+            animateNumber(entry.target);
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Observe all text elements
+    document.querySelectorAll('p, .course__card, .project__card, .timeline__content').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Add parallax effect to background elements
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallax = document.querySelectorAll('.parallax-bg');
+      
+      parallax.forEach(element => {
+        const speed = element.dataset.speed || 0.5;
+        element.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
+  }
+
+  // Particle explosion effect for button clicks
+  function createParticleExplosion(element, x, y) {
+    for (let i = 0; i < 12; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'click-particle';
+      particle.innerHTML = ['✨', '💫', '⭐', '🌟'][Math.floor(Math.random() * 4)];
+      
+      const angle = (i / 12) * Math.PI * 2;
+      const velocity = 50 + Math.random() * 50;
+      
+      particle.style.cssText = `
+        position: fixed;
+        top: ${y}px;
+        left: ${x}px;
+        font-size: ${0.8 + Math.random() * 0.4}rem;
+        pointer-events: none;
+        z-index: 1000;
+        animation: particleExplosion 1s ease-out forwards;
+        --angle: ${angle}rad;
+        --velocity: ${velocity}px;
+      `;
+      
+      document.body.appendChild(particle);
+      
+      setTimeout(() => particle.remove(), 1000);
+    }
+  }
+
+  // Typing effect for text
+  function addTypingEffect(element) {
+    const text = element.textContent;
+    element.textContent = '';
+    element.style.borderRight = '2px solid var(--text-accent)';
+    
+    let i = 0;
+    const typeTimer = setInterval(() => {
+      element.textContent += text.charAt(i);
+      i++;
+      if (i >= text.length) {
+        clearInterval(typeTimer);
+        setTimeout(() => {
+          element.style.borderRight = 'none';
+        }, 500);
+      }
+    }, 50);
+  }
+
+  // Number animation effect
+  function animateNumber(element) {
+    const target = parseInt(element.textContent);
+    let current = 0;
+    const increment = target / 60; // 60 frames for 1 second at 60fps
+    
+    const timer = setInterval(() => {
+      current += increment;
+      element.textContent = Math.floor(current);
+      
+      if (current >= target) {
+        element.textContent = target;
+        clearInterval(timer);
+      }
+    }, 16);
+  }
+
+  // Add CSS for particle explosion
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes particleExplosion {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: 
+          translate(
+            calc(cos(var(--angle)) * var(--velocity)), 
+            calc(sin(var(--angle)) * var(--velocity))
+          ) 
+          scale(0.3);
+      }
+    }
+    
+    .animate-in {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .parallax-bg {
+      will-change: transform;
+    }
+  `;
+  document.head.appendChild(style);
 });

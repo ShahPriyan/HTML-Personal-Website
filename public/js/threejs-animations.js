@@ -6,6 +6,7 @@ class UltraGraphicsAnimations {
     this.animationFrames = new Map();
     this.mousePosition = { x: 0, y: 0 };
     this.setupMouseTracking();
+    this.setupTextAnimations();
   }
 
   setupMouseTracking() {
@@ -13,6 +14,77 @@ class UltraGraphicsAnimations {
       this.mousePosition.x = (event.clientX / window.innerWidth) * 2 - 1;
       this.mousePosition.y = -(event.clientY / window.innerHeight) * 2 + 1;
     });
+  }
+
+  // Enhanced text animation system for making text POP
+  setupTextAnimations() {
+    // Add floating animation to all headings
+    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headings.forEach((heading, index) => {
+      heading.style.animation = `floatText 3s ease-in-out infinite`;
+      heading.style.animationDelay = `${index * 0.2}s`;
+      heading.style.transform = 'perspective(1000px) rotateX(0deg)';
+      heading.style.transition = 'all 0.3s ease';
+      
+      // Add hover effects
+      heading.addEventListener('mouseenter', () => {
+        heading.style.transform = 'perspective(1000px) rotateX(10deg) scale(1.05)';
+        heading.style.textShadow = '0 10px 30px rgba(99, 102, 241, 0.8), 0 0 50px rgba(99, 102, 241, 0.5)';
+      });
+      
+      heading.addEventListener('mouseleave', () => {
+        heading.style.transform = 'perspective(1000px) rotateX(0deg) scale(1)';
+        heading.style.textShadow = '';
+      });
+    });
+
+    // Enhanced icon animations
+    const icons = document.querySelectorAll('.fab, .fas, .far, i[class*="icon"]');
+    icons.forEach((icon, index) => {
+      icon.style.animation = `pulseIcon 2s ease-in-out infinite`;
+      icon.style.animationDelay = `${index * 0.1}s`;
+      icon.style.transform = 'perspective(1000px)';
+      icon.style.transition = 'all 0.3s ease';
+      
+      icon.addEventListener('mouseenter', () => {
+        icon.style.transform = 'perspective(1000px) rotateY(360deg) scale(1.3)';
+        icon.style.filter = 'drop-shadow(0 0 20px currentColor) brightness(1.5)';
+      });
+      
+      icon.addEventListener('mouseleave', () => {
+        icon.style.transform = 'perspective(1000px) rotateY(0deg) scale(1)';
+        icon.style.filter = '';
+      });
+    });
+
+    // Add CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes floatText {
+        0%, 100% { transform: translateY(0px) rotateX(0deg); }
+        50% { transform: translateY(-10px) rotateX(5deg); }
+      }
+      
+      @keyframes pulseIcon {
+        0%, 100% { transform: scale(1) rotateZ(0deg); }
+        25% { transform: scale(1.1) rotateZ(5deg); }
+        75% { transform: scale(0.95) rotateZ(-5deg); }
+      }
+      
+      @keyframes shimmer {
+        0% { background-position: -1000px 0; }
+        100% { background-position: 1000px 0; }
+      }
+      
+      .text-pop {
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        background-size: 200% 100%;
+        animation: shimmer 3s infinite;
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+    `;
+    document.head.appendChild(style);
   }
 
   // MASSIVE Particle Galaxy with Nebula Effects for Education
@@ -1017,347 +1089,111 @@ class UltraGraphicsAnimations {
     this.scenes.delete(containerId);
     this.cameras.delete(containerId);
   }
+  // HERO SECTION - Lightning Storm with Particle System
+  initHeroAnimation(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 2000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+    
+    renderer.setSize(container.offsetWidth, container.offsetHeight);
+    renderer.setClearColor(0x000000, 0);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    // Create massive particle system with lightning effects
+    const particleCount = 3000;
+    const particles = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+    const sizes = new Float32Array(particleCount);
+
+    for (let i = 0; i < particleCount; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 200;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 200;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 200;
+
+      const color = new THREE.Color();
+      color.setHSL(Math.random() * 0.6 + 0.4, 1, 0.8);
+      colors[i * 3] = color.r;
+      colors[i * 3 + 1] = color.g;
+      colors[i * 3 + 2] = color.b;
+
+      sizes[i] = Math.random() * 4 + 1;
+    }
+
+    particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    particles.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+    const particleMaterial = new THREE.PointsMaterial({
+      vertexColors: true,
+      size: 0.5,
+      sizeAttenuation: true,
+      transparent: true,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending
+    });
+
+    const particleSystem = new THREE.Points(particles, particleMaterial);
+    scene.add(particleSystem);
+
+    // Add floating geometric shapes for visual impact
+    const geometries = [];
+    for (let i = 0; i < 15; i++) {
+      const geometry = new THREE.IcosahedronGeometry(2 + Math.random() * 3);
+      const material = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(Math.random(), 0.8, 0.6),
+        wireframe: true,
+        transparent: true,
+        opacity: 0.6
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(
+        (Math.random() - 0.5) * 100,
+        (Math.random() - 0.5) * 100,
+        (Math.random() - 0.5) * 100
+      );
+      scene.add(mesh);
+      geometries.push(mesh);
+    }
+
+    camera.position.z = 50;
+
+    const animate = () => {
+      const time = Date.now() * 0.001;
+
+      // Animate particles with lightning-like movement
+      const positions = particleSystem.geometry.attributes.position.array;
+      for (let i = 0; i < particleCount; i++) {
+        positions[i * 3 + 1] += Math.sin(time + i * 0.01) * 0.1;
+        positions[i * 3] += Math.cos(time + i * 0.01) * 0.05;
+      }
+      particleSystem.geometry.attributes.position.needsUpdate = true;
+      particleSystem.rotation.y += 0.001;
+
+      // Animate geometric shapes
+      geometries.forEach((shape, index) => {
+        shape.rotation.x += 0.01 + index * 0.001;
+        shape.rotation.y += 0.015 + index * 0.001;
+        shape.position.y += Math.sin(time + index) * 0.02;
+      });
+
+      // Interactive camera movement
+      camera.position.x = Math.sin(time * 0.1) * 10 + this.mousePosition.x * 20;
+      camera.position.y = Math.cos(time * 0.1) * 5 + this.mousePosition.y * 10;
+
+      renderer.render(scene, camera);
+      this.animationFrames.set(containerId, requestAnimationFrame(animate));
+    };
+
+    animate();
+    this.scenes.set(containerId, scene);
+    this.renderers.set(containerId, renderer);
+    this.cameras.set(containerId, camera);
+  }
 }
 
 window.threeJSAnimations = new UltraGraphicsAnimations();
-
-/* Replace your theme toggle styles with these fixed versions: */
-
-/* Theme Toggle Styles - Fixed Overflow */
-.theme-toggle {
-  position: fixed;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  z-index: 1001;
-  transition: var(--theme-transition);
-}
-
-.theme-toggle__button {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--gradient-primary);
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: var(--shadow-lg);
-  transition: var(--theme-transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(10px);
-  position: relative;
-  z-index: 1002;
-}
-
-.theme-toggle__button:hover {
-  transform: scale(1.1) rotate(15deg);
-  box-shadow: var(--shadow-xl);
-}
-
-.theme-toggle__container {
-  position: absolute;
-  right: 80px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--bg-primary);
-  border-radius: 2rem;
-  padding: 0.5rem;
-  box-shadow: var(--shadow-xl);
-  border: 2px solid var(--border-color);
-  backdrop-filter: blur(20px);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-50%) translateX(20px) scale(0.9);
-  transition: var(--theme-transition);
-  min-width: 220px;
-  /* Fix overflow */
-  overflow: hidden;
-  z-index: 1001;
-}
-
-.theme-toggle.open .theme-toggle__container {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(-50%) translateX(0) scale(1);
-}
-
-.theme-toggle__options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  position: relative;
-  /* Fix overflow */
-  overflow: hidden;
-}
-
-.theme-option {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  cursor: pointer;
-  border-radius: 1.5rem;
-  transition: var(--theme-transition);
-  font-size: 0.9rem;
-  font-weight: 500;
-  position: relative;
-  z-index: 2;
-  /* Fix overflow */
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.theme-option:hover {
-  color: var(--text-primary);
-  background: rgba(var(--primary-color-rgb, 99, 102, 241), 0.1);
-  transform: translateX(2px);
-}
-
-.theme-option.active {
-  color: white;
-  /* Ensure active state doesn't overflow */
-  background: transparent;
-}
-
-.theme-option i {
-  width: 20px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.theme-option span {
-  flex: 1;
-  /* Prevent text overflow */
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.theme-toggle__indicator {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  right: 0.5rem;
-  height: calc(33.333% - 0.33rem);
-  background: var(--gradient-primary);
-  border-radius: 1.5rem;
-  transition: var(--theme-transition);
-  transform: translateY(0);
-  z-index: 1;
-  /* Fix overflow and ensure it stays within bounds */
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.theme-toggle__indicator.dark {
-  transform: translateY(calc(100% + 0.5rem));
-}
-
-.theme-toggle__indicator.surprise {
-  transform: translateY(calc(200% + 1rem));
-}
-
-/* Add RGB color variables for better theme support */
-:root {
-  --primary-color-rgb: 99, 102, 241;
-  --bg-primary-rgb: 255, 255, 255;
-}
-
-[data-theme="dark"] {
-  --primary-color-rgb: 139, 92, 246;
-  --bg-primary-rgb: 15, 23, 42;
-}
-
-[data-theme="surprise"] {
-  --primary-color-rgb: 231, 76, 60;
-  --bg-primary-rgb: 26, 26, 46;
-}
-
-/* Mobile adjustments - Fix overflow */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: auto;
-    bottom: 20px;
-    right: 20px;
-  }
-  
-  .theme-toggle__container {
-    right: 70px;
-    bottom: 0;
-    top: auto;
-    transform: translateX(20px) scale(0.9);
-    min-width: 180px;
-    /* Ensure it doesn't overflow screen */
-    max-width: calc(100vw - 100px);
-  }
-  
-  .theme-toggle.open .theme-toggle__container {
-    transform: translateX(0) scale(1);
-  }
-  
-  .theme-toggle__button {
-    width: 50px;
-    height: 50px;
-    font-size: 1.25rem;
-  }
-  
-  .theme-option {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.8rem;
-  }
-}
-
-/* Prevent any overflow issues globally */
-.theme-toggle * {
-  box-sizing: border-box;
-}
-
-/* Enhanced visual effects for theme options */
-.theme-option::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(var(--primary-color-rgb), 0.1), transparent);
-  transition: left 0.3s ease;
-  border-radius: inherit;
-}
-
-.theme-option:hover::before {
-  left: 100%;
-}
-
-/* Surprise theme special effects */
-[data-theme="surprise"] .theme-toggle__button {
-  background: linear-gradient(45deg, #e74c3c, #f39c12, #e74c3c);
-  background-size: 200% 200%;
-  animation: surpriseGradient 2s ease-in-out infinite;
-}
-
-@keyframes surpriseGradient {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-/* Add to your styles.css for better graphics integration */
-
-/* Enhanced Three.js containers with better performance */
-.threejs-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
-  will-change: transform;
-}
-
-.threejs-background canvas {
-  width: 100% !important;
-  height: 100% !important;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Theme-aware graphics effects */
-[data-theme="dark"] .threejs-background {
-  filter: brightness(1.2) contrast(1.1) hue-rotate(10deg);
-}
-
-[data-theme="surprise"] .threejs-background {
-  filter: brightness(1.3) saturate(1.4) hue-rotate(30deg);
-  animation: surpriseGlow 4s ease-in-out infinite;
-}
-
-@keyframes surpriseGlow {
-  0%, 100% { 
-    filter: brightness(1.3) saturate(1.4) hue-rotate(30deg);
-  }
-  50% { 
-    filter: brightness(1.5) saturate(1.6) hue-rotate(60deg);
-  }
-}
-
-/* Better content layering over graphics */
-.courses__section .container,
-.projects__section .container,
-.experience__section .container {
-  position: relative;
-  z-index: 2;
-  background: rgba(var(--bg-primary-rgb), 0.05);
-  backdrop-filter: blur(15px) saturate(1.2);
-  border-radius: 2rem;
-  padding: 3rem;
-  margin: 2rem 0;
-  border: 1px solid rgba(var(--primary-color-rgb), 0.1);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-/* Interactive effects that work with graphics */
-.course__card,
-.project__card {
-  backdrop-filter: blur(20px) saturate(1.3);
-  background: rgba(var(--bg-primary-rgb), 0.8);
-  border: 1px solid rgba(var(--primary-color-rgb), 0.2);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.course__card:hover,
-.project__card:hover {
-  background: rgba(var(--bg-primary-rgb), 0.95);
-  border-color: rgba(var(--primary-color-rgb), 0.5);
-  box-shadow: 
-    0 25px 50px rgba(var(--primary-color-rgb), 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transform: translateY(-10px) scale(1.02);
-}
-
-/* Timeline with graphics integration */
-.timeline__content {
-  backdrop-filter: blur(20px) saturate(1.2);
-  background: rgba(var(--bg-primary-rgb), 0.85);
-  border: 1px solid rgba(var(--primary-color-rgb), 0.2);
-}
-
-.timeline__content:hover {
-  background: rgba(var(--bg-primary-rgb), 0.95);
-  border-color: rgba(var(--primary-color-rgb), 0.4);
-  box-shadow: 0 20px 40px rgba(var(--primary-color-rgb), 0.15);
-}
-
-/* Performance optimizations for graphics */
-@media (max-width: 768px) {
-  .threejs-background canvas {
-    filter: brightness(0.7);
-    transform: scale(0.9) translateZ(0);
-  }
-}
-
-/* Ensure smooth scrolling with heavy graphics */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-/* GPU acceleration for better performance */
-.course__card,
-.project__card,
-.timeline__content,
-.theme-toggle {
-  transform: translateZ(0);
-  will-change: transform;
-}
