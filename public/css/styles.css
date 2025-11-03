@@ -263,25 +263,28 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap;
 }
 
-.hero__img-container {
-  position: relative;
-  max-width: 400px;
-  margin: 0 auto;
+.hero__img-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero__img {
-  width: 100%;
-  height: auto;
-  border-radius: 1rem;
-  box-shadow: var(--shadow-xl);
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 50%;
+  object-position: center 20%;
+  transition: transform 0.3s ease;
 }
 
-.hero__img-overlay {
-  position: absolute;
-  inset: 0;
-  background: var(--gradient-primary);
-  opacity: 0.1;
-  border-radius: 1rem;
+.hero__img:hover {
+  transform: scale(1.05);
 }
 
 /* ===== About Section ===== */
