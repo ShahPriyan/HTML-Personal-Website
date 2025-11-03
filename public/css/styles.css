@@ -1346,3 +1346,28 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1.5rem;
   }
 }
+
+/* Add this at the end of your styles.css */
+
+/* Hide any unwanted content at bottom */
+body::after {
+  content: '';
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Ensure proper document structure */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Hide any text nodes that might be leaking */
+body > script + * {
+  display: none;
+}
