@@ -43,19 +43,20 @@
   }
 }
 
-/* Typing Animation - Disabled for Performance */
+/* Typing Animation - COMPLETELY DISABLED for Performance */
 .typing-animation {
-  /* Typing animation disabled to prevent text corruption */
+  /* All typing animations disabled - text appears instantly */
+  animation: none !important;
+  border-right: none !important;
 }
 
+/* Disabled keyframes to prevent any activation */
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from, to { width: 100%; }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: var(--primary-color) }
+  from, to { border-color: transparent; }
 }
 
 /* Fade in animations */

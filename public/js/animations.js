@@ -1,10 +1,10 @@
-// Counter Animation
+// Counter Animation - OPTIMIZED for performance
 function animateCounters() {
   const counters = document.querySelectorAll('.stat__number[data-target]');
   
   counters.forEach(counter => {
     const target = parseInt(counter.getAttribute('data-target'));
-    const increment = target / 100;
+    const increment = target / 50; // Reduced from 100 to 50 for faster animation
     let current = 0;
     
     const timer = setInterval(() => {
@@ -15,7 +15,7 @@ function animateCounters() {
         counter.textContent = target + '+';
         clearInterval(timer);
       }
-    }, 20);
+    }, 40); // Increased from 20ms to 40ms for less frequent updates
   });
 }
 
@@ -41,14 +41,24 @@ const observeElements = () => {
   });
 };
 
-// Parallax effect for hero section
+// Parallax effect for hero section - THROTTLED for performance
 const parallaxEffect = () => {
-  window.addEventListener('scroll', () => {
+  let ticking = false;
+  
+  function updateParallax() {
     const scrolled = window.pageYOffset;
-    const rate = scrolled * -0.5;
+    const rate = scrolled * -0.25; // Reduced effect intensity
     const hero = document.querySelector('.hero__img-container');
     if (hero) {
       hero.style.transform = `translateY(${rate}px)`;
+    }
+    ticking = false;
+  }
+  
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
     }
   });
 };
@@ -58,10 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
   observeElements();
   parallaxEffect();
   
-  // Add stagger animation to skill tags
+  // Simplified skill tag animations - reduced stagger
   const skillTags = document.querySelectorAll('.skill__tag');
   skillTags.forEach((tag, index) => {
-    tag.style.animationDelay = `${index * 0.1}s`;
+    tag.style.animationDelay = `${index * 0.05}s`; // Reduced from 0.1s to 0.05s
     tag.classList.add('fade-in-up');
   });
 });

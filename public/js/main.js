@@ -978,12 +978,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-in');
           
-          // Add text typing effect for specific paragraphs only
-          if (entry.target.tagName === 'P' && 
-              !entry.target.classList.contains('section__description') &&
-              !entry.target.classList.contains('about__description')) {
-            addTypingEffect(entry.target);
-          }
+          // Typing effects disabled for better performance and instant text appearance
+          // Text now appears instantly for better user experience
           
           // Add number counting effect
           if (entry.target.classList.contains('stat-number')) {
@@ -1038,23 +1034,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Typing effect for text
+  // Typing effect disabled for performance optimization
   function addTypingEffect(element) {
-    const text = element.textContent;
-    element.textContent = '';
-    element.style.borderRight = '2px solid var(--text-accent)';
-    
-    let i = 0;
-    const typeTimer = setInterval(() => {
-      element.textContent += text.charAt(i);
-      i++;
-      if (i >= text.length) {
-        clearInterval(typeTimer);
-        setTimeout(() => {
-          element.style.borderRight = 'none';
-        }, 500);
-      }
-    }, 50);
+    // Function disabled - text appears instantly for better performance
+    return;
   }
 
   // Number animation effect

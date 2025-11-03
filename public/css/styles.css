@@ -32,14 +32,14 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-/* Minimal animation only for hero h1 */
+/* Minimal animation only for hero h1 - SIMPLIFIED */
 .hero h1 {
-  animation: subtleFloat 6s ease-in-out infinite;
+  /* Removed heavy floating animation for better performance */
 }
 
-/* Simple hover effects for other headings */
+/* Simple hover effects for other headings - SIMPLIFIED */
 h2:hover, h3:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 /* Disable heavy animations for about section */
@@ -53,26 +53,16 @@ h2:hover, h3:hover {
   color: var(--text-primary);
 }
 
+/* Shimmer effects DISABLED for performance */
 h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%);
-  opacity: 0;
-  animation: shimmerText 3s infinite;
-  pointer-events: none;
+  /* Disabled heavy shimmer effects */
+  content: none;
 }
 
+/* Simplified hover effects - NO PERSPECTIVE TRANSFORMS */
 h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
-  transform: perspective(1000px) rotateX(10deg) scale(1.05);
-  text-shadow: 
-    0 10px 30px rgba(var(--primary-color-rgb), 0.8),
-    0 0 50px var(--text-glow),
-    0 0 100px var(--text-glow);
-  filter: brightness(1.3);
+  transform: translateY(-1px) scale(1.02);
+  text-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.3);
 }
 
 /* Lightweight Icons (Performance Optimized) */
@@ -81,9 +71,9 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
   position: relative;
 }
 
-/* Only animate hero icons */
+/* Simplified icon animations for better performance */
 .hero .fab, .hero .fas, .hero .far {
-  animation: subtlePulse 4s ease-in-out infinite;
+  /* Disabled heavy pulsing animations */
 }
 
 .fab::before, .fas::before, .far::before, 
@@ -92,23 +82,18 @@ i[class*="fa"]::before, i[class*="icon"]::before, .icon::before {
   z-index: 1;
 }
 
+/* SIMPLIFIED icon hover - no perspective transforms */
 .fab:hover, .fas:hover, .far:hover, 
 i[class*="fa"]:hover, i[class*="icon"]:hover, .icon:hover {
-  transform: perspective(1000px) rotateY(360deg) scale(1.4);
-  filter: 
-    drop-shadow(0 0 20px currentColor) 
-    drop-shadow(0 0 40px currentColor)
-    brightness(1.5) 
-    saturate(1.3);
-  animation: iconExplosion 0.6s ease-out;
+  transform: scale(1.1);
+  filter: brightness(1.2);
 }
 
-/* Button Pop Effects */
+/* Button Effects - SIMPLIFIED for performance */
 button, .btn, .button {
   position: relative;
   overflow: hidden;
-  transform: perspective(1000px);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.2s ease;
 }
 
 button::before, .btn::before, .button::before {
@@ -131,19 +116,15 @@ button:hover::before, .btn:hover::before, .button:hover::before {
 }
 
 button:hover, .btn:hover, .button:hover {
-  transform: perspective(1000px) rotateX(5deg) translateY(-2px) scale(1.05);
-  box-shadow: 
-    0 15px 35px rgba(var(--primary-color-rgb), 0.4),
-    0 5px 15px rgba(0,0,0,0.1);
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.3);
 }
 
-/* Card Pop Effects */
+/* Card Effects - SIMPLIFIED for performance */
 .course__card, .project__card, .timeline__content {
   position: relative;
   overflow: hidden;
-  transform: perspective(1000px);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  backdrop-filter: blur(20px) saturate(1.3);
+  transition: all 0.2s ease;
 }
 
 .course__card::before, .project__card::before, .timeline__content::before {
@@ -207,78 +188,36 @@ a:hover::after {
   width: 100%;
 }
 
-/* Enhanced Keyframe Animations */
+/* SIMPLIFIED Keyframe Animations for Performance */
 @keyframes floatText {
-  0%, 100% { 
-    transform: perspective(1000px) translateY(0px) rotateX(0deg); 
-  }
-  25% { 
-    transform: perspective(1000px) translateY(-8px) rotateX(2deg); 
-  }
-  75% { 
-    transform: perspective(1000px) translateY(-4px) rotateX(-1deg); 
-  }
+  /* DISABLED heavy animation */
+  0%, 100% { transform: none; }
 }
 
 @keyframes subtleFloat {
-  0%, 100% { 
-    transform: translateY(0px); 
-  }
-  50% { 
-    transform: translateY(-3px); 
-  }
+  /* SIMPLIFIED floating */
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-1px); }
 }
 
 @keyframes subtlePulse {
-  0%, 100% { 
-    transform: scale(1); 
-  }
-  50% { 
-    transform: scale(1.05); 
-  }
+  /* DISABLED heavy pulsing */
+  0%, 100% { transform: scale(1); }
 }
 
 @keyframes pulseIcon {
-  0%, 100% { 
-    transform: perspective(1000px) scale(1) rotateZ(0deg); 
-    filter: drop-shadow(0 5px 15px rgba(var(--primary-color-rgb), 0.4));
-  }
-  25% { 
-    transform: perspective(1000px) scale(1.1) rotateZ(5deg); 
-    filter: drop-shadow(0 8px 25px rgba(var(--primary-color-rgb), 0.6));
-  }
-  75% { 
-    transform: perspective(1000px) scale(0.95) rotateZ(-3deg); 
-    filter: drop-shadow(0 3px 10px rgba(var(--primary-color-rgb), 0.3));
-  }
+  /* DISABLED heavy icon animation */
+  0%, 100% { transform: scale(1); }
 }
 
 @keyframes shimmerText {
-  0% { 
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  50% { 
-    opacity: 1;
-    transform: translateX(0%);
-  }
-  100% { 
-    opacity: 0;
-    transform: translateX(100%);
-  }
+  /* DISABLED heavy shimmer */
+  0%, 100% { opacity: 0; }
 }
 
 @keyframes iconExplosion {
-  0% { 
-    transform: perspective(1000px) scale(1); 
-  }
-  50% { 
-    transform: perspective(1000px) scale(1.3) rotateY(180deg); 
-    filter: brightness(2) saturate(2);
-  }
-  100% { 
-    transform: perspective(1000px) scale(1.4) rotateY(360deg); 
-  }
+  /* DISABLED heavy explosion animation */
+  0%, 100% { transform: scale(1); }
 }
 
 @keyframes borderGlow {

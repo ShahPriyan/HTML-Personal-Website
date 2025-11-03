@@ -6,6 +6,8 @@ class UltraGraphicsAnimations {
     this.animationFrames = new Map();
     this.mousePosition = { x: 0, y: 0 };
     this.frameCount = 0;
+    this.lastFrameTime = 0;
+    this.targetFPS = 30; // Limit to 30 FPS for better performance
     this.setupMouseTracking();
     this.setupTextAnimations();
   }
@@ -17,10 +19,20 @@ class UltraGraphicsAnimations {
     });
   }
 
+  // Frame throttling for better performance
+  shouldRenderFrame(currentTime) {
+    const frameInterval = 1000 / this.targetFPS;
+    if (currentTime - this.lastFrameTime >= frameInterval) {
+      this.lastFrameTime = currentTime;
+      return true;
+    }
+    return false;
+  }
+
   // Minimal text animation system (text corruption fixed)
   setupTextAnimations() {
-    // No animations to prevent text corruption
-    console.log('Text animations disabled to prevent corruption');
+    // No animations to prevent text corruption and improve performance
+    console.log('Text animations disabled for performance optimization');
   }
 
   // MASSIVE Particle Galaxy with Nebula Effects for Education
@@ -37,8 +49,8 @@ class UltraGraphicsAnimations {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // Create optimized particle system (reduced for performance)
-    const particleCount = 800;
+    // Create lightweight particle system (heavily optimized)
+    const particleCount = 300;
     const particles = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -118,68 +130,56 @@ class UltraGraphicsAnimations {
     camera.lookAt(0, 0, 0);
 
     const animate = () => {
-      const time = Date.now() * 0.001;
-      const positions = particleSystem.geometry.attributes.position.array;
-      const colors = particleSystem.geometry.attributes.color.array;
-
-      // Animate galaxy rotation and pulsing
-      for (let i = 0; i < particleCount; i++) {
-        const velocity = velocities[i];
-        const phase = phases[i];
-        
-        // Galaxy rotation
-        const currentRadius = Math.sqrt(positions[i * 3] * positions[i * 3] + positions[i * 3 + 2] * positions[i * 3 + 2]);
-        const currentAngle = Math.atan2(positions[i * 3 + 2], positions[i * 3]);
-        const newAngle = currentAngle + velocity.rotationSpeed;
-        
-        positions[i * 3] = Math.cos(newAngle) * currentRadius + Math.sin(time + phase) * 0.5;
-        positions[i * 3 + 1] += Math.sin(time * 3 + phase) * 0.02;
-        positions[i * 3 + 2] = Math.sin(newAngle) * currentRadius + Math.cos(time + phase) * 0.5;
-
-        // Mouse interaction creates energy waves
-        const mouseInfluence = 2;
-        const distanceToMouse = Math.abs(positions[i * 3] / 20 - this.mousePosition.x) + 
-                               Math.abs(positions[i * 3 + 1] / 20 - this.mousePosition.y);
-        
-        if (distanceToMouse < 0.3) {
-          positions[i * 3] += Math.sin(time * 5) * mouseInfluence;
-          positions[i * 3 + 1] += Math.cos(time * 5) * mouseInfluence;
-          
-          // Brighten colors near mouse
-          colors[i * 3] = Math.min(1, colors[i * 3] * 1.5);
-          colors[i * 3 + 1] = Math.min(1, colors[i * 3 + 1] * 1.5);
-          colors[i * 3 + 2] = Math.min(1, colors[i * 3 + 2] * 1.5);
-        }
+      const currentTime = performance.now();
+      
+      // Frame throttling for better performance
+      if (!this.shouldRenderFrame(currentTime)) {
+        this.animationFrames.set(containerId, requestAnimationFrame(animate));
+        return;
       }
 
-      particleSystem.geometry.attributes.position.needsUpdate = true;
-      particleSystem.geometry.attributes.color.needsUpdate = true;
-
-      // Animate geometric shapes with complex rotations
-      geometricShapes.forEach((shape, index) => {
-        shape.rotation.x += 0.02 + Math.sin(time + index) * 0.01;
-        shape.rotation.y += 0.015 + Math.cos(time + index) * 0.01;
-        shape.rotation.z += 0.01 + Math.sin(time * 0.5 + index) * 0.005;
-        shape.position.y += Math.sin(time * 2 + index * 0.5) * 0.03;
+      const time = currentTime * 0.001;
+      
+      // Only update every 3rd frame to reduce computational load
+      if (this.frameCount % 3 === 0) {
+        const positions = particleSystem.geometry.attributes.position.array;
         
-        // Pulsing scale effect
-        const pulse = 1 + Math.sin(time * 4 + index) * 0.3;
-        shape.scale.setScalar(pulse);
-      });
+        // Simplified galaxy rotation (reduced complexity)
+        for (let i = 0; i < particleCount; i += 2) { // Skip every other particle for performance
+          const velocity = velocities[i];
+          const phase = phases[i];
+          
+          // Simplified rotation without heavy calculations
+          const angle = velocity.rotationSpeed * time + phase;
+          const radius = velocity.radius;
+          
+          positions[i * 3] = Math.cos(angle) * radius;
+          positions[i * 3 + 1] += Math.sin(time + phase) * 0.01; // Reduced movement
+          positions[i * 3 + 2] = Math.sin(angle) * radius;
+        }
 
-      // Animate nebula clouds
-      nebulaClouds.forEach((cloud, index) => {
-        cloud.rotation.z += 0.002 + index * 0.001;
-        cloud.material.opacity = 0.1 + Math.sin(time + index) * 0.05;
-      });
+        particleSystem.geometry.attributes.position.needsUpdate = true;
+      }
 
-      // Dynamic camera movement
-      camera.position.x = Math.sin(time * 0.1) * 8 + this.mousePosition.x * 5;
-      camera.position.y = 10 + Math.cos(time * 0.08) * 4 + this.mousePosition.y * 3;
-      camera.position.z = 40 + Math.sin(time * 0.05) * 5;
+      // Simplified geometric shapes animation (reduced frequency)
+      if (this.frameCount % 5 === 0) {
+        geometricShapes.forEach((shape, index) => {
+          shape.rotation.x += 0.005; // Much slower rotation
+          shape.rotation.y += 0.003;
+          
+          // Simplified pulsing
+          const pulse = 1 + Math.sin(time + index) * 0.1;
+          shape.scale.setScalar(pulse);
+        });
+      }
+
+      // Minimal camera movement (performance optimized)
+      camera.position.x = Math.sin(time * 0.05) * 2 + this.mousePosition.x * 2;
+      camera.position.y = 10 + Math.cos(time * 0.03) * 1;
       camera.lookAt(0, 0, 0);
 
       renderer.render(scene, camera);
+      this.frameCount++;
       this.animationFrames.set(containerId, requestAnimationFrame(animate));
     };
 
@@ -204,8 +204,8 @@ class UltraGraphicsAnimations {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // Create massive data stream matrix
-    const streamCount = 150;
+    // Create lightweight data stream matrix
+    const streamCount = 50;
     const streams = [];
     
     for (let i = 0; i < streamCount; i++) {
