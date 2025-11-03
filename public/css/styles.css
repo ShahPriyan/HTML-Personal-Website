@@ -26,17 +26,37 @@
 
 /* ===== ADVANCED TEXT & ICON ANIMATIONS FOR POP EFFECT ===== */
 
-/* Enhanced Headings with 3D Effects */
+/* Enhanced Headings with 3D Effects - Reduced Animation */
 h1, h2, h3, h4, h5, h6 {
-  animation: floatText 4s ease-in-out infinite;
   transform: perspective(1000px) rotateX(0deg);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Only animate hero section headings heavily */
+.hero h1, .hero h2 {
+  animation: floatText 4s ease-in-out infinite;
   text-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.3);
   background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  position: relative;
+}
+
+/* Subtle animations for other sections */
+.courses__section h2, .projects__section h2, .experience__section h2 {
+  animation: subtleFloat 6s ease-in-out infinite;
+}
+
+/* Disable heavy animations for about section */
+.about__section h1, .about__section h2, .about__section h3, .about__section h4, .about__section h5, .about__section h6 {
+  animation: none;
+  text-shadow: none;
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+  background-clip: initial;
+  color: var(--text-primary);
 }
 
 h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
@@ -201,6 +221,15 @@ a:hover::after {
   }
   75% { 
     transform: perspective(1000px) translateY(-4px) rotateX(-1deg); 
+  }
+}
+
+@keyframes subtleFloat {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-3px); 
   }
 }
 
@@ -786,8 +815,16 @@ h1, h2, h3, h4, h5, h6 {
 .about__description {
   font-size: 1.125rem;
   color: var(--text-secondary);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   line-height: 1.7;
+  text-align: justify;
+  animation: none !important;
+  transform: none !important;
+  text-shadow: none !important;
+}
+
+.about__description:last-of-type {
+  margin-bottom: 2rem;
 }
 
 .skills__section {
@@ -824,6 +861,14 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 2rem;
   font-size: 0.875rem;
   font-weight: 500;
+  transition: all 0.2s ease;
+  animation: none !important;
+  transform: none !important;
+}
+
+.about__section .skill__tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.3);
 }
 
 .about__stats {

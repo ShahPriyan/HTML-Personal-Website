@@ -891,36 +891,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Enhanced Text & Icon Animation System
   function initializeEnhancedAnimations() {
-    // Add dynamic text effects to all headings
+    // Add dynamic text effects to headings (excluding about section)
     const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
     headings.forEach((heading, index) => {
+      // Skip about section headings
+      if (heading.closest('.about__section')) {
+        return;
+      }
+      
       // Stagger the animation delays
       heading.style.animationDelay = `${index * 0.2}s`;
       
-      // Add interactive hover effects
+      // Add interactive hover effects (only for non-about sections)
       heading.addEventListener('mouseenter', () => {
         heading.style.animation = 'none';
-        heading.style.transform = 'perspective(1000px) rotateX(10deg) scale(1.05)';
+        heading.style.transform = 'perspective(1000px) rotateX(5deg) scale(1.02)';
         heading.style.textShadow = `
-          0 10px 30px rgba(99, 102, 241, 0.8),
-          0 0 50px rgba(99, 102, 241, 0.5),
-          0 0 100px rgba(99, 102, 241, 0.3)
+          0 5px 15px rgba(99, 102, 241, 0.6),
+          0 0 25px rgba(99, 102, 241, 0.3)
         `;
       });
       
       heading.addEventListener('mouseleave', () => {
-        heading.style.animation = 'floatText 4s ease-in-out infinite';
+        if (heading.closest('.hero')) {
+          heading.style.animation = 'floatText 4s ease-in-out infinite';
+        } else {
+          heading.style.animation = 'subtleFloat 6s ease-in-out infinite';
+        }
         heading.style.transform = 'perspective(1000px) rotateX(0deg) scale(1)';
-        heading.style.textShadow = '0 5px 15px rgba(99, 102, 241, 0.3)';
+        heading.style.textShadow = '';
       });
     });
 
-    // Enhanced icon animations
+    // Enhanced icon animations (reduced for about section)
     const icons = document.querySelectorAll('.fab, .fas, .far, i[class*="fa"], i[class*="icon"], .icon');
     icons.forEach((icon, index) => {
+      // Skip heavy animations for about section icons
+      if (icon.closest('.about__section')) {
+        // Simple hover effect for about section
+        icon.addEventListener('mouseenter', () => {
+          icon.style.transform = 'scale(1.1)';
+          icon.style.transition = 'transform 0.2s ease';
+        });
+        icon.addEventListener('mouseleave', () => {
+          icon.style.transform = 'scale(1)';
+        });
+        return;
+      }
+      
       icon.style.animationDelay = `${index * 0.1}s`;
       
-      // Add magnetic hover effect
+      // Add magnetic hover effect for other sections
       icon.addEventListener('mouseenter', () => {
         icon.style.animation = 'iconExplosion 0.6s ease-out';
         icon.style.transform = 'perspective(1000px) rotateY(360deg) scale(1.4)';
