@@ -960,11 +960,15 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Add particle effects to buttons
+    // Simple button effects (particle explosions disabled for performance)
     const buttons = document.querySelectorAll('button, .btn, .button');
     buttons.forEach(button => {
       button.addEventListener('click', (e) => {
-        createParticleExplosion(e.target, e.clientX, e.clientY);
+        // Simple ripple effect instead of particles
+        button.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          button.style.transform = 'scale(1)';
+        }, 100);
       });
     });
 

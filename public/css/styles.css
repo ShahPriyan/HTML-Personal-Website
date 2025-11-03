@@ -26,26 +26,20 @@
 
 /* ===== ADVANCED TEXT & ICON ANIMATIONS FOR POP EFFECT ===== */
 
-/* Enhanced Headings with 3D Effects - Reduced Animation */
+/* Lightweight Headings (Performance Optimized) */
 h1, h2, h3, h4, h5, h6 {
-  transform: perspective(1000px) rotateX(0deg);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   position: relative;
 }
 
-/* Only animate hero section headings heavily */
-.hero h1, .hero h2 {
-  animation: floatText 4s ease-in-out infinite;
-  text-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.3);
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Minimal animation only for hero h1 */
+.hero h1 {
+  animation: subtleFloat 6s ease-in-out infinite;
 }
 
-/* Subtle animations for other sections */
-.courses__section h2, .projects__section h2, .experience__section h2 {
-  animation: subtleFloat 6s ease-in-out infinite;
+/* Simple hover effects for other headings */
+h2:hover, h3:hover {
+  transform: translateY(-2px);
 }
 
 /* Disable heavy animations for about section */
@@ -81,13 +75,15 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
   filter: brightness(1.3);
 }
 
-/* Enhanced Icons with Spectacular Effects */
+/* Lightweight Icons (Performance Optimized) */
 .fab, .fas, .far, i[class*="fa"], i[class*="icon"], .icon {
-  animation: pulseIcon 3s ease-in-out infinite;
-  transform: perspective(1000px);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  filter: drop-shadow(0 5px 15px rgba(var(--primary-color-rgb), 0.4));
+  transition: all 0.2s ease;
   position: relative;
+}
+
+/* Only animate hero icons */
+.hero .fab, .hero .fas, .hero .far {
+  animation: subtlePulse 4s ease-in-out infinite;
 }
 
 .fab::before, .fas::before, .far::before, 
@@ -230,6 +226,15 @@ a:hover::after {
   }
   50% { 
     transform: translateY(-3px); 
+  }
+}
+
+@keyframes subtlePulse {
+  0%, 100% { 
+    transform: scale(1); 
+  }
+  50% { 
+    transform: scale(1.05); 
   }
 }
 

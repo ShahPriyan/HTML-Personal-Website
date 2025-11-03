@@ -5,6 +5,7 @@ class UltraGraphicsAnimations {
     this.cameras = new Map();
     this.animationFrames = new Map();
     this.mousePosition = { x: 0, y: 0 };
+    this.frameCount = 0;
     this.setupMouseTracking();
     this.setupTextAnimations();
   }
@@ -16,15 +17,13 @@ class UltraGraphicsAnimations {
     });
   }
 
-  // Enhanced text animation system for making text POP
+  // Lightweight text animation system (performance optimized)
   setupTextAnimations() {
-    // Add floating animation to all headings
-    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    headings.forEach((heading, index) => {
-      heading.style.animation = `floatText 3s ease-in-out infinite`;
-      heading.style.animationDelay = `${index * 0.2}s`;
-      heading.style.transform = 'perspective(1000px) rotateX(0deg)';
-      heading.style.transition = 'all 0.3s ease';
+    // Only add subtle animations to hero headings to reduce lag
+    const heroHeadings = document.querySelectorAll('.hero h1, .hero h2');
+    heroHeadings.forEach((heading, index) => {
+      heading.style.animationDelay = `${index * 0.3}s`;
+      heading.style.transition = 'all 0.2s ease';
       
       // Add hover effects
       heading.addEventListener('mouseenter', () => {
@@ -38,50 +37,30 @@ class UltraGraphicsAnimations {
       });
     });
 
-    // Enhanced icon animations
-    const icons = document.querySelectorAll('.fab, .fas, .far, i[class*="icon"]');
+    // Simplified icon animations (performance optimized)
+    const icons = document.querySelectorAll('.hero .fab, .hero .fas, .hero .far');
     icons.forEach((icon, index) => {
-      icon.style.animation = `pulseIcon 2s ease-in-out infinite`;
-      icon.style.animationDelay = `${index * 0.1}s`;
-      icon.style.transform = 'perspective(1000px)';
-      icon.style.transition = 'all 0.3s ease';
+      icon.style.transition = 'all 0.2s ease';
       
       icon.addEventListener('mouseenter', () => {
-        icon.style.transform = 'perspective(1000px) rotateY(360deg) scale(1.3)';
-        icon.style.filter = 'drop-shadow(0 0 20px currentColor) brightness(1.5)';
+        icon.style.transform = 'scale(1.2)';
       });
       
       icon.addEventListener('mouseleave', () => {
-        icon.style.transform = 'perspective(1000px) rotateY(0deg) scale(1)';
-        icon.style.filter = '';
+        icon.style.transform = 'scale(1)';
       });
     });
 
-    // Add CSS animations
+    // Lightweight CSS animations (performance optimized)
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes floatText {
-        0%, 100% { transform: translateY(0px) rotateX(0deg); }
-        50% { transform: translateY(-10px) rotateX(5deg); }
+      .hero h1 {
+        animation: subtleFloat 4s ease-in-out infinite;
       }
       
-      @keyframes pulseIcon {
-        0%, 100% { transform: scale(1) rotateZ(0deg); }
-        25% { transform: scale(1.1) rotateZ(5deg); }
-        75% { transform: scale(0.95) rotateZ(-5deg); }
-      }
-      
-      @keyframes shimmer {
-        0% { background-position: -1000px 0; }
-        100% { background-position: 1000px 0; }
-      }
-      
-      .text-pop {
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-        background-size: 200% 100%;
-        animation: shimmer 3s infinite;
-        -webkit-background-clip: text;
-        background-clip: text;
+      @keyframes subtleFloat {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
       }
     `;
     document.head.appendChild(style);
@@ -101,8 +80,8 @@ class UltraGraphicsAnimations {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // Create MASSIVE particle system (5000+ particles)
-    const particleCount = 5000;
+    // Create optimized particle system (reduced for performance)
+    const particleCount = 800;
     const particles = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -739,7 +718,7 @@ class UltraGraphicsAnimations {
     const fragments = [];
     const codeTexts = ['AI', 'ML', 'GPU', 'CPU', 'API', 'SQL', 'JS', 'PY', 'C++', 'CUDA'];
     
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 8; i++) {
       const canvas = document.createElement('canvas');
       canvas.width = 128;
       canvas.height = 64;
@@ -1103,8 +1082,8 @@ class UltraGraphicsAnimations {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // Create massive particle system with lightning effects
-    const particleCount = 3000;
+    // Create optimized particle system with lightning effects
+    const particleCount = 500;
     const particles = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -1140,9 +1119,9 @@ class UltraGraphicsAnimations {
     const particleSystem = new THREE.Points(particles, particleMaterial);
     scene.add(particleSystem);
 
-    // Add floating geometric shapes for visual impact
+    // Add floating geometric shapes for visual impact (reduced count)
     const geometries = [];
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 6; i++) {
       const geometry = new THREE.IcosahedronGeometry(2 + Math.random() * 3);
       const material = new THREE.MeshBasicMaterial({
         color: new THREE.Color().setHSL(Math.random(), 0.8, 0.6),
