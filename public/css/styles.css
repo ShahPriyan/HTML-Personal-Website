@@ -13,6 +13,7 @@
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   --primary-color: #6366f1;
+  --accent-color: #8b5cf6;
   --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   
   /* Enhanced color variables for text/icon effects */
@@ -790,13 +791,27 @@ h1, h2, h3, h4, h5, h6 {
 
 .skills__grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .skills__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.skill__category {
+  margin-bottom: 1.5rem;
 }
 
 .skill__category h4 {
   font-size: 1.125rem;
   margin-bottom: 1rem;
-  color: var(--text-primary);
+  color: var(--text-primary, #1a202c);
+  font-weight: 600;
 }
 
 .skill__tags {
@@ -807,14 +822,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .skill__tag {
   padding: 0.5rem 1rem;
-  background: var(--gradient-primary);
-  color: var(--text-light);
+  background: linear-gradient(135deg, var(--primary-color, #6366f1), var(--accent-color, #8b5cf6));
+  color: white !important;
   border-radius: 2rem;
   font-size: 0.875rem;
   font-weight: 500;
   transition: all 0.2s ease;
   animation: none !important;
   transform: none !important;
+  border: 1px solid var(--primary-color, #6366f1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  margin: 2px;
+  min-height: 30px;
+  line-height: 1.2;
 }
 
 .about__section .skill__tag:hover {
