@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <meta name="description" content="Welcome to my personal website. You can learn about my projects and about me!" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/animations.css">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar__container">
+      <a href="#home" id="navbar__logo" class="logo-animation">Priyan Shah</a>
+      <div class="navbar__toggle" id="menu-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item">
+          <a href="#home" class="navbar__links">Home</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#about" class="navbar__links">About</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#courses" class="navbar__links">Courses</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#projects" class="navbar__links">Projects</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#experience" class="navbar__links">Experience</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#contact" class="navbar__links">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero__container">
+      <div class="hero__content" data-aos="fade-up">
+        <h1 class="hero__title typing-animation">Hi, I'm <span class="gradient-text">Priyan Shah</span></h1>
+        <h2 class="hero__subtitle fade-in-up">Computer Engineering Student</h2>
+        <p class="hero__description fade-in-up" style="animation-delay: 0.3s;">
+          Passionate about technology and innovation, with expertise in circuit design, 
+          embedded systems, and software development. Currently pursuing Computer Engineering at Purdue University.
+        </p>
+        <div class="hero__buttons fade-in-up" style="animation-delay: 0.5s;">
+          <a href="#projects" class="btn btn-primary pulse-hover">View My Work</a>
+          <a href="#contact" class="btn btn-secondary pulse-hover">Get In Touch</a>
+        </div>
+      </div>
+      <div class="hero__image" data-aos="fade-left" data-aos-delay="200">
+        <div class="hero__img-container floating-animation">
+          <img src="/images/Headshot.jpg" alt="Priyan Shah" class="hero__img" />
+          <div class="hero__img-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about__section">
+    <div class="container">
+      <div class="section__header" data-aos="fade-up">
+        <span class="section__tag bounce-in">Introduction</span>
+        <h2 class="section__title">About Me</h2>
+      </div>
+      <div class="about__content">
+        <div class="about__text" data-aos="fade-right">
+          <p class="about__description">
+            Hi there! I'm Priyan Shah — a motivated and technically versatile Computer Engineering student at Purdue University 
+            with a passion for solving complex problems through innovative design. My experience spans analog circuit design, 
+            embedded systems, and CAD modeling, complemented by a strong foundation in software development.
+          </p>
+          <div class="skills__section">
+            <h3 class="skills__title">Technical Skills</h3>
+            <div class="skills__grid">
+              <div class="skill__category">
+                <h4>Programming</h4>
+                <div class="skill__tags">
+                  <span class="skill__tag skill-hover">Python</span>
+                  <span class="skill__tag skill-hover">C/C++</span>
+                  <span class="skill__tag skill-hover">Java</span>
+                  <span class="skill__tag skill-hover">MATLAB</span>
+                  <span class="skill__tag skill-hover">JavaScript</span>
+                  <span class="skill__tag skill-hover">Assembly</span>
+                  <span class="skill__tag skill-hover">Verilog/VHDL</span>
+                </div>
+              </div>
+              <div class="skill__category">
+                <h4>Tools & Technologies</h4>
+                <div class="skill__tags">
+                  <span class="skill__tag skill-hover">Arduino/Raspberry Pi</span>
+                  <span class="skill__tag skill-hover">PCB Design</span>
+                  <span class="skill__tag skill-hover">FPGA Development</span>
+                  <span class="skill__tag skill-hover">Embedded C</span>
+                  <span class="skill__tag skill-hover">Real-Time Systems</span>
+                  <span class="skill__tag skill-hover">ARM Cortex</span>
+                  <span class="skill__tag skill-hover">Signal Processing</span>
+                  <span class="skill__tag skill-hover">Hardware Testing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about__stats" data-aos="fade-left" data-aos-delay="200">
+          <div class="stat__item counter-animation">
+            <h3 class="stat__number" data-target="10">0</h3>
+            <p class="stat__label">Projects Completed</p>
+          </div>
+          <div class="stat__item counter-animation">
+            <h3 class="stat__number" data-target="3">0</h3>
+            <p class="stat__label">Years Experience</p>
+          </div>
+          <div class="stat__item counter-animation">
+            <h3 class="stat__number" data-target="7">0</h3>
+            <p class="stat__label">Programming Languages</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section id="courses" class="courses__section">
+    <div class="container">
+      <div class="section__header" data-aos="fade-up">
+        <span class="section__tag bounce-in">Education</span>
+        <h2 class="section__title">Relevant Coursework</h2>
+        <p class="section__description">Key courses that have shaped my technical foundation</p>
+      </div>
+      
+      <div class="courses__grid">
+        <% courses.forEach((course, index) => { %>
+        <div class="course__card card-hover" data-aos="fade-up" data-aos-delay="<%= index * 100 %>">
+          <div class="course__header">
+            <h3 class="course__code"><%= course.code %></h3>
+            <span class="course__semester"><%= course.semester %></span>
+          </div>
+          <h4 class="course__name"><%= course.name %></h4>
+          <p class="course__description"><%= course.description %></p>
+          <div class="course__skills">
+            <% course.skills.forEach(skill => { %>
+            <span class="skill__tag skill-hover"><%= skill %></span>
+            <% }) %>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects__section">
+    <div class="container">
+      <div class="section__header" data-aos="fade-up">
+        <span class="section__tag bounce-in">Portfolio</span>
+        <h2 class="section__title">Featured Projects</h2>
+        <p class="section__description">Here are some of the projects I've worked on</p>
+      </div>
+      
+      <div class="projects__grid">
+        <% projects.forEach((project, index) => { %>
+        <div class="project__card card-hover" data-aos="fade-up" data-aos-delay="<%= (index + 1) * 100 %>">
+          <div class="project__header">
+            <div class="project__icon icon-bounce">
+              <i class="<%= project.icon %>"></i>
+            </div>
+            <span class="project__date"><%= project.date %></span>
+          </div>
+          <h3 class="project__title"><%= project.title %></h3>
+          <p class="project__description"><%= project.description %></p>
+          <ul class="project__features">
+            <% project.features.forEach(feature => { %>
+            <li><%= feature %></li>
+            <% }) %>
+          </ul>
+          <div class="project__tech">
+            <% project.technologies.forEach(tech => { %>
+            <span class="tech__tag"><%= tech %></span>
+            <% }) %>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="experience__section">
+    <div class="container">
+      <div class="section__header" data-aos="fade-up">
+        <span class="section__tag bounce-in">Career</span>
+        <h2 class="section__title">Experience</h2>
+      </div>
+      
+      <div class="timeline">
+        <% experiences.forEach((exp, index) => { %>
+        <div class="timeline__item slide-in-left" data-aos="fade-up" data-aos-delay="<%= (index + 1) * 100 %>">
+          <div class="timeline__marker pulse-dot"></div>
+          <div class="timeline__content">
+            <div class="timeline__header">
+              <h3 class="timeline__title"><%= exp.title %></h3>
+              <span class="timeline__company"><%= exp.company %></span>
+              <span class="timeline__date"><%= exp.date %></span>
+            </div>
+            <ul class="timeline__description">
+              <% exp.description.forEach(desc => { %>
+              <li><%= desc %></li>
+              <% }) %>
+            </ul>
+            <div class="timeline__skills">
+              <% exp.skills.forEach(skill => { %>
+              <span class="skill__tag skill-hover"><%= skill %></span>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact__section">
+    <div class="container">
+      <div class="section__header" data-aos="fade-up">
+        <span class="section__tag bounce-in">Get In Touch</span>
+        <h2 class="section__title">Let's Connect</h2>
+        <p class="section__description">Feel free to reach out for collaborations or just a friendly chat</p>
+      </div>
+      
+      <div class="contact__content">
+        <div class="contact__info" data-aos="fade-right">
+          <div class="contact__card card-hover">
+            <div class="contact__icon icon-bounce">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3>Email</h3>
+            <p>shah899@purdue.edu</p>
+          </div>
+          
+          <div class="contact__card card-hover">
+            <div class="contact__icon icon-bounce">
+              <i class="fab fa-linkedin"></i>
+            </div>
+            <h3>LinkedIn</h3>
+            <a href="http://www.linkedin.com/in/priyanshah12" target="_blank">linkedin.com/in/priyanshah12</a>
+          </div>
+          
+          <div class="contact__card card-hover">
+            <div class="contact__icon icon-bounce">
+              <i class="fas fa-phone"></i>
+            </div>
+            <h3>Phone</h3>
+            <p>Let's connect first via email or LinkedIn</p>
+          </div>
+        </div>
+        
+        <div class="contact__form-container" data-aos="fade-left" data-aos-delay="200">
+          <form id="contactForm" class="contact__form">
+            <div class="form__group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="What's your name?" required class="input-focus" />
+            </div>
+            
+            <div class="form__group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" placeholder="What's your email?" required class="input-focus" />
+            </div>
+            
+            <div class="form__group">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="What would you like to say?" required class="input-focus"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full pulse-hover">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <p>&copy; 2025 Priyan Shah. All rights reserved.</p>
+        <div class="footer__social">
+          <a href="http://www.linkedin.com/in/priyanshah12" target="_blank" class="social-hover"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:shah899@purdue.edu" class="social-hover"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>
