@@ -36,28 +36,28 @@ const courses = [
   {
     code: 'ECE 264',
     name: 'Advanced C Programming',
-    semester: 'Spring 2024',
+    semester: 'Fall 2024',
     description: 'Advanced programming concepts in C including data structures, algorithms, and memory management.',
     skills: ['C Programming', 'Data Structures', 'Memory Management', 'Debugging']
   },
   {
     code: 'ECE 270',
     name: 'Introduction to Digital System Design',
-    semester: 'Fall 2023',
+    semester: 'Spring 2025',
     description: 'Digital logic design, Boolean algebra, combinational and sequential circuits.',
     skills: ['Digital Logic', 'Verilog', 'FPGA', 'Circuit Design']
   },
   {
     code: 'ECE 368',
     name: 'Data Structures',
-    semester: 'Fall 2024',
+    semester: 'Fall 2025',
     description: 'Implementation and analysis of fundamental data structures and algorithms.',
     skills: ['Algorithms', 'Data Structures', 'C/C++', 'Algorithm Analysis']
   },
   {
     code: 'ECE 362',
     name: 'Microprocessor Systems',
-    semester: 'Spring 2025',
+    semester: 'Fall 2025',
     description: 'Microprocessor architecture, assembly language programming, and embedded systems.',
     skills: ['Assembly Language', 'Embedded Systems', 'Microcontrollers', 'Hardware Interface']
   },
@@ -71,7 +71,7 @@ const courses = [
   {
     code: 'MA 261',
     name: 'Multivariate Calculus',
-    semester: 'Fall 2023',
+    semester: 'Spring 2023',
     description: 'Vector calculus, partial derivatives, multiple integrals, and applications.',
     skills: ['Mathematical Analysis', 'Vector Calculus', 'Problem Solving', 'Mathematical Modeling']
   }
