@@ -791,33 +791,6 @@ document.addEventListener('DOMContentLoaded', () => {
   buttonStyleSheet.textContent = buttonStyles;
   document.head.appendChild(buttonStyleSheet);
 
-  /* Add these theme-specific enhancements */
-
-  /* Surprise theme special effects */
-  [data-theme="surprise"] .skill__tag:hover {
-    background: linear-gradient(45deg, #e74c3c, #f39c12, #f1c40f, #27ae60, #3498db, #9b59b6);
-    background-size: 200% 200%;
-    animation: surpriseGradient 0.5s ease-in-out;
-  }
-
-  [data-theme="surprise"] .project__icon:hover {
-    background: linear-gradient(45deg, #e74c3c, #f39c12, #f1c40f, #27ae60, #3498db, #9b59b6);
-    background-size: 200% 200%;
-    animation: surpriseGradient 1s ease-in-out infinite;
-  }
-
-  [data-theme="surprise"] .contact__icon:hover {
-    background: linear-gradient(45deg, #e74c3c, #f39c12, #f1c40f, #27ae60, #3498db, #9b59b6);
-    background-size: 200% 200%;
-    animation: surpriseGradient 1s ease-in-out infinite;
-  }
-
-  @keyframes surpriseGradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
   // Initialize all content
   populateCourses();
   populateProjects();
