@@ -76,7 +76,7 @@ const courseCategories = {
         name: 'Advanced C Programming',
         semester: 'Fall 2024',
         description: 'Advanced programming concepts in C including data structures, algorithms, and memory management.',
-        skills: ['C Programming', 'Data Structures', 'Memory Management', 'Debugging'],
+        skills: ['C Programming', 'Data Structures', 'Algorithms', 'Memory Management', 'Pointers', 'Debugging', 'Code Optimization'],
         grade: 'B'
       },
       {
@@ -84,7 +84,7 @@ const courseCategories = {
         name: 'Introduction to Digital System Design',
         semester: 'Spring 2025',
         description: 'Digital logic design, Boolean algebra, combinational and sequential circuits.',
-        skills: ['Digital Logic', 'Verilog', 'FPGA', 'Circuit Design'],
+        skills: ['Digital Logic Design', 'Verilog HDL', 'FPGA Programming', 'Boolean Algebra', 'Combinational Circuits', 'Sequential Circuits', 'Circuit Design'],
         grade: 'B'
       },
       {
@@ -92,7 +92,7 @@ const courseCategories = {
         name: 'Microprocessor Systems',
         semester: 'Fall 2025',
         description: 'Microprocessor architecture, assembly language programming, and embedded systems.',
-        skills: ['Assembly Language', 'Embedded Systems', 'Microcontrollers', 'Hardware Interface'],
+        skills: ['Assembly Language Programming', 'Embedded Systems Design', 'Microcontrollers', 'Hardware Interface', 'Real-time Systems', 'Interrupt Handling', 'Low-level Programming'],
         grade: 'In Progress'
       },
       {
@@ -124,7 +124,7 @@ const courseCategories = {
         name: 'Python for Data Science',
         semester: 'Fall 2024',
         description: 'Introduction to Python programming with focus on data analysis and visualization.',
-        skills: ['Python', 'Pandas', 'NumPy', 'Data Visualization', 'Machine Learning Basics'],
+        skills: ['Python Programming', 'Pandas', 'NumPy', 'Matplotlib', 'Data Visualization', 'Machine Learning Basics', 'Statistical Analysis'],
         grade: 'A'
       },
       {
@@ -175,7 +175,7 @@ const projects = [
       'Implemented breadboard prototyping and component soldering',
       'Achieved stable audio output to connected speakers'
     ],
-    technologies: ['Analog Circuits', 'Op-amps', '555 Timer'],
+    technologies: ['Analog Circuits', 'Op-amps', '555 Timer', 'Circuit Analysis', 'Hardware Testing', 'Signal Processing'],
     icon: 'fas fa-volume-up'
   },
   {
@@ -188,7 +188,7 @@ const projects = [
       'Assembled and tested circuit on breadboard with LEDs and resistors',
       'Optimized timing logic and power distribution'
     ],
-    technologies: ['Digital Circuits', '555 Timer', 'LED Control'],
+    technologies: ['Digital Circuits', '555 Timer IC', 'LED Control', 'Circuit Design', 'Power Distribution', 'Hardware Testing'],
     icon: 'fas fa-traffic-light'
   },
   {
@@ -201,7 +201,7 @@ const projects = [
       'Implemented multi-layer PCB designs with proper signal integrity',
       'Performed testing and validation of manufactured PCBs'
     ],
-    technologies: ['PCB Design', 'Schematic Design', 'Hardware Testing'],
+    technologies: ['PCB Design', 'Schematic Design', 'CAD Software', 'Multi-layer PCB', 'Signal Integrity', 'Hardware Validation'],
     icon: 'fas fa-microchip'
   },
   {
@@ -214,7 +214,7 @@ const projects = [
       'Identified driving patterns and anomalies in vehicle data',
       'Used version control and participated in code reviews'
     ],
-    technologies: ['Python', 'Data Analysis', 'Visualization'],
+    technologies: ['Python', 'Pandas', 'NumPy', 'Data Analysis', 'Data Visualization', 'Machine Learning', 'Git'],
     icon: 'fas fa-car'
   },
   {
@@ -227,7 +227,7 @@ const projects = [
       'Implemented localized pressure modulation system',
       'Focused on user comfort and responsiveness through testing'
     ],
-    technologies: ['Embedded Systems', 'Sensors', 'Medical Device'],
+    technologies: ['Embedded Systems', 'Microcontrollers', 'Sensors', 'Medical Device Design', 'Hardware Interface', 'Embedded C'],
     icon: 'fas fa-hand-holding-medical'
   }
 ];
@@ -243,7 +243,7 @@ const experiences = [
       'Applied data analysis techniques to interpret viewing behavior patterns',
       'Collaborated on data organization, visualization, and research conclusions'
     ],
-    skills: ['Data Analysis', 'Research', 'Statistical Analysis']
+    skills: ['Data Analysis', 'Python', 'Statistical Analysis', 'Data Visualization', 'Research Methodology', 'Excel', 'Report Writing']
   },
   {
     id: 2,
@@ -256,7 +256,7 @@ const experiences = [
       'Performed thorough testing and validation of manufactured circuit boards',
       'Collaborated with team members on hardware integration and troubleshooting'
     ],
-    skills: ['PCB Design', 'Circuit Analysis', 'Hardware Testing', 'Embedded Systems']
+    skills: ['PCB Design', 'Schematic Design', 'Circuit Analysis', 'Hardware Testing', 'Embedded Systems', 'CAD Software', 'Signal Integrity', 'Multi-layer PCB']
   },
   {
     id: 3,
@@ -268,7 +268,7 @@ const experiences = [
       'Managed project timelines and task assignments across 6-month build season',
       'Guided collaborative problem-solving and real-time debugging during tournaments'
     ],
-    skills: ['Leadership', 'Robotics', 'Team Management']
+    skills: ['Leadership', 'Robotics Programming', 'Team Management', 'Project Management', 'Problem Solving', 'C++ Programming', 'Hardware Integration', 'Competition Strategy']
   },
   {
     id: 4,
@@ -280,7 +280,7 @@ const experiences = [
       'Produced 3D-printed components for engineering projects and competition robots',
       'Practiced iterative design with dimensional constraints and fabrication-ready models'
     ],
-    skills: ['SolidWorks', '3D Modeling', 'CAD Design']
+    skills: ['SolidWorks', 'Autodesk Inventor', 'Fusion 360', '3D Modeling', 'CAD Design', '3D Printing', 'Mechanical Design', 'Technical Drawing', 'Prototyping']
   }
 ];
 

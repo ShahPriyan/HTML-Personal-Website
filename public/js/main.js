@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       code: "ECE 20001",
       name: "Electrical Engineering Fundamentals I",
       description: "Basic circuit analysis, Ohm's law, Kirchhoff's laws, and DC circuits",
-      grade: "A+",
+      grade: "B",
       icon: "⚡", // Fixed electrical symbol
       color: "#f39c12"
     },
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
       code: "ECE 36800",
       name: "Data Structures",
       description: "Algorithm analysis, arrays, linked lists, stacks, queues, trees, and graphs",
-      grade: "A+", 
+      grade: "Currently Enrolled In", 
       icon: "🌳",
       color: "#27ae60"
     },
@@ -165,43 +165,61 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Projects data from resume
+  // Projects data from resume - Enhanced with comprehensive technologies
   const projectsData = [
     {
-      title: "Personal Website",
-      description: "Built a responsive personal portfolio website using HTML, CSS, JavaScript, and Node.js with Express server. Features include dynamic Three.js animations, theme switching, contact form, and mobile-responsive design.",
-      technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "Three.js"],
-      github: "https://github.com/yourusername/personal-website",
+      title: "Personal Website Portfolio",
+      description: "Built a responsive personal portfolio website using modern web technologies with Node.js backend. Features include dynamic Three.js animations, theme switching, contact form, and mobile-responsive design.",
+      technologies: ["HTML5", "CSS3", "JavaScript", "Node.js", "Express.js", "Three.js", "EJS", "Git"],
+      github: "https://github.com/ShahPriyan/HTML-Personal-Website",
       demo: "#",
       image: "/images/personal-website.jpg",
       category: "web"
     },
     {
-      title: "Machine Learning Stock Price Predictor",
-      description: "Developed a machine learning model to predict stock prices using Python, pandas, and scikit-learn. Implemented data preprocessing, feature engineering, and model evaluation with various algorithms.",
-      technologies: ["Python", "Pandas", "Scikit-learn", "NumPy", "Matplotlib"],
-      github: "https://github.com/yourusername/stock-predictor",
+      title: "Analog Audio Equalizer",
+      description: "Built a hardware-based audio equalizer using op-amps and 555 timer circuits for frequency-specific audio control with bass, mid, and treble adjustment.",
+      technologies: ["Analog Circuits", "Op-amps", "555 Timer", "Circuit Analysis", "Hardware Testing", "Breadboard Design"],
+      github: "#",
       demo: "#",
-      image: "/images/stock-predictor.jpg",
-      category: "ml"
-    },
-    {
-      title: "IoT Temperature Monitoring System",
-      description: "Created an IoT system using Arduino and sensors to monitor temperature and humidity. Data is transmitted wirelessly and displayed on a web dashboard with real-time updates.",
-      technologies: ["Arduino", "C++", "IoT", "Web Dashboard", "Sensors"],
-      github: "https://github.com/yourusername/iot-monitoring",
-      demo: "#",
-      image: "/images/iot-system.jpg",
+      image: "/images/audio-equalizer.jpg",
       category: "hardware"
     },
     {
-      title: "Database Management System",
-      description: "Designed and implemented a comprehensive database management system for inventory tracking. Features include CRUD operations, user authentication, and reporting functionality.",
-      technologies: ["SQL", "Database Design", "CRUD Operations", "Authentication"],
-      github: "https://github.com/yourusername/database-system",
+      title: "Traffic Light Simulator",
+      description: "Developed a timer-driven LED system that replicates real-world traffic light sequences using digital circuits and timing logic optimization.",
+      technologies: ["Digital Circuits", "555 Timer IC", "LED Control", "Circuit Design", "Power Distribution", "Hardware Testing"],
+      github: "#",
       demo: "#",
-      image: "/images/database-system.jpg",
-      category: "database"
+      image: "/images/traffic-light.jpg",
+      category: "hardware"
+    },
+    {
+      title: "PCB Design & Implementation",
+      description: "Designed and implemented custom printed circuit boards for embedded systems applications using professional CAD tools and multi-layer PCB design principles.",
+      technologies: ["PCB Design", "Schematic Design", "CAD Software", "Multi-layer PCB", "Signal Integrity", "Hardware Validation"],
+      github: "#",
+      demo: "#",
+      image: "/images/pcb-design.jpg",
+      category: "hardware"
+    },
+    {
+      title: "Self-Driving Data Analysis Tool",
+      description: "Collaborated on a Python-based tool for parsing and visualizing autonomous vehicle sensor data with advanced data processing and pattern recognition.",
+      technologies: ["Python", "Pandas", "NumPy", "Data Analysis", "Data Visualization", "Machine Learning", "Git", "Code Review"],
+      github: "#",
+      demo: "#",
+      image: "/images/data-analysis.jpg",
+      category: "software"
+    },
+    {
+      title: "Parkinson's Pressure Brace",
+      description: "Designed a wearable assistive device for individuals with Parkinson's disease using pressure and vibration feedback with integrated sensors and microcontrollers.",
+      technologies: ["Embedded Systems", "Microcontrollers", "Sensors", "Medical Device Design", "Hardware Interface", "Embedded C"],
+      github: "#",
+      demo: "#",
+      image: "/images/parkinsons-brace.jpg",
+      category: "medical"
     }
   ];
 
