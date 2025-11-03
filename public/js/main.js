@@ -10,18 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menu-toggle');
   const navbarMenu = document.querySelector('.navbar__menu');
 
-  menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    navbarMenu.classList.toggle('active');
-  });
-
-  // Close mobile menu when clicking on a link
-  document.querySelectorAll('.navbar__links').forEach(link => {
-    link.addEventListener('click', () => {
-      menuToggle.classList.remove('active');
-      navbarMenu.classList.remove('active');
+  if (menuToggle && navbarMenu) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navbarMenu.classList.toggle('active');
     });
-  });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.navbar__links').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navbarMenu.classList.remove('active');
+      });
+    });
+  }
 
   // Smooth scrolling for navigation links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -36,6 +38,207 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Courses data with fixed symbols - keep your existing 9 courses
+  const coursesData = [
+    {
+      code: "ECE 20001",
+      name: "Electrical Engineering Fundamentals I",
+      description: "Basic circuit analysis, Ohm's law, Kirchhoff's laws, and DC circuits",
+      grade: "A+",
+      icon: "⚡", // Fixed electrical symbol
+      color: "#f39c12"
+    },
+    {
+      code: "ECE 20002", 
+      name: "Electrical Engineering Fundamentals II",
+      description: "AC circuits, phasors, frequency response, and operational amplifiers",
+      grade: "Currently Enrolled in",
+      icon: "🔌", // Fixed electrical symbol
+      color: "#e74c3c"
+    },
+    {
+      code: "ECE 36800",
+      name: "Data Structures",
+      description: "Algorithm analysis, arrays, linked lists, stacks, queues, trees, and graphs",
+      grade: "A+", 
+      icon: "🌳",
+      color: "#27ae60"
+    },
+    {
+      code: "ENGR 13100",
+      name: "Transforming Ideas to Innovation I", 
+      description: "Engineering design process, teamwork, and project management fundamentals",
+      grade: "A+",
+      icon: "⚙️", // Fixed engineering symbol
+      color: "#9b59b6"
+    },
+    {
+      code: "ENGR 13200",
+      name: "Transforming Ideas to Innovation II",
+      description: "Advanced design methodologies, prototyping, and engineering solutions",
+      grade: "A",
+      icon: "🔧", // Fixed engineering symbol
+      color: "#e67e22"
+    },
+    {
+      code: "MA 26100", 
+      name: "Multivariate Calculus",
+      description: "Vector calculus, partial derivatives, multiple integrals, and vector fields",
+      grade: "B",
+      icon: "∇",
+      color: "#1abc9c"
+    },
+    {
+      code: "MA 26600",
+      name: "Ordinary Differential Equations",
+      description: "Differential equations, Laplace transforms, and applications to engineering", 
+      grade: "A",
+      icon: "📐",
+      color: "#34495e"
+    },
+    {
+      code: "PHYS 17200",
+      name: "Modern Mechanics", 
+      description: "Newton's laws, energy, momentum, rotational motion, and oscillations",
+      grade: "B",
+      icon: "🌍",
+      color: "#16a085"
+    },
+    {
+      code: "PHYS 27200",
+      name: "Electric & Magnetic Interactions",
+      description: "Electric fields, magnetic fields, electromagnetic induction, and Maxwell's equations",
+      grade: "B",
+      icon: "🧲", // Fixed physics symbol
+      color: "#8e44ad"
+    }
+  ];
+
+  // Update section title
+  const courseSectionTitle = document.querySelector('.courses__section h2');
+  if (courseSectionTitle) {
+    courseSectionTitle.innerHTML = `
+      <span class="gradient-text">Relevant Coursework</span>
+      <div class="section__subtitle">Academic Excellence in Engineering & Computer Science</div>
+    `;
+  }
+
+  // Populate courses
+  function populateCourses() {
+    const coursesContainer = document.querySelector('.courses__grid');
+    if (!coursesContainer) return;
+
+    coursesContainer.innerHTML = '';
+
+    coursesData.forEach((course, index) => {
+      const courseCard = document.createElement('div');
+      courseCard.className = 'course__card interactive-course';
+      courseCard.setAttribute('data-aos', 'fade-up');
+      courseCard.setAttribute('data-aos-delay', (index * 100).toString());
+
+      // Determine grade class
+      let gradeClass = 'grade-b';
+      if (course.grade.includes('A')) gradeClass = 'grade-a';
+      else if (course.grade.includes('Currently')) gradeClass = 'grade-in-progress';
+
+      courseCard.innerHTML = `
+        <div class="course__header">
+          <div class="course__icon" style="color: ${course.color}">${course.icon}</div>
+          <div class="course__grade ${gradeClass}">
+            <span class="grade__indicator">${course.grade}</span>
+          </div>
+        </div>
+        <div class="course__content">
+          <h3 class="course__code">${course.code}</h3>
+          <h4 class="course__name">${course.name}</h4>
+          <p class="course__description">${course.description}</p>
+        </div>
+      `;
+
+      coursesContainer.appendChild(courseCard);
+    });
+  }
+
+  // Projects data from resume
+  const projectsData = [
+    {
+      title: "Personal Website",
+      description: "Built a responsive personal portfolio website using HTML, CSS, JavaScript, and Node.js with Express server. Features include dynamic Three.js animations, theme switching, contact form, and mobile-responsive design.",
+      technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "Three.js"],
+      github: "https://github.com/yourusername/personal-website",
+      demo: "#",
+      image: "/images/personal-website.jpg",
+      category: "web"
+    },
+    {
+      title: "Machine Learning Stock Price Predictor",
+      description: "Developed a machine learning model to predict stock prices using Python, pandas, and scikit-learn. Implemented data preprocessing, feature engineering, and model evaluation with various algorithms.",
+      technologies: ["Python", "Pandas", "Scikit-learn", "NumPy", "Matplotlib"],
+      github: "https://github.com/yourusername/stock-predictor",
+      demo: "#",
+      image: "/images/stock-predictor.jpg",
+      category: "ml"
+    },
+    {
+      title: "IoT Temperature Monitoring System",
+      description: "Created an IoT system using Arduino and sensors to monitor temperature and humidity. Data is transmitted wirelessly and displayed on a web dashboard with real-time updates.",
+      technologies: ["Arduino", "C++", "IoT", "Web Dashboard", "Sensors"],
+      github: "https://github.com/yourusername/iot-monitoring",
+      demo: "#",
+      image: "/images/iot-system.jpg",
+      category: "hardware"
+    },
+    {
+      title: "Database Management System",
+      description: "Designed and implemented a comprehensive database management system for inventory tracking. Features include CRUD operations, user authentication, and reporting functionality.",
+      technologies: ["SQL", "Database Design", "CRUD Operations", "Authentication"],
+      github: "https://github.com/yourusername/database-system",
+      demo: "#",
+      image: "/images/database-system.jpg",
+      category: "database"
+    }
+  ];
+
+  // Populate projects
+  function populateProjects() {
+    const projectsContainer = document.getElementById('projects-container');
+    if (!projectsContainer) return;
+
+    projectsContainer.innerHTML = '';
+
+    projectsData.forEach((project, index) => {
+      const projectCard = document.createElement('div');
+      projectCard.className = 'project__card card-hover threejs-hover';
+      projectCard.setAttribute('data-aos', 'fade-up');
+      projectCard.setAttribute('data-aos-delay', (index * 100).toString());
+
+      projectCard.innerHTML = `
+        <div class="project__image">
+          <img src="${project.image}" alt="${project.title}" onerror="this.src='/images/placeholder-project.jpg'">
+          <div class="project__overlay">
+            <div class="project__links">
+              <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project__link">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="project__link">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="project__content">
+          <h3 class="project__title">${project.title}</h3>
+          <p class="project__description">${project.description}</p>
+          <div class="project__technologies">
+            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+          </div>
+        </div>
+      `;
+
+      projectsContainer.appendChild(projectCard);
+    });
+  }
 
   // Enhanced contact form handling
   const form = document.getElementById('contactForm');
@@ -182,13 +385,15 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Add active class to clicked tab and corresponding content
       tab.classList.add('active');
-      document.getElementById(`category-${category}`).classList.add('active');
-      
-      // Add subtle animation
       const activeContent = document.getElementById(`category-${category}`);
-      activeContent.style.animation = 'none';
-      activeContent.offsetHeight; // Trigger reflow
-      activeContent.style.animation = 'fadeInUp 0.6s ease-out';
+      if (activeContent) {
+        activeContent.classList.add('active');
+        
+        // Add subtle animation
+        activeContent.style.animation = 'none';
+        activeContent.offsetHeight; // Trigger reflow
+        activeContent.style.animation = 'fadeInUp 0.6s ease-out';
+      }
     });
 
     // Add hover effects for Lottie animations
@@ -207,90 +412,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Interactive course cards
-  const courseCards = document.querySelectorAll('.interactive-course');
-  courseCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      // Add particle effect
-      createParticles(card);
-    });
-  });
-
-  // Particle effect function
-  function createParticles(element) {
-    const particles = document.createElement('div');
-    particles.className = 'particles';
-    particles.innerHTML = '✨';
-    particles.style.cssText = `
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 1.2rem;
-      animation: float 2s ease-out forwards;
-      pointer-events: none;
-      z-index: 10;
-    `;
-    
-    element.appendChild(particles);
-    
-    setTimeout(() => {
-      particles.remove();
-    }, 2000);
-  }
-
-  // Initialize Three.js animations when sections come into view
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
-
-  const threeJSObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const sectionId = entry.target.id;
-        
-        switch(sectionId) {
-          case 'courses':
-            window.threeJSAnimations.initEducationAnimation('education-animation');
-            break;
-          case 'projects':
-            window.threeJSAnimations.initProjectsAnimation('projects-animation');
-            break;
-          case 'experience':
-            window.threeJSAnimations.initExperienceAnimation('experience-animation');
-            break;
-        }
-      }
-    });
-  }, observerOptions);
-
-  // Observe sections
-  ['courses', 'projects', 'experience'].forEach(id => {
-    const section = document.getElementById(id);
-    if (section) {
-      threeJSObserver.observe(section);
-    }
-  });
-
-  // Handle window resize for Three.js
-  window.addEventListener('resize', () => {
-    ['education-animation', 'projects-animation', 'experience-animation'].forEach(id => {
-      window.threeJSAnimations.handleResize(id);
-    });
-  });
-
-  // Add mouse tracking for enhanced effects
-  document.querySelectorAll('.project__card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      
-      card.style.setProperty('--mouse-x', `${x}%`);
-      card.style.setProperty('--mouse-y', `${y}%`);
-    });
-  });
-
   // Theme Toggle Functionality
   const themeToggle = document.getElementById('themeToggle');
   const themeToggleBtn = document.getElementById('themeToggleBtn');
@@ -304,14 +425,16 @@ document.addEventListener('DOMContentLoaded', () => {
   applyTheme(currentTheme);
 
   // Toggle theme panel
-  themeToggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    themeToggle.classList.toggle('open');
-  });
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      themeToggle.classList.toggle('open');
+    });
+  }
 
   // Close theme panel when clicking outside
   document.addEventListener('click', (e) => {
-    if (!themeToggle.contains(e.target)) {
+    if (themeToggle && !themeToggle.contains(e.target)) {
       themeToggle.classList.remove('open');
     }
   });
@@ -340,11 +463,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Update indicator position
-    themeIndicator.className = 'theme-toggle__indicator';
-    if (theme === 'dark') {
-      themeIndicator.classList.add('dark');
-    } else if (theme === 'surprise') {
-      themeIndicator.classList.add('surprise');
+    if (themeIndicator) {
+      themeIndicator.className = 'theme-toggle__indicator';
+      if (theme === 'dark') {
+        themeIndicator.classList.add('dark');
+      } else if (theme === 'surprise') {
+        themeIndicator.classList.add('surprise');
+      }
     }
 
     // Apply theme-specific animations
@@ -352,9 +477,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Save theme
     localStorage.setItem('theme', theme);
-    
-    // Update Three.js scenes for theme
-    updateThreeJSForTheme(theme);
   }
 
   function applyThemeAnimations(theme) {
@@ -436,126 +558,93 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function updateThreeJSForTheme(theme) {
-    // Update Three.js colors based on theme
-    if (window.threeJSAnimations) {
-      const colors = {
-        light: { primary: 0x6366f1, secondary: 0x8b5cf6 },
-        dark: { primary: 0x8b5cf6, secondary: 0xec4899 },
-        surprise: { primary: 0xe74c3c, secondary: 0xf39c12 }
-      };
-      
-      // This would update your Three.js materials
-      // Implementation depends on your Three.js setup
-    }
-  }
-
-  // Projects data from resume
-  const projectsData = [
-    {
-      title: "Personal Website",
-      description: "Built a responsive personal portfolio website using HTML, CSS, JavaScript, and Node.js with Express server. Features include dynamic Three.js animations, theme switching, contact form, and mobile-responsive design.",
-      technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "Three.js"],
-      github: "https://github.com/yourusername/personal-website",
-      demo: "#",
-      image: "/images/personal-website.jpg",
-      category: "web"
-    },
-    {
-      title: "Machine Learning Stock Price Predictor",
-      description: "Developed a machine learning model to predict stock prices using Python, pandas, and scikit-learn. Implemented data preprocessing, feature engineering, and model evaluation with various algorithms.",
-      technologies: ["Python", "Pandas", "Scikit-learn", "NumPy", "Matplotlib"],
-      github: "https://github.com/yourusername/stock-predictor",
-      demo: "#",
-      image: "/images/stock-predictor.jpg",
-      category: "ml"
-    },
-    {
-      title: "IoT Temperature Monitoring System",
-      description: "Created an IoT system using Arduino and sensors to monitor temperature and humidity. Data is transmitted wirelessly and displayed on a web dashboard with real-time updates.",
-      technologies: ["Arduino", "C++", "IoT", "Web Dashboard", "Sensors"],
-      github: "https://github.com/yourusername/iot-monitoring",
-      demo: "#",
-      image: "/images/iot-system.jpg",
-      category: "hardware"
-    },
-    {
-      title: "Database Management System",
-      description: "Designed and implemented a comprehensive database management system for inventory tracking. Features include CRUD operations, user authentication, and reporting functionality.",
-      technologies: ["SQL", "Database Design", "CRUD Operations", "Authentication"],
-      github: "https://github.com/yourusername/database-system",
-      demo: "#",
-      image: "/images/database-system.jpg",
-      category: "database"
-    }
-  ];
-
-  // Update section title to match resume
-  const projectSectionTitle = document.querySelector('.projects__section h2');
-  if (projectSectionTitle) {
-    projectSectionTitle.innerHTML = `
-      <span class="gradient-text">Projects</span>
-      <div class="section__subtitle">Technical Projects & Implementations</div>
-    `;
-  }
-
-  // Populate projects
-  function populateProjects() {
-    const projectsContainer = document.getElementById('projects-container');
-    if (!projectsContainer) return;
-
-    projectsContainer.innerHTML = '';
-
-    projectsData.forEach((project, index) => {
-      const projectCard = document.createElement('div');
-      projectCard.className = 'project__card';
-      projectCard.setAttribute('data-aos', 'fade-up');
-      projectCard.setAttribute('data-aos-delay', (index * 100).toString());
-
-      projectCard.innerHTML = `
-        <div class="project__image">
-          <img src="${project.image}" alt="${project.title}" onerror="this.src='/images/placeholder-project.jpg'">
-          <div class="project__overlay">
-            <div class="project__links">
-              <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project__link">
-                <i class="fab fa-github"></i>
-              </a>
-              <a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="project__link">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="project__content">
-          <h3 class="project__title">${project.title}</h3>
-          <p class="project__description">${project.description}</p>
-          <div class="project__technologies">
-            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-          </div>
-        </div>
-      `;
-
-      projectsContainer.appendChild(projectCard);
-    });
-  }
-
-  // Initialize projects
+  // Initialize all content
+  populateCourses();
   populateProjects();
 
-  // ... rest of your existing code stays the same ...
-});
+  // Initialize Three.js animations when sections come into view
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
 
-<!-- Update the projects section in your index.ejs -->
-<section class="projects__section" id="projects">
-  <div class="threejs-background" id="projects-animation"></div>
-  <div class="container">
-    <h2 data-aos="fade-up">
-      <span class="gradient-text">Projects</span>
-      <div class="section__subtitle">Technical Projects & Implementations</div>
-    </h2>
+  const threeJSObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && window.threeJSAnimations) {
+        const sectionId = entry.target.id;
+        
+        switch(sectionId) {
+          case 'courses':
+            window.threeJSAnimations.initEducationAnimation('education-animation');
+            break;
+          case 'projects':
+            window.threeJSAnimations.initProjectsAnimation('projects-animation');
+            break;
+          case 'experience':
+            window.threeJSAnimations.initExperienceAnimation('experience-animation');
+            break;
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe sections
+  ['courses', 'projects', 'experience'].forEach(id => {
+    const section = document.getElementById(id);
+    if (section) {
+      threeJSObserver.observe(section);
+    }
+  });
+
+  // Handle window resize for Three.js
+  window.addEventListener('resize', () => {
+    if (window.threeJSAnimations) {
+      ['education-animation', 'projects-animation', 'experience-animation'].forEach(id => {
+        window.threeJSAnimations.handleResize(id);
+      });
+    }
+  });
+
+  // Add mouse tracking for enhanced effects
+  document.querySelectorAll('.project__card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      card.style.setProperty('--mouse-x', `${x}%`);
+      card.style.setProperty('--mouse-y', `${y}%`);
+    });
+  });
+
+  // Interactive course cards
+  const courseCards = document.querySelectorAll('.interactive-course');
+  courseCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      // Add particle effect
+      createParticles(card);
+    });
+  });
+
+  // Particle effect function
+  function createParticles(element) {
+    const particles = document.createElement('div');
+    particles.className = 'particles';
+    particles.innerHTML = '✨';
+    particles.style.cssText = `
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.2rem;
+      animation: float 2s ease-out forwards;
+      pointer-events: none;
+      z-index: 10;
+    `;
     
-    <div class="projects__grid" id="projects-container">
-      <!-- Projects will be populated by JavaScript -->
-    </div>
-  </div>
-</section>
+    element.appendChild(particles);
+    
+    setTimeout(() => {
+      particles.remove();
+    }, 2000);
+  }
+});
