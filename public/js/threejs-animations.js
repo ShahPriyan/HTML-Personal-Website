@@ -586,7 +586,409 @@ class UltraGraphicsAnimations {
     return mesh;
   }
 
-  // Continue with more helper methods...
+  // Create Holographic Data Nodes
+  createHolographicNodes(scene) {
+    const nodes = [];
+    const nodeCount = 25;
+    
+    for (let i = 0; i < nodeCount; i++) {
+      const geometry = new THREE.OctahedronGeometry(0.8);
+      const material = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(i / nodeCount, 0.9, 0.7),
+        wireframe: true,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending
+      });
+
+      const node = new THREE.Mesh(geometry, material);
+      node.position.set(
+        (Math.random() - 0.5) * 25,
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 15
+      );
+
+      // Add glowing core
+      const coreGeometry = new THREE.SphereGeometry(0.3);
+      const coreMaterial = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(i / nodeCount, 1, 0.9),
+        transparent: true,
+        opacity: 0.9,
+        blending: THREE.AdditiveBlending
+      });
+      const core = new THREE.Mesh(coreGeometry, coreMaterial);
+      node.add(core);
+
+      scene.add(node);
+      nodes.push(node);
+    }
+
+    return nodes;
+  }
+
+  // Create Energy Connections
+  createEnergyConnections(scene, nodes) {
+    const connections = [];
+    
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const distance = nodes[i].position.distanceTo(nodes[j].position);
+        if (distance < 8 && Math.random() > 0.7) {
+          const points = [];
+          points.push(nodes[i].position);
+          
+          // Add curve points for energy flow
+          const midPoint = nodes[i].position.clone().add(nodes[j].position).multiplyScalar(0.5);
+          midPoint.y += (Math.random() - 0.5) * 4;
+          points.push(midPoint);
+          points.push(nodes[j].position);
+
+          const curve = new THREE.CatmullRomCurve3(points);
+          const geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(20));
+          const material = new THREE.LineBasicMaterial({
+            color: 0x00ffaa,
+            transparent: true,
+            opacity: 0.4,
+            blending: THREE.AdditiveBlending
+          });
+
+          const connection = new THREE.Line(geometry, material);
+          scene.add(connection);
+          connections.push(connection);
+        }
+      }
+    }
+
+    return connections;
+  }
+
+  // Create Floating Code Fragments
+  createCodeFragments(scene) {
+    const fragments = [];
+    const codeTexts = ['AI', 'ML', 'GPU', 'CPU', 'API', 'SQL', 'JS', 'PY', 'C++', 'CUDA'];
+    
+    for (let i = 0; i < 15; i++) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 128;
+      canvas.height = 64;
+      const context = canvas.getContext('2d');
+      
+      context.fillStyle = '#00ff88';
+      context.font = 'bold 24px monospace';
+      context.fillText(codeTexts[i % codeTexts.length], 10, 40);
+      
+      const texture = new THREE.Texture(canvas);
+      texture.needsUpdate = true;
+      
+      const geometry = new THREE.PlaneGeometry(2, 1);
+      const material = new THREE.MeshBasicMaterial({
+        map: texture,
+        transparent: true,
+        opacity: 0.7,
+        blending: THREE.AdditiveBlending
+      });
+
+      const fragment = new THREE.Mesh(geometry, material);
+      fragment.position.set(
+        (Math.random() - 0.5) * 30,
+        (Math.random() - 0.5) * 20,
+        (Math.random() - 0.5) * 20
+      );
+
+      scene.add(fragment);
+      fragments.push(fragment);
+    }
+
+    return fragments;
+  }
+
+  // Create Energy Orbs with Trails
+  createEnergyOrbs(scene) {
+    const orbs = [];
+    
+    for (let i = 0; i < 12; i++) {
+      const geometry = new THREE.IcosahedronGeometry(1);
+      const material = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(i / 12, 0.9, 0.8),
+        wireframe: true,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending
+      });
+
+      const orb = new THREE.Mesh(geometry, material);
+      
+      // Add inner glow
+      const glowGeometry = new THREE.SphereGeometry(0.7);
+      const glowMaterial = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(i / 12, 1, 0.9),
+        transparent: true,
+        opacity: 0.3,
+        blending: THREE.AdditiveBlending
+      });
+      const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+      orb.add(glow);
+
+      scene.add(orb);
+      orbs.push(orb);
+    }
+
+    return orbs;
+  }
+
+  // Create Dimensional Portals
+  createDimensionalPortals(scene) {
+    const portals = [];
+    
+    for (let i = 0; i < 6; i++) {
+      const geometry = new THREE.RingGeometry(2, 3, 32);
+      const material = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(i / 6, 0.8, 0.7),
+        transparent: true,
+        opacity: 0.6,
+        side: THREE.DoubleSide,
+        blending: THREE.AdditiveBlending
+      });
+
+      const portal = new THREE.Mesh(geometry, material);
+      portal.position.set(
+        Math.sin(i / 6 * Math.PI * 2) * 15,
+        (Math.random() - 0.5) * 10,
+        Math.cos(i / 6 * Math.PI * 2) * 15
+      );
+      portal.rotation.x = Math.random() * Math.PI;
+      portal.rotation.y = Math.random() * Math.PI;
+
+      scene.add(portal);
+      portals.push(portal);
+    }
+
+    return portals;
+  }
+
+  // Create Particle Storms
+  createParticleStorms(scene) {
+    const storms = [];
+    
+    for (let i = 0; i < 4; i++) {
+      const particleCount = 200;
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(particleCount * 3);
+      const colors = new Float32Array(particleCount * 3);
+      
+      for (let j = 0; j < particleCount; j++) {
+        positions[j * 3] = (Math.random() - 0.5) * 8;
+        positions[j * 3 + 1] = (Math.random() - 0.5) * 8;
+        positions[j * 3 + 2] = (Math.random() - 0.5) * 8;
+        
+        const color = new THREE.Color().setHSL(i / 4 + Math.random() * 0.1, 0.8, 0.7);
+        colors[j * 3] = color.r;
+        colors[j * 3 + 1] = color.g;
+        colors[j * 3 + 2] = color.b;
+      }
+
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+      const material = new THREE.PointsMaterial({
+        vertexColors: true,
+        size: 0.1,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending
+      });
+
+      const storm = new THREE.Points(geometry, material);
+      storm.position.set(
+        (Math.random() - 0.5) * 20,
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 20
+      );
+
+      scene.add(storm);
+      storms.push(storm);
+    }
+
+    return storms;
+  }
+
+  // Create Energy Trail Effect
+  createEnergyTrail(scene, position, color) {
+    const trailGeometry = new THREE.SphereGeometry(0.15, 8, 6);
+    const trailMaterial = new THREE.MeshBasicMaterial({
+      color: color,
+      transparent: true,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending
+    });
+
+    const trail = new THREE.Mesh(trailGeometry, trailMaterial);
+    trail.position.copy(position);
+    scene.add(trail);
+
+    // Animate trail fade-out
+    const animate = () => {
+      trail.material.opacity -= 0.02;
+      trail.scale.multiplyScalar(0.95);
+      
+      if (trail.material.opacity > 0) {
+        requestAnimationFrame(animate);
+      } else {
+        scene.remove(trail);
+      }
+    };
+    animate();
+  }
+
+  // EXTREME Lightning Storm Animation for Hero Section
+  initHeroAnimation(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 2000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+    
+    renderer.setSize(container.offsetWidth, container.offsetHeight);
+    renderer.setClearColor(0x000000, 0);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    // Create massive lightning network
+    const lightningBolts = this.createLightningNetwork(scene);
+    
+    // Create plasma spheres
+    const plasmaSpheres = this.createPlasmaSpheres(scene);
+    
+    // Create energy vortex
+    const energyVortex = this.createEnergyVortex(scene);
+
+    camera.position.set(0, 0, 50);
+
+    const animate = () => {
+      const time = Date.now() * 0.001;
+
+      // Animate lightning bolts
+      lightningBolts.forEach((bolt, index) => {
+        // Dynamic lightning paths
+        const positions = bolt.geometry.attributes.position.array;
+        for (let i = 0; i < positions.length; i += 3) {
+          positions[i] += Math.sin(time * 10 + i) * 0.5;
+          positions[i + 1] += Math.cos(time * 8 + i) * 0.3;
+        }
+        bolt.geometry.attributes.position.needsUpdate = true;
+        
+        // Flickering effect
+        bolt.material.opacity = 0.6 + Math.sin(time * 20 + index) * 0.4;
+      });
+
+      // Animate plasma spheres
+      plasmaSpheres.forEach((sphere, index) => {
+        sphere.rotation.x += 0.05;
+        sphere.rotation.y += 0.03;
+        
+        // Intense pulsing
+        const pulse = 1 + Math.sin(time * 6 + index) * 0.8;
+        sphere.scale.setScalar(pulse);
+        
+        // Color cycling
+        sphere.material.color.setHSL((time * 0.8 + index * 0.3) % 1, 1, 0.8);
+      });
+
+      // Animate energy vortex
+      energyVortex.rotation.z += 0.05;
+      energyVortex.rotation.y += 0.02;
+
+      // Extreme camera shake during "lightning strikes"
+      if (Math.random() < 0.01) {
+        camera.position.x += (Math.random() - 0.5) * 2;
+        camera.position.y += (Math.random() - 0.5) * 2;
+      }
+
+      renderer.render(scene, camera);
+      this.animationFrames.set(containerId, requestAnimationFrame(animate));
+    };
+
+    animate();
+    
+    this.scenes.set(containerId, scene);
+    this.renderers.set(containerId, renderer);
+    this.cameras.set(containerId, camera);
+  }
+
+  // Helper methods for Hero animations
+  createLightningNetwork(scene) {
+    const bolts = [];
+    
+    for (let i = 0; i < 20; i++) {
+      const points = [];
+      const segments = 15;
+      
+      for (let j = 0; j <= segments; j++) {
+        const x = (j / segments - 0.5) * 60 + (Math.random() - 0.5) * 10;
+        const y = (Math.random() - 0.5) * 40;
+        const z = (Math.random() - 0.5) * 30;
+        points.push(new THREE.Vector3(x, y, z));
+      }
+
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+      const material = new THREE.LineBasicMaterial({
+        color: new THREE.Color().setHSL(0.6 + Math.random() * 0.2, 1, 0.9),
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending,
+        linewidth: 3
+      });
+
+      const bolt = new THREE.Line(geometry, material);
+      scene.add(bolt);
+      bolts.push(bolt);
+    }
+
+    return bolts;
+  }
+
+  createPlasmaSpheres(scene) {
+    const spheres = [];
+    
+    for (let i = 0; i < 8; i++) {
+      const geometry = new THREE.SphereGeometry(2, 32, 16);
+      const material = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(i / 8, 1, 0.8),
+        wireframe: true,
+        transparent: true,
+        opacity: 0.7,
+        blending: THREE.AdditiveBlending
+      });
+
+      const sphere = new THREE.Mesh(geometry, material);
+      sphere.position.set(
+        (Math.random() - 0.5) * 50,
+        (Math.random() - 0.5) * 30,
+        (Math.random() - 0.5) * 40
+      );
+
+      scene.add(sphere);
+      spheres.push(sphere);
+    }
+
+    return spheres;
+  }
+
+  createEnergyVortex(scene) {
+    const geometry = new THREE.TorusGeometry(15, 3, 16, 100);
+    const material = new THREE.MeshBasicMaterial({
+      color: 0x00ffff,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.5,
+      blending: THREE.AdditiveBlending
+    });
+
+    const vortex = new THREE.Mesh(geometry, material);
+    scene.add(vortex);
+    return vortex;
+  }
 
   handleResize(containerId) {
     const container = document.getElementById(containerId);
