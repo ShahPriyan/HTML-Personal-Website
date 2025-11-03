@@ -44,7 +44,8 @@ const courseCategories = {
         name: 'Transforming Ideas to Innovation II',
         semester: 'Spring 2023',
         description: 'Engineering design process, project management, and team collaboration.',
-        skills: ['Design Thinking', 'Project Management', 'CAD', 'Team Leadership']
+        skills: ['Design Thinking', 'Project Management', 'CAD', 'Team Leadership'],
+        grade: 'A'
       }
     ]
   },
@@ -59,42 +60,56 @@ const courseCategories = {
         name: 'Electrical Engineering Fundamentals I',
         semester: 'Fall 2023',
         description: 'Introduction to electrical engineering concepts, circuit analysis, and basic electronics.',
-        skills: ['Circuit Analysis', 'Ohm\'s Law', 'Basic Electronics', 'Problem Solving']
+        skills: ['Circuit Analysis', 'Ohm\'s Law', 'Basic Electronics', 'Problem Solving'],
+        grade: 'B'
       },
       {
         code: 'ECE 20002',
         name: 'Electrical Engineering Fundamentals II',
         semester: 'Spring 2024',
         description: 'Advanced circuit analysis, AC circuits, and introduction to signals.',
-        skills: ['AC Analysis', 'Phasors', 'Signal Processing', 'Circuit Design']
+        skills: ['AC Analysis', 'Phasors', 'Signal Processing', 'Circuit Design'],
+        grade: 'In Progress'
       },
       {
         code: 'ECE 264',
         name: 'Advanced C Programming',
         semester: 'Fall 2024',
         description: 'Advanced programming concepts in C including data structures, algorithms, and memory management.',
-        skills: ['C Programming', 'Data Structures', 'Memory Management', 'Debugging']
+        skills: ['C Programming', 'Data Structures', 'Memory Management', 'Debugging'],
+        grade: 'B'
       },
       {
         code: 'ECE 270',
         name: 'Introduction to Digital System Design',
         semester: 'Spring 2025',
         description: 'Digital logic design, Boolean algebra, combinational and sequential circuits.',
-        skills: ['Digital Logic', 'Verilog', 'FPGA', 'Circuit Design']
+        skills: ['Digital Logic', 'Verilog', 'FPGA', 'Circuit Design'],
+        grade: 'B'
       },
       {
         code: 'ECE 362',
         name: 'Microprocessor Systems',
         semester: 'Fall 2025',
         description: 'Microprocessor architecture, assembly language programming, and embedded systems.',
-        skills: ['Assembly Language', 'Embedded Systems', 'Microcontrollers', 'Hardware Interface']
+        skills: ['Assembly Language', 'Embedded Systems', 'Microcontrollers', 'Hardware Interface'],
+        grade: 'In Progress'
       },
       {
         code: 'ECE 368',
         name: 'Data Structures',
         semester: 'Fall 2025',
         description: 'Implementation and analysis of fundamental data structures and algorithms.',
-        skills: ['Algorithms', 'Data Structures', 'C/C++', 'Algorithm Analysis']
+        skills: ['Algorithms', 'Data Structures', 'C/C++', 'Algorithm Analysis'],
+        grade: 'In Progress'
+      },
+      {
+        code: 'ECE 369',
+        name: 'Discrete Mathematics for Computer Engineering',
+        semester: 'Spring 2024',
+        description: 'Mathematical foundations including logic, set theory, and graph theory for computer engineering.',
+        skills: ['Discrete Math', 'Logic', 'Graph Theory', 'Proofs'],
+        grade: 'B'
       }
     ]
   },
@@ -109,14 +124,16 @@ const courseCategories = {
         name: 'Python for Data Science',
         semester: 'Fall 2024',
         description: 'Introduction to Python programming with focus on data analysis and visualization.',
-        skills: ['Python', 'Pandas', 'NumPy', 'Data Visualization', 'Machine Learning Basics']
+        skills: ['Python', 'Pandas', 'NumPy', 'Data Visualization', 'Machine Learning Basics'],
+        grade: 'A'
       },
       {
         code: 'ECE 36900',
         name: 'Discrete Mathematics',
         semester: 'Spring 2024',
         description: 'Mathematical foundations for computer science and engineering.',
-        skills: ['Logic', 'Set Theory', 'Graph Theory', 'Combinatorics', 'Proof Techniques']
+        skills: ['Logic', 'Set Theory', 'Graph Theory', 'Combinatorics', 'Proof Techniques'],
+        grade: 'A'
       }
     ]
   },
@@ -131,7 +148,16 @@ const courseCategories = {
         name: 'Multivariate Calculus',
         semester: 'Spring 2023',
         description: 'Vector calculus, partial derivatives, multiple integrals, and applications.',
-        skills: ['Mathematical Analysis', 'Vector Calculus', 'Problem Solving', 'Mathematical Modeling']
+        skills: ['Mathematical Analysis', 'Vector Calculus', 'Problem Solving', 'Mathematical Modeling'],
+        grade: 'B'
+      },
+      {
+        code: 'MA 266',
+        name: 'Ordinary Differential Equations',
+        semester: 'Fall 2023',
+        description: 'First and second-order differential equations, Laplace transforms, and applications to engineering problems.',
+        skills: ['Differential Equations', 'Laplace Transforms', 'Mathematical Modeling', 'Engineering Applications'],
+        grade: 'A'
       }
     ]
   }

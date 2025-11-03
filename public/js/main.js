@@ -187,4 +187,57 @@ document.addEventListener('DOMContentLoaded', () => {
       particles.remove();
     }, 2000);
   }
+
+  // Initialize Three.js animations when sections come into view
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const threeJSObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sectionId = entry.target.id;
+        
+        switch(sectionId) {
+          case 'courses':
+            window.threeJSAnimations.initEducationAnimation('education-animation');
+            break;
+          case 'projects':
+            window.threeJSAnimations.initProjectsAnimation('projects-animation');
+            break;
+          case 'experience':
+            window.threeJSAnimations.initExperienceAnimation('experience-animation');
+            break;
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe sections
+  ['courses', 'projects', 'experience'].forEach(id => {
+    const section = document.getElementById(id);
+    if (section) {
+      threeJSObserver.observe(section);
+    }
+  });
+
+  // Handle window resize for Three.js
+  window.addEventListener('resize', () => {
+    ['education-animation', 'projects-animation', 'experience-animation'].forEach(id => {
+      window.threeJSAnimations.handleResize(id);
+    });
+  });
+
+  // Add mouse tracking for enhanced effects
+  document.querySelectorAll('.project__card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      card.style.setProperty('--mouse-x', `${x}%`);
+      card.style.setProperty('--mouse-y', `${y}%`);
+    });
+  });
 });

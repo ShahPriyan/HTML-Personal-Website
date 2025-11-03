@@ -10,6 +10,8 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="/css/animations.css">
+  <!-- Add Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 
@@ -141,6 +143,7 @@
 
   <!-- Courses Section -->
   <section id="courses" class="courses__section">
+    <div class="threejs-background" id="education-animation"></div>
     <div class="container">
       <div class="section__header" data-aos="fade-up">
         <span class="section__tag bounce-in">Education</span>
@@ -192,8 +195,8 @@
                 <span class="skill__tag skill-hover"><%= skill %></span>
                 <% }); %>
               </div>
-              <div class="course__grade">
-                <span class="grade__indicator">A</span>
+              <div class="course__grade grade-<%= course.grade.toLowerCase().replace(' ', '-') %>">
+                <span class="grade__indicator"><%= course.grade %></span>
               </div>
             </div>
             <% }); %>
@@ -206,6 +209,7 @@
 
   <!-- Projects Section -->
   <section id="projects" class="projects__section">
+    <div class="threejs-background" id="projects-animation"></div>
     <div class="container">
       <div class="section__header" data-aos="fade-up">
         <span class="section__tag bounce-in">Portfolio</span>
@@ -215,7 +219,9 @@
       
       <div class="projects__grid">
         <% projects.forEach((project, index) => { %>
-        <div class="project__card card-hover" data-aos="fade-up" data-aos-delay="<%= (index + 1) * 100 %>">
+        <div class="project__card card-hover threejs-hover" 
+             data-aos="fade-up" 
+             data-aos-delay="<%= (index + 1) * 100 %>">
           <div class="project__header">
             <div class="project__icon icon-bounce">
               <i class="<%= project.icon %>"></i>
@@ -242,6 +248,7 @@
 
   <!-- Experience Section -->
   <section id="experience" class="experience__section">
+    <div class="threejs-background" id="experience-animation"></div>
     <div class="container">
       <div class="section__header" data-aos="fade-up">
         <span class="section__tag bounce-in">Career</span>
@@ -250,7 +257,9 @@
       
       <div class="timeline">
         <% experiences.forEach((experience, index) => { %>
-        <div class="timeline__item slide-in-left" data-aos="fade-up" data-aos-delay="<%= (index + 1) * 100 %>">
+        <div class="timeline__item slide-in-left threejs-hover" 
+             data-aos="fade-up" 
+             data-aos-delay="<%= (index + 1) * 100 %>">
           <div class="timeline__marker pulse-dot"></div>
           <div class="timeline__content">
             <div class="timeline__header">
@@ -352,6 +361,7 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="/js/animations.js"></script>
   <script src="/js/main.js"></script>
+  <script src="/js/threejs-animations.js"></script>
 </body>
 </html>
 
