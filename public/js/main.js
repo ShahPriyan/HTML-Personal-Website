@@ -450,14 +450,112 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Keyboard shortcut for theme toggle
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.key === 't') {
-      e.preventDefault();
-      const themes = ['light', 'dark', 'surprise'];
-      const currentIndex = themes.indexOf(currentTheme);
-      const nextTheme = themes[(currentIndex + 1) % themes.length];
-      applyTheme(nextTheme);
+  // Projects data from resume
+  const projectsData = [
+    {
+      title: "Personal Website",
+      description: "Built a responsive personal portfolio website using HTML, CSS, JavaScript, and Node.js with Express server. Features include dynamic Three.js animations, theme switching, contact form, and mobile-responsive design.",
+      technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "Three.js"],
+      github: "https://github.com/yourusername/personal-website",
+      demo: "#",
+      image: "/images/personal-website.jpg",
+      category: "web"
+    },
+    {
+      title: "Machine Learning Stock Price Predictor",
+      description: "Developed a machine learning model to predict stock prices using Python, pandas, and scikit-learn. Implemented data preprocessing, feature engineering, and model evaluation with various algorithms.",
+      technologies: ["Python", "Pandas", "Scikit-learn", "NumPy", "Matplotlib"],
+      github: "https://github.com/yourusername/stock-predictor",
+      demo: "#",
+      image: "/images/stock-predictor.jpg",
+      category: "ml"
+    },
+    {
+      title: "IoT Temperature Monitoring System",
+      description: "Created an IoT system using Arduino and sensors to monitor temperature and humidity. Data is transmitted wirelessly and displayed on a web dashboard with real-time updates.",
+      technologies: ["Arduino", "C++", "IoT", "Web Dashboard", "Sensors"],
+      github: "https://github.com/yourusername/iot-monitoring",
+      demo: "#",
+      image: "/images/iot-system.jpg",
+      category: "hardware"
+    },
+    {
+      title: "Database Management System",
+      description: "Designed and implemented a comprehensive database management system for inventory tracking. Features include CRUD operations, user authentication, and reporting functionality.",
+      technologies: ["SQL", "Database Design", "CRUD Operations", "Authentication"],
+      github: "https://github.com/yourusername/database-system",
+      demo: "#",
+      image: "/images/database-system.jpg",
+      category: "database"
     }
-  });
+  ];
+
+  // Update section title to match resume
+  const projectSectionTitle = document.querySelector('.projects__section h2');
+  if (projectSectionTitle) {
+    projectSectionTitle.innerHTML = `
+      <span class="gradient-text">Projects</span>
+      <div class="section__subtitle">Technical Projects & Implementations</div>
+    `;
+  }
+
+  // Populate projects
+  function populateProjects() {
+    const projectsContainer = document.getElementById('projects-container');
+    if (!projectsContainer) return;
+
+    projectsContainer.innerHTML = '';
+
+    projectsData.forEach((project, index) => {
+      const projectCard = document.createElement('div');
+      projectCard.className = 'project__card';
+      projectCard.setAttribute('data-aos', 'fade-up');
+      projectCard.setAttribute('data-aos-delay', (index * 100).toString());
+
+      projectCard.innerHTML = `
+        <div class="project__image">
+          <img src="${project.image}" alt="${project.title}" onerror="this.src='/images/placeholder-project.jpg'">
+          <div class="project__overlay">
+            <div class="project__links">
+              <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project__link">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="project__link">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="project__content">
+          <h3 class="project__title">${project.title}</h3>
+          <p class="project__description">${project.description}</p>
+          <div class="project__technologies">
+            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+          </div>
+        </div>
+      `;
+
+      projectsContainer.appendChild(projectCard);
+    });
+  }
+
+  // Initialize projects
+  populateProjects();
+
+  // ... rest of your existing code stays the same ...
 });
+
+<!-- Update the projects section in your index.ejs -->
+<section class="projects__section" id="projects">
+  <div class="threejs-background" id="projects-animation"></div>
+  <div class="container">
+    <h2 data-aos="fade-up">
+      <span class="gradient-text">Projects</span>
+      <div class="section__subtitle">Technical Projects & Implementations</div>
+    </h2>
+    
+    <div class="projects__grid" id="projects-container">
+      <!-- Projects will be populated by JavaScript -->
+    </div>
+  </div>
+</section>
