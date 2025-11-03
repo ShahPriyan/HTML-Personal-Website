@@ -978,8 +978,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-in');
           
-          // Add text typing effect for paragraphs
-          if (entry.target.tagName === 'P') {
+          // Add text typing effect for specific paragraphs only
+          if (entry.target.tagName === 'P' && 
+              !entry.target.classList.contains('section__description') &&
+              !entry.target.classList.contains('about__description')) {
             addTypingEffect(entry.target);
           }
           
