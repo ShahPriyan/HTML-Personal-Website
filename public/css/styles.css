@@ -790,10 +790,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .skills__grid {
-  display: grid;
+  display: grid !important;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   width: 100%;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 @media (max-width: 768px) {
@@ -805,6 +807,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .skill__category {
   margin-bottom: 1.5rem;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .skill__category h4 {
@@ -815,14 +819,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .skill__tags {
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
   gap: 0.5rem;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .skill__tag {
   padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, var(--primary-color, #6366f1), var(--accent-color, #8b5cf6));
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   color: white !important;
   border-radius: 2rem;
   font-size: 0.875rem;
@@ -830,17 +836,31 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.2s ease;
   animation: none !important;
   transform: none !important;
-  border: 1px solid var(--primary-color, #6366f1);
+  border: 1px solid #6366f1;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  margin: 2px;
+  display: inline-block !important;
+  margin: 4px;
   min-height: 30px;
-  line-height: 1.2;
+  line-height: 1.4;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .about__section .skill__tag:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.3);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* Force visibility of skills section - debugging */
+.skills__section {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+.skills__section * {
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .about__stats {

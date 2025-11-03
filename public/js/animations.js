@@ -68,10 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
   observeElements();
   parallaxEffect();
   
-  // Simplified skill tag animations - reduced stagger
+  // Skill tag animations disabled for immediate visibility
   const skillTags = document.querySelectorAll('.skill__tag');
   skillTags.forEach((tag, index) => {
-    tag.style.animationDelay = `${index * 0.05}s`; // Reduced from 0.1s to 0.05s
-    tag.classList.add('fade-in-up');
+    // Ensure skills are immediately visible without animations
+    tag.style.opacity = '1';
+    tag.style.visibility = 'visible';
+    tag.style.display = 'inline-block';
   });
 });

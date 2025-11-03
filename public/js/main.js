@@ -165,103 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Projects data from resume - Enhanced with comprehensive technologies
-  const projectsData = [
-    {
-      title: "Personal Website Portfolio",
-      description: "Built a responsive personal portfolio website using modern web technologies with Node.js backend. Features include dynamic Three.js animations, theme switching, contact form, and mobile-responsive design.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "Node.js", "Express.js", "Three.js", "EJS", "Git"],
-      github: "https://github.com/ShahPriyan/HTML-Personal-Website",
-      demo: "#",
-      image: "/images/personal-website.jpg",
-      category: "web"
-    },
-    {
-      title: "Analog Audio Equalizer",
-      description: "Built a hardware-based audio equalizer using op-amps and 555 timer circuits for frequency-specific audio control with bass, mid, and treble adjustment.",
-      technologies: ["Analog Circuits", "Op-amps", "555 Timer", "Circuit Analysis", "Hardware Testing", "Breadboard Design"],
-      github: "#",
-      demo: "#",
-      image: "/images/audio-equalizer.jpg",
-      category: "hardware"
-    },
-    {
-      title: "Traffic Light Simulator",
-      description: "Developed a timer-driven LED system that replicates real-world traffic light sequences using digital circuits and timing logic optimization.",
-      technologies: ["Digital Circuits", "555 Timer IC", "LED Control", "Circuit Design", "Power Distribution", "Hardware Testing"],
-      github: "#",
-      demo: "#",
-      image: "/images/traffic-light.jpg",
-      category: "hardware"
-    },
-    {
-      title: "PCB Design & Implementation",
-      description: "Designed and implemented custom printed circuit boards for embedded systems applications using professional CAD tools and multi-layer PCB design principles.",
-      technologies: ["PCB Design", "Schematic Design", "CAD Software", "Multi-layer PCB", "Signal Integrity", "Hardware Validation"],
-      github: "#",
-      demo: "#",
-      image: "/images/pcb-design.jpg",
-      category: "hardware"
-    },
-    {
-      title: "Self-Driving Data Analysis Tool",
-      description: "Collaborated on a Python-based tool for parsing and visualizing autonomous vehicle sensor data with advanced data processing and pattern recognition.",
-      technologies: ["Python", "Pandas", "NumPy", "Data Analysis", "Data Visualization", "Machine Learning", "Git", "Code Review"],
-      github: "#",
-      demo: "#",
-      image: "/images/data-analysis.jpg",
-      category: "software"
-    },
-    {
-      title: "Parkinson's Pressure Brace",
-      description: "Designed a wearable assistive device for individuals with Parkinson's disease using pressure and vibration feedback with integrated sensors and microcontrollers.",
-      technologies: ["Embedded Systems", "Microcontrollers", "Sensors", "Medical Device Design", "Hardware Interface", "Embedded C"],
-      github: "#",
-      demo: "#",
-      image: "/images/parkinsons-brace.jpg",
-      category: "medical"
-    }
-  ];
-
-  // Populate projects
-  function populateProjects() {
-    const projectsContainer = document.getElementById('projects-container');
-    if (!projectsContainer) return;
-
-    projectsContainer.innerHTML = '';
-
-    projectsData.forEach((project, index) => {
-      const projectCard = document.createElement('div');
-      projectCard.className = 'project__card card-hover threejs-hover';
-      projectCard.setAttribute('data-aos', 'fade-up');
-      projectCard.setAttribute('data-aos-delay', (index * 100).toString());
-
-      projectCard.innerHTML = `
-        <div class="project__image">
-          <img src="${project.image}" alt="${project.title}" onerror="this.src='/images/placeholder-project.jpg'">
-          <div class="project__overlay">
-            <div class="project__links">
-              <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project__link">
-                <i class="fab fa-github"></i>
-              </a>
-              <a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="project__link">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="project__content">
-          <h3 class="project__title">${project.title}</h3>
-          <p class="project__description">${project.description}</p>
-          <div class="project__technologies">
-            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-          </div>
-        </div>
-      `;
-
-      projectsContainer.appendChild(projectCard);
-    });
-  }
+  // Projects are rendered server-side via EJS template, no client-side data needed
 
   // Enhanced contact form handling
   const form = document.getElementById('contactForm');
@@ -814,9 +718,8 @@ document.addEventListener('DOMContentLoaded', () => {
   buttonStyleSheet.textContent = buttonStyles;
   document.head.appendChild(buttonStyleSheet);
 
-  // Initialize all content
+  // Initialize content
   populateCourses();
-  populateProjects();
 
   // Initialize Three.js animations when sections come into view
   const observerOptions = {
