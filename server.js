@@ -235,16 +235,16 @@ const projects = [
 const experiences = [
   {
     id: 1,
-    title: 'Software Engineering Intern',
-    company: 'Spry Technologies',
-    date: 'Jun 2025 – Aug 2025',
+    title: 'Software and Design Intern',
+    company: 'Spry Brands Inc.',
+    date: 'May 2025 – Aug 2025',
     description: [
-      'Developed and maintained web applications using modern JavaScript frameworks',
-      'Collaborated with cross-functional teams on product development initiatives',
-      'Implemented automated testing procedures to improve code quality and reliability',
-      'Participated in code reviews and contributed to technical documentation'
+      'Designed and developed 300+ customer-facing, fully customizable products using XML, PageFlex Studio, and backend programming',
+      'Streamlined production workflow by using licensed third-party software to automate customization and data imports',
+      'Collaborated with cross-functional teams to integrate backend systems with product templates, allowing for seamless and efficient updates',
+      'Designed and implemented customizable website templates, enabling marketing and sales teams to streamline client outreach and improve lead generation'
     ],
-    skills: ['JavaScript', 'React', 'Node.js', 'Git/GitHub', 'Agile Development', 'API Development', 'Testing', 'Team Collaboration']
+    skills: ['XML', 'PageFlex Studio', 'Backend Programming', 'Workflow Automation', 'Template Design', 'System Integration', 'Cross-functional Collaboration', 'Marketing Technology']
   },
   {
     id: 2,

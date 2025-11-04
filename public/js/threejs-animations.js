@@ -7,7 +7,10 @@ class UltraGraphicsAnimations {
     this.mousePosition = { x: 0, y: 0 };
     this.frameCount = 0;
     this.lastFrameTime = 0;
-    this.targetFPS = 30; // Limit to 30 FPS for better performance
+    this.targetFPS = 15; // Very low FPS for maximum performance
+    this.skipFrames = 3; // Skip more frames for better performance
+    this.frameCounter = 0;
+    this.performanceMode = true; // Enable performance mode by default
     this.setupMouseTracking();
     this.setupTextAnimations();
   }
@@ -19,8 +22,14 @@ class UltraGraphicsAnimations {
     });
   }
 
-  // Frame throttling for better performance
+  // Enhanced frame throttling for better performance
   shouldRenderFrame(currentTime) {
+    this.frameCounter++;
+    // Skip frames more aggressively
+    if (this.frameCounter % this.skipFrames !== 0) {
+      return false;
+    }
+    
     const frameInterval = 1000 / this.targetFPS;
     if (currentTime - this.lastFrameTime >= frameInterval) {
       this.lastFrameTime = currentTime;
@@ -49,8 +58,8 @@ class UltraGraphicsAnimations {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // Create lightweight particle system (heavily optimized)
-    const particleCount = 300;
+    // Create ultra-lightweight particle system (maximum optimization)
+    const particleCount = 100;
     const particles = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -145,7 +154,7 @@ class UltraGraphicsAnimations {
         const positions = particleSystem.geometry.attributes.position.array;
         
         // Simplified galaxy rotation (reduced complexity)
-        for (let i = 0; i < particleCount; i += 2) { // Skip every other particle for performance
+        for (let i = 0; i < particleCount; i += 4) { // Skip more particles for better performance
           const velocity = velocities[i];
           const phase = phases[i];
           
@@ -204,8 +213,8 @@ class UltraGraphicsAnimations {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // Create lightweight data stream matrix
-    const streamCount = 50;
+    // Create ultra-lightweight data stream matrix
+    const streamCount = 20;
     const streams = [];
     
     for (let i = 0; i < streamCount; i++) {
@@ -335,20 +344,35 @@ class UltraGraphicsAnimations {
     camera.position.set(0, 15, 25);
 
     const animate = () => {
-      const time = Date.now() * 0.001;
+      const currentTime = performance.now();
+      
+      // Frame throttling for better performance
+      if (!this.shouldRenderFrame(currentTime)) {
+        this.animationFrames.set(containerId, requestAnimationFrame(animate));
+        return;
+      }
 
-      // Animate quantum field with complex mathematics
+      const time = currentTime * 0.001;
+
+      // Simplified quantum field animation for performance
+      if (this.performanceMode) {
+        // Skip complex calculations in performance mode
+        this.animationFrames.set(containerId, requestAnimationFrame(animate));
+        return;
+      }
+
+      // Animate quantum field with reduced complexity
       const positions = quantumField.geometry.attributes.position;
       const colors = quantumField.geometry.attributes.color;
       
-      for (let i = 0; i < positions.count; i++) {
+      // Reduced loop iterations for better performance
+      for (let i = 0; i < positions.count; i += 3) {
         const x = positions.getX(i);
         const y = positions.getY(i);
         
-        // Multiple wave interference patterns
-        const wave1 = Math.sin(x * 0.2 + time * 3) * 3;
-        const wave2 = Math.cos(y * 0.15 + time * 2.5) * 2;
-        const wave3 = Math.sin((x + y) * 0.1 + time * 1.5) * 1.5;
+        // Simplified wave patterns
+        const wave1 = Math.sin(x * 0.1 + time) * 2;
+        const wave2 = Math.cos(y * 0.1 + time) * 1;
         const wave4 = Math.cos(Math.sqrt(x*x + y*y) * 0.05 + time * 4) * 1;
         
         // Mouse creates quantum disturbance

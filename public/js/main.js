@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Check device performance and disable heavy animations on slow devices
+  checkPerformanceAndOptimize();
+  
   // Initialize Enhanced Text & Icon Animations
   initializeEnhancedAnimations();
   
@@ -1009,3 +1012,87 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   document.head.appendChild(style);
 });
+
+// Performance optimization function
+function checkPerformanceAndOptimize() {
+  // Check for reduced motion preference
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    disableAnimations();
+    return;
+  }
+
+  // Check device capabilities
+  const isLowEndDevice = () => {
+    // Check for low RAM (< 4GB approximation)
+    if (navigator.deviceMemory && navigator.deviceMemory < 4) {
+      return true;
+    }
+    
+    // Check for slow CPU (< 4 cores approximation)
+    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
+      return true;
+    }
+    
+    // Check for mobile devices
+    if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      return true;
+    }
+    
+    return false;
+  };
+
+  // Performance test
+  const performanceTest = () => {
+    const start = performance.now();
+    // Simple computation test
+    let result = 0;
+    for (let i = 0; i < 100000; i++) {
+      result += Math.sin(i) * Math.cos(i);
+    }
+    const end = performance.now();
+    return (end - start) > 50; // If test takes more than 50ms, consider it slow
+  };
+
+  // Disable animations if device seems slow
+  if (isLowEndDevice() || performanceTest()) {
+    disableAnimations();
+    console.log('Animations disabled for better performance');
+  }
+}
+
+// Function to disable heavy animations
+function disableAnimations() {
+  // Add performance mode class
+  document.body.classList.add('performance-mode');
+  
+  // Disable Three.js animations
+  if (window.threeJSAnimations) {
+    window.threeJSAnimations.performanceMode = true;
+  }
+  
+  // Hide Three.js backgrounds
+  const threejsBackgrounds = document.querySelectorAll('.threejs-background');
+  threejsBackgrounds.forEach(bg => {
+    bg.style.display = 'none';
+  });
+  
+  // Add CSS for performance mode
+  const performanceCSS = `
+    .performance-mode .threejs-background {
+      display: none !important;
+    }
+    .performance-mode .floating-animation {
+      animation: none !important;
+    }
+    .performance-mode .pulse-hover:hover {
+      transform: none !important;
+    }
+    .performance-mode .card-hover:hover {
+      transform: translateY(-2px) !important;
+    }
+  `;
+  
+  const style = document.createElement('style');
+  style.textContent = performanceCSS;
+  document.head.appendChild(style);
+}
