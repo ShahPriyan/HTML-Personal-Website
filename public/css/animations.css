@@ -113,14 +113,14 @@
   }
 }
 
-/* Floating animation */
+/* Floating animation - DISABLED for performance */
 .floating-animation {
-  animation: floating 3s ease-in-out infinite;
+  /* animation: floating 3s ease-in-out infinite; */
 }
 
 @keyframes floating {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%, 100% { transform: none; }
+  50% { transform: none; }
 }
 
 /* Pulse animation */

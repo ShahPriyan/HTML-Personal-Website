@@ -5,13 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Enhanced Text & Icon Animations
   initializeEnhancedAnimations();
   
-  // Initialize AOS with enhanced settings
+  // Initialize AOS with minimal settings for performance
   AOS.init({
-    duration: 1000,
+    duration: 600,
     once: true,
-    easing: 'ease-out-cubic',
-    offset: 50,
-    delay: 100
+    easing: 'ease',
+    offset: 20,
+    delay: 0,
+    disable: 'mobile' // Disable on mobile for better performance
   });
 
   // Mobile menu toggle
@@ -425,19 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function startSurpriseEffects() {
-    // Add rainbow border animation
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-      navbar.style.borderBottom = '2px solid';
-      navbar.style.borderImage = 'linear-gradient(45deg, #e74c3c, #f39c12, #f1c40f, #27ae60, #3498db, #9b59b6, #e74c3c) 1';
-      navbar.style.animation = 'rainbowBorder 3s linear infinite';
-    }
-
-    // Add floating particles
-    createFloatingParticles();
-    
-    // Add subtle screen glow
-    document.body.style.boxShadow = 'inset 0 0 100px rgba(231, 76, 60, 0.1)';
+    // DISABLED for performance - all surprise theme effects removed
   }
 
   function stopSurpriseEffects() {
@@ -488,28 +477,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Enhanced icon interactions
-  // Add sparkle effect to icons on hover
+  // Sparkle effects - DISABLED for performance
   function addSparkleEffect(element) {
-    const sparkles = ['✨', '⭐', '💫', '🌟'];
-    const sparkle = document.createElement('div');
-    sparkle.className = 'sparkle-effect';
-    sparkle.innerHTML = sparkles[Math.floor(Math.random() * sparkles.length)];
-    
-    const rect = element.getBoundingClientRect();
-    sparkle.style.cssText = `
-      position: fixed;
-      left: ${rect.left + Math.random() * rect.width}px;
-      top: ${rect.top + Math.random() * rect.height}px;
-      font-size: ${Math.random() * 20 + 10}px;
-      pointer-events: none;
-      z-index: 9999;
-      animation: sparkleFloat 1.5s ease-out forwards;
-    `;
-    
-    document.body.appendChild(sparkle);
-    
-    setTimeout(() => sparkle.remove(), 1500);
+    // Disabled for performance
   }
 
   // Add sparkle animation styles
@@ -534,127 +504,16 @@ document.addEventListener('DOMContentLoaded', () => {
   styleSheet.textContent = sparkleStyles;
   document.head.appendChild(styleSheet);
 
-  // Enhanced skill tag interactions
-  document.querySelectorAll('.skill__tag').forEach(tag => {
-    tag.addEventListener('mouseenter', () => {
-      addSparkleEffect(tag);
-      
-      // Add sound effect (optional)
-      if (window.AudioContext) {
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-        
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-        
-        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.3);
-        
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + 0.3);
-      }
-    });
-  });
+  // Skill tag interactions - DISABLED for performance
+  // All sparkle and sound effects removed to improve performance
 
-  // Enhanced project card interactions
-  document.querySelectorAll('.project__card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      const icon = card.querySelector('.project__icon');
-      if (icon) {
-        addSparkleEffect(icon);
-        
-        // Add color cycling
-        let hue = 0;
-        const colorCycle = setInterval(() => {
-          hue += 10;
-          icon.style.filter = `hue-rotate(${hue}deg) brightness(1.2)`;
-        }, 50);
-        
-        card.addEventListener('mouseleave', () => {
-          clearInterval(colorCycle);
-          icon.style.filter = '';
-        }, { once: true });
-      }
-    });
-  });
+  // Project card interactions - DISABLED for performance
 
-  // Enhanced contact card interactions
-  document.querySelectorAll('.contact__card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      const icon = card.querySelector('.contact__icon');
-      if (icon) {
-        addSparkleEffect(icon);
-        
-        // Add magnetic effect
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-          const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
-          
-          icon.style.transform = `scale(1.3) rotateY(180deg) translate(${x}px, ${y}px)`;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-          icon.style.transform = 'scale(1) rotateY(0deg) translate(0px, 0px)';
-        }, { once: true });
-      }
-    });
-  });
+  // Contact card interactions - DISABLED for performance
 
-  // Enhanced course card interactions
-  document.querySelectorAll('.course__card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      const icon = card.querySelector('.course__icon');
-      if (icon) {
-        addSparkleEffect(icon);
-        
-        // Add floating animation
-        let float = 0;
-        const floatAnimation = setInterval(() => {
-          float += 0.1;
-          icon.style.transform = `scale(1.3) rotateY(360deg) translateY(${Math.sin(float) * 5}px)`;
-        }, 16);
-        
-        card.addEventListener('mouseleave', () => {
-          clearInterval(floatAnimation);
-          icon.style.transform = '';
-        }, { once: true });
-      }
-    });
-  });
+  // Course card interactions - DISABLED for performance
 
-  // Enhanced timeline interactions
-  document.querySelectorAll('.timeline__item').forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      const marker = item.querySelector('.timeline__marker');
-      if (marker) {
-        // Add explosion effect
-        for (let i = 0; i < 8; i++) {
-          const particle = document.createElement('div');
-          particle.className = 'timeline-particle';
-          particle.style.cssText = `
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            left: 50%;
-            top: 50%;
-            pointer-events: none;
-            animation: timelineExplode 1s ease-out forwards;
-            animation-delay: ${i * 0.1}s;
-            transform: rotate(${i * 45}deg);
-          `;
-          
-          marker.appendChild(particle);
-          
-          setTimeout(() => particle.remove(), 1000);
-        }
-      }
-    });
-  });
+  // Timeline interactions - DISABLED for performance
 
   // Add timeline explosion animation
   const timelineStyles = `
@@ -724,63 +583,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize content
   populateCourses();
 
-  // Initialize Three.js animations when sections come into view
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
-
-  const threeJSObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && window.threeJSAnimations) {
-        const sectionId = entry.target.id;
-        
-        switch(sectionId) {
-          case 'home':
-            window.threeJSAnimations.initHeroAnimation('hero-animation');
-            break;
-          case 'courses':
-            window.threeJSAnimations.initEducationAnimation('education-animation');
-            break;
-          case 'projects':
-            window.threeJSAnimations.initProjectsAnimation('projects-animation');
-            break;
-          case 'experience':
-            window.threeJSAnimations.initExperienceAnimation('experience-animation');
-            break;
-        }
-      }
-    });
-  }, observerOptions);
-
-  // Observe sections
-  ['home', 'courses', 'projects', 'experience'].forEach(id => {
-    const section = document.getElementById(id);
-    if (section) {
-      threeJSObserver.observe(section);
-    }
-  });
-
-  // Handle window resize for Three.js
-  window.addEventListener('resize', () => {
-    if (window.threeJSAnimations) {
-      ['education-animation', 'projects-animation', 'experience-animation'].forEach(id => {
-        window.threeJSAnimations.handleResize(id);
-      });
-    }
-  });
-
-  // Add mouse tracking for enhanced effects
-  document.querySelectorAll('.project__card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      
-      card.style.setProperty('--mouse-x', `${x}%`);
-      card.style.setProperty('--mouse-y', `${y}%`);
-    });
-  });
+  // Three.js animations and mouse tracking - DISABLED for performance
 
   // Interactive course cards
   const courseCards = document.querySelectorAll('.interactive-course');
