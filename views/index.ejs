@@ -76,20 +76,20 @@
   </div>
 
   <!-- Hero Section -->
-  <section id="home" class="hero">
+  <section id="home" class="hero dot-pattern">
     <!-- Three.js Background Animation - DISABLED for performance -->
     <!-- <div id="hero-animation" class="threejs-background"></div> -->
     <div class="hero__container">
       <div class="hero__content" data-aos="fade-up">
-        <h1 class="hero__title">Hi, I'm <span class="gradient-text">Priyan Shah</span></h1>
+        <h1 class="hero__title">Hi, I'm <span class="gradient-text shimmer-text">Priyan Shah</span></h1>
         <h2 class="hero__subtitle fade-in-up">Computer Engineering Student</h2>
         <p class="hero__description fade-in-up" style="animation-delay: 0.3s;">
           Passionate about technology and innovation, with expertise in circuit design, 
           embedded systems, and software development. Currently pursuing Computer Engineering at Purdue University.
         </p>
         <div class="hero__buttons fade-in-up" style="animation-delay: 0.5s;">
-          <a href="#projects" class="btn btn-primary pulse-hover">View My Work</a>
-          <a href="#contact" class="btn btn-secondary pulse-hover">Get In Touch</a>
+          <a href="#projects" class="btn btn-primary pulse-hover glow-on-hover">View My Work</a>
+          <a href="#contact" class="btn btn-secondary pulse-hover glow-on-hover">Get In Touch</a>
         </div>
       </div>
       <div class="hero__image" data-aos="fade-left" data-aos-delay="200">
@@ -111,8 +111,8 @@
   <section id="about" class="about__section">
     <div class="container">
       <div class="section__header" data-aos="fade-up">
-        <span class="section__tag bounce-in">Introduction</span>
-        <h2 class="section__title">About Me</h2>
+        <span class="section__tag bounce-in glow-on-hover">Introduction</span>
+        <h2 class="section__title shimmer-text">About Me</h2>
       </div>
       <div class="about__content">
         <div class="about__text" data-aos="fade-right">
@@ -215,11 +215,11 @@
   </section>
 
   <!-- Courses Section -->
-  <section id="courses" class="courses__section">
+  <section id="courses" class="courses__section dot-pattern">
     <!-- <div class="threejs-background" id="education-animation"></div> -->
     <div class="container">
       <h2 data-aos="fade-up">
-        <span class="gradient-text">Relevant Coursework</span>
+        <span class="gradient-text shimmer-text">Relevant Coursework</span>
         <div class="section__subtitle">Academic Excellence in Engineering & Computer Science</div>
       </h2>
       
@@ -234,18 +234,18 @@
     <!-- <div class="threejs-background" id="projects-animation"></div> -->
     <div class="container">
       <div class="section__header" data-aos="fade-up">
-        <span class="section__tag bounce-in">Portfolio</span>
-        <h2 class="section__title">Featured Projects</h2>
+        <span class="section__tag bounce-in glow-on-hover">Portfolio</span>
+        <h2 class="section__title shimmer-text">Featured Projects</h2>
         <p class="section__description">Here are some of the projects I've worked on</p>
       </div>
       
       <div class="projects__grid">
         <% projects.forEach((project, index) => { %>
-        <div class="project__card card-hover threejs-hover" 
+        <div class="project__card card-hover threejs-hover scale-on-hover glow-on-hover" 
              data-aos="fade-up" 
              data-aos-delay="<%= (index + 1) * 100 %>">
           <div class="project__header">
-            <div class="project__icon icon-bounce">
+            <div class="project__icon icon-bounce bounce-icon">
               <i class="<%= project.icon %>"></i>
             </div>
             <span class="project__date"><%= project.date %></span>
@@ -269,12 +269,12 @@
   </section>
 
   <!-- Experience Section -->
-  <section id="experience" class="experience__section">
+  <section id="experience" class="experience__section dot-pattern">
     <!-- <div class="threejs-background" id="experience-animation"></div> -->
     <div class="container">
       <div class="section__header" data-aos="fade-up">
-        <span class="section__tag bounce-in">Career</span>
-        <h2 class="section__title">Experience</h2>
+        <span class="section__tag bounce-in glow-on-hover">Career</span>
+        <h2 class="section__title shimmer-text">Experience</h2>
       </div>
       
       <div class="timeline">
@@ -310,8 +310,8 @@
   <section id="testimonials" class="testimonials__section">
     <div class="container">
       <div class="section__header" data-aos="fade-up">
-        <span class="section__tag bounce-in">Reviews</span>
-        <h2 class="section__title">What Others Say</h2>
+        <span class="section__tag bounce-in glow-on-hover">Reviews</span>
+        <h2 class="section__title shimmer-text">What Others Say</h2>
         <p class="section__description">
           Feedback from colleagues, professors, and project collaborators
         </p>
@@ -355,18 +355,18 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="contact__section">
+  <section id="contact" class="contact__section dot-pattern">
     <div class="container">
       <div class="section__header" data-aos="fade-up">
-        <span class="section__tag bounce-in">Get In Touch</span>
-        <h2 class="section__title">Let's Connect</h2>
+        <span class="section__tag bounce-in glow-on-hover">Get In Touch</span>
+        <h2 class="section__title shimmer-text">Let's Connect</h2>
         <p class="section__description">Feel free to reach out for collaborations or just a friendly chat</p>
       </div>
       
       <div class="contact__content">
         <div class="contact__info" data-aos="fade-right">
-          <div class="contact__card card-hover">
-            <div class="contact__icon icon-bounce">
+          <div class="contact__card card-hover scale-on-hover glow-on-hover">
+            <div class="contact__icon icon-bounce bounce-icon">
               <i class="fas fa-envelope"></i>
             </div>
             <h3>Email</h3>

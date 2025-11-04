@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     coursesData.forEach((course, index) => {
       const courseCard = document.createElement('div');
-      courseCard.className = 'course__card interactive-course';
+      courseCard.className = 'course__card interactive-course scale-on-hover glow-on-hover';
       courseCard.setAttribute('data-aos', 'fade-up');
       courseCard.setAttribute('data-aos-delay', (index * 100).toString());
 
@@ -300,6 +300,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add loading animation to page
   window.addEventListener('load', () => {
     document.body.classList.add('loaded');
+    
+    // Add stagger animation to initial elements
+    const initialElements = document.querySelectorAll('.hero__content > *');
+    initialElements.forEach((el, index) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, index * 100);
+    });
   });
 
   // Interactive Education Tabs
