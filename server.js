@@ -235,6 +235,19 @@ const projects = [
 const experiences = [
   {
     id: 1,
+    title: 'Software Engineering Intern',
+    company: 'Spry Technologies',
+    date: 'Jun 2025 – Aug 2025',
+    description: [
+      'Developed and maintained web applications using modern JavaScript frameworks',
+      'Collaborated with cross-functional teams on product development initiatives',
+      'Implemented automated testing procedures to improve code quality and reliability',
+      'Participated in code reviews and contributed to technical documentation'
+    ],
+    skills: ['JavaScript', 'React', 'Node.js', 'Git/GitHub', 'Agile Development', 'API Development', 'Testing', 'Team Collaboration']
+  },
+  {
+    id: 2,
     title: 'Student Video Behavior Analysis Research',
     company: 'Purdue University Research Team',
     date: 'Apr 2025 – May 2025',
@@ -246,7 +259,7 @@ const experiences = [
     skills: ['Data Analysis', 'Python', 'Statistical Analysis', 'Data Visualization', 'Research Methodology', 'Excel', 'Report Writing']
   },
   {
-    id: 2,
+    id: 3,
     title: 'PCB Design & Implementation Specialist',
     company: 'Academic & Personal Projects',
     date: 'Aug 2024 – Dec 2024',
@@ -259,7 +272,7 @@ const experiences = [
     skills: ['PCB Design', 'Schematic Design', 'Circuit Analysis', 'Hardware Testing', 'Embedded Systems', 'CAD Software', 'Signal Integrity', 'Multi-layer PCB']
   },
   {
-    id: 3,
+    id: 4,
     title: 'Robotics Team Lead',
     company: 'HSE High School Robotics Team',
     date: 'Aug 2022 – Dec 2022',
@@ -271,7 +284,7 @@ const experiences = [
     skills: ['Leadership', 'Robotics Programming', 'Team Management', 'Project Management', 'Problem Solving', 'C++ Programming', 'Hardware Integration', 'Competition Strategy']
   },
   {
-    id: 4,
+    id: 5,
     title: 'CAD & 3D Modeling Specialist',
     company: 'Independent and Team Projects',
     date: 'Aug 2019 – May 2023',
