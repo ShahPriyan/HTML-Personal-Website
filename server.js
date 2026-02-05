@@ -40,11 +40,19 @@ const courseCategories = {
     lottieUrl: 'https://lottie.host/4e4b5930-07c5-4ad5-8b34-7cafbaac2ed0/dGhEFTWHj8.json',
     courses: [
       {
-        code: 'ENGR 132',
-        name: 'Transforming Ideas to Innovation II',
-        semester: 'Spring 2023',
+        code: 'ENGR 13100',
+        name: 'Transforming Ideas to Innovation I',
+        semester: 'Fall 2023',
         description: 'Engineering design process, project management, and team collaboration.',
-        skills: ['Design Thinking', 'Project Management', 'CAD', 'Team Leadership'],
+        skills: ['Design Thinking', 'Project Management', 'Team Collaboration', 'Problem Solving'],
+        grade: 'A+'
+      },
+      {
+        code: 'ENGR 13200',
+        name: 'Transforming Ideas to Innovation II',
+        semester: 'Spring 2024',
+        description: 'Advanced engineering design, prototyping, and innovation methodologies.',
+        skills: ['Advanced Design', 'Prototyping', 'CAD', 'Innovation', 'Team Leadership'],
         grade: 'A'
       }
     ]
@@ -58,58 +66,26 @@ const courseCategories = {
       {
         code: 'ECE 20001',
         name: 'Electrical Engineering Fundamentals I',
-        semester: 'Fall 2023',
-        description: 'Introduction to electrical engineering concepts, circuit analysis, and basic electronics.',
-        skills: ['Circuit Analysis', 'Ohm\'s Law', 'Basic Electronics', 'Problem Solving'],
+        semester: 'Fall 2024',
+        description: 'Basic circuit analysis, DC circuits, Kirchhoff\'s laws, and resistive networks.',
+        skills: ['Circuit Analysis', 'Ohm\'s Law', 'Kirchhoff\'s Laws', 'DC Circuits', 'Resistive Networks'],
         grade: 'B'
       },
       {
         code: 'ECE 20002',
         name: 'Electrical Engineering Fundamentals II',
-        semester: 'Spring 2024',
-        description: 'Advanced circuit analysis, AC circuits, and introduction to signals.',
-        skills: ['AC Analysis', 'Phasors', 'Signal Processing', 'Circuit Design'],
-        grade: 'In Progress'
-      },
-      {
-        code: 'ECE 264',
-        name: 'Advanced C Programming',
-        semester: 'Fall 2024',
-        description: 'Advanced programming concepts in C including data structures, algorithms, and memory management.',
-        skills: ['C Programming', 'Data Structures', 'Algorithms', 'Memory Management', 'Pointers', 'Debugging', 'Code Optimization'],
-        grade: 'B'
-      },
-      {
-        code: 'ECE 270',
-        name: 'Introduction to Digital System Design',
         semester: 'Spring 2025',
-        description: 'Digital logic design, Boolean algebra, combinational and sequential circuits.',
-        skills: ['Digital Logic Design', 'Verilog HDL', 'FPGA Programming', 'Boolean Algebra', 'Combinational Circuits', 'Sequential Circuits', 'Circuit Design'],
-        grade: 'B'
+        description: 'AC circuits, phasors, frequency response, operational amplifiers, and filters.',
+        skills: ['AC Circuits', 'Phasors', 'Frequency Response', 'Op-Amps', 'Filter Design'],
+        grade: 'Currently Enrolled'
       },
       {
-        code: 'ECE 362',
-        name: 'Microprocessor Systems',
-        semester: 'Fall 2025',
-        description: 'Microprocessor architecture, assembly language programming, and embedded systems.',
-        skills: ['Assembly Language Programming', 'Embedded Systems Design', 'Microcontrollers', 'Hardware Interface', 'Real-time Systems', 'Interrupt Handling', 'Low-level Programming'],
-        grade: 'In Progress'
-      },
-      {
-        code: 'ECE 368',
+        code: 'ECE 36800',
         name: 'Data Structures',
-        semester: 'Fall 2025',
-        description: 'Implementation and analysis of fundamental data structures and algorithms.',
-        skills: ['Algorithms', 'Data Structures', 'C/C++', 'Algorithm Analysis'],
-        grade: 'In Progress'
-      },
-      {
-        code: 'ECE 369',
-        name: 'Discrete Mathematics for Computer Engineering',
-        semester: 'Spring 2024',
-        description: 'Mathematical foundations including logic, set theory, and graph theory for computer engineering.',
-        skills: ['Discrete Math', 'Logic', 'Graph Theory', 'Proofs'],
-        grade: 'B'
+        semester: 'Spring 2025',
+        description: 'Arrays, linked lists, stacks, queues, trees, graphs, and algorithm analysis.',
+        skills: ['Data Structures', 'Algorithms', 'C/C++', 'Algorithm Analysis', 'Problem Solving'],
+        grade: 'Currently Enrolled'
       }
     ]
   },
@@ -123,16 +99,8 @@ const courseCategories = {
         code: 'ECE 20875',
         name: 'Python for Data Science',
         semester: 'Fall 2024',
-        description: 'Introduction to Python programming with focus on data analysis and visualization.',
-        skills: ['Python Programming', 'Pandas', 'NumPy', 'Matplotlib', 'Data Visualization', 'Machine Learning Basics', 'Statistical Analysis'],
-        grade: 'A'
-      },
-      {
-        code: 'ECE 36900',
-        name: 'Discrete Mathematics',
-        semester: 'Spring 2024',
-        description: 'Mathematical foundations for computer science and engineering.',
-        skills: ['Logic', 'Set Theory', 'Graph Theory', 'Combinatorics', 'Proof Techniques'],
+        description: 'Python programming with focus on data analysis, visualization, and machine learning.',
+        skills: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'Data Visualization', 'Machine Learning'],
         grade: 'A'
       }
     ]
@@ -144,20 +112,44 @@ const courseCategories = {
     lottieUrl: 'https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json',
     courses: [
       {
-        code: 'MA 261',
+        code: 'MA 26100',
         name: 'Multivariate Calculus',
-        semester: 'Spring 2023',
-        description: 'Vector calculus, partial derivatives, multiple integrals, and applications.',
-        skills: ['Mathematical Analysis', 'Vector Calculus', 'Problem Solving', 'Mathematical Modeling'],
+        semester: 'Spring 2024',
+        description: 'Vector calculus, partial derivatives, multiple integrals, line and surface integrals.',
+        skills: ['Vector Calculus', 'Partial Derivatives', 'Multiple Integrals', 'Mathematical Analysis'],
         grade: 'B'
       },
       {
-        code: 'MA 266',
+        code: 'MA 26600',
         name: 'Ordinary Differential Equations',
-        semester: 'Fall 2023',
-        description: 'First and second-order differential equations, Laplace transforms, and applications to engineering problems.',
+        semester: 'Fall 2024',
+        description: 'First and second-order ODEs, Laplace transforms, systems of equations.',
         skills: ['Differential Equations', 'Laplace Transforms', 'Mathematical Modeling', 'Engineering Applications'],
         grade: 'A'
+      }
+    ]
+  },
+  'physics': {
+    title: 'Physics',
+    description: 'Physics foundations for engineering',
+    icon: 'fas fa-atom',
+    lottieUrl: 'https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json',
+    courses: [
+      {
+        code: 'PHYS 17200',
+        name: 'Modern Mechanics',
+        semester: 'Fall 2023',
+        description: 'Newton\'s laws, energy, momentum, rotational motion, and oscillations.',
+        skills: ['Classical Mechanics', 'Energy Conservation', 'Momentum', 'Problem Solving'],
+        grade: 'B'
+      },
+      {
+        code: 'PHYS 27200',
+        name: 'Electric & Magnetic Interactions',
+        semester: 'Spring 2024',
+        description: 'Electric and magnetic fields, electromagnetic induction, and Maxwell\'s equations.',
+        skills: ['Electromagnetism', 'Magnetic Fields', 'Maxwell\'s Equations', 'Wave Physics'],
+        grade: 'B'
       }
     ]
   }
@@ -237,26 +229,27 @@ const experiences = [
     id: 1,
     title: 'Software and Design Intern',
     company: 'Spry Brands Inc.',
-    date: 'May 2025 – Aug 2025',
+    date: 'May 2024 – Aug 2024',
     description: [
       'Designed and developed 300+ customer-facing, fully customizable products using XML, PageFlex Studio, and backend programming',
       'Streamlined production workflow by using licensed third-party software to automate customization and data imports',
-      'Collaborated with cross-functional teams to integrate backend systems with product templates, allowing for seamless and efficient updates',
-      'Designed and implemented customizable website templates, enabling marketing and sales teams to streamline client outreach and improve lead generation'
+      'Collaborated with cross-functional teams to integrate backend systems with product templates',
+      'Designed and implemented customizable website templates for marketing and sales teams'
     ],
-    skills: ['XML', 'PageFlex Studio', 'Backend Programming', 'Workflow Automation', 'Template Design', 'System Integration', 'Cross-functional Collaboration', 'Marketing Technology']
+    skills: ['XML', 'PageFlex Studio', 'Backend Programming', 'Workflow Automation', 'Template Design', 'Cross-functional Collaboration']
   },
   {
     id: 2,
     title: 'Student Video Behavior Analysis Research',
     company: 'Purdue University Research Team',
-    date: 'Apr 2025 – May 2025',
+    date: 'Apr 2024 – May 2024',
     description: [
       'Analyzed correlation between student video watch time and quiz performance',
-      'Applied data analysis techniques to interpret viewing behavior patterns',
-      'Collaborated on data organization, visualization, and research conclusions'
+      'Applied data analysis techniques using Python and statistical methods',
+      'Collaborated on data organization, visualization, and research conclusions',
+      'Presented findings to research team and faculty'
     ],
-    skills: ['Data Analysis', 'Python', 'Statistical Analysis', 'Data Visualization', 'Research Methodology', 'Excel', 'Report Writing']
+    skills: ['Python', 'Data Analysis', 'Statistical Analysis', 'Data Visualization', 'Research Methodology']
   },
   {
     id: 3,
@@ -269,19 +262,20 @@ const experiences = [
       'Performed thorough testing and validation of manufactured circuit boards',
       'Collaborated with team members on hardware integration and troubleshooting'
     ],
-    skills: ['PCB Design', 'Schematic Design', 'Circuit Analysis', 'Hardware Testing', 'Embedded Systems', 'CAD Software', 'Signal Integrity', 'Multi-layer PCB']
+    skills: ['PCB Design', 'Schematic Design', 'Circuit Analysis', 'Hardware Testing', 'Embedded Systems']
   },
   {
     id: 4,
     title: 'Robotics Team Lead',
     company: 'HSE High School Robotics Team',
-    date: 'Aug 2022 – Dec 2022',
+    date: 'Aug 2021 – May 2022',
     description: [
       'Led team of 13 students in robot design and construction for national competition',
       'Managed project timelines and task assignments across 6-month build season',
-      'Guided collaborative problem-solving and real-time debugging during tournaments'
+      'Guided collaborative problem-solving and real-time debugging during tournaments',
+      'Achieved regional qualification and competed at state level'
     ],
-    skills: ['Leadership', 'Robotics Programming', 'Team Management', 'Project Management', 'Problem Solving', 'C++ Programming', 'Hardware Integration', 'Competition Strategy']
+    skills: ['Leadership', 'Robotics Programming', 'Team Management', 'Project Management', 'C++ Programming']
   },
   {
     id: 5,
@@ -291,9 +285,10 @@ const experiences = [
     description: [
       'Utilized SolidWorks, Autodesk Inventor, and Fusion 360 for mechanical part design',
       'Produced 3D-printed components for engineering projects and competition robots',
-      'Practiced iterative design with dimensional constraints and fabrication-ready models'
+      'Practiced iterative design with dimensional constraints and fabrication-ready models',
+      'Created technical drawings and assembly instructions'
     ],
-    skills: ['SolidWorks', 'Autodesk Inventor', 'Fusion 360', '3D Modeling', 'CAD Design', '3D Printing', 'Mechanical Design', 'Technical Drawing', 'Prototyping']
+    skills: ['SolidWorks', 'Autodesk Inventor', 'Fusion 360', '3D Modeling', '3D Printing', 'Technical Drawing']
   }
 ];
 

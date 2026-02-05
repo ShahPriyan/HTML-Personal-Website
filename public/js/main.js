@@ -355,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Theme Toggle Functionality
+  // Theme Toggle Functionality - FIXED
   const themeToggle = document.getElementById('themeToggle');
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   const themeOptions = document.querySelectorAll('.theme-option');
@@ -365,13 +365,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentTheme = localStorage.getItem('theme') || 'light';
   
   // Apply saved theme on load
-  applyTheme(currentTheme);
+  setTimeout(() => applyTheme(currentTheme), 100);
 
-  // Toggle theme panel
-  if (themeToggleBtn) {
+  // Toggle theme panel with proper event handling
+  if (themeToggleBtn && themeToggle) {
     themeToggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      themeToggle.classList.toggle('open');
+      e.preventDefault();
+      const isOpen = themeToggle.classList.contains('open');
+      if (isOpen) {
+        themeToggle.classList.remove('open');
+      } else {
+        themeToggle.classList.add('open');
+      }
     });
   }
 
@@ -382,20 +388,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Handle theme selection
+  // Handle theme selection with improved feedback
   themeOptions.forEach(option => {
-    option.addEventListener('click', () => {
+    option.addEventListener('click', (e) => {
+      e.stopPropagation();
       const selectedTheme = option.dataset.theme;
-      applyTheme(selectedTheme);
-      themeToggle.classList.remove('open');
+      if (selectedTheme && selectedTheme !== currentTheme) {
+        applyTheme(selectedTheme);
+        themeToggle.classList.remove('open');
+      }
     });
   });
 
   function applyTheme(theme) {
+    if (!theme || theme === currentTheme) return;
+    
     currentTheme = theme;
+    
+    // Add transition class
+    document.body.classList.add('theme-transitioning');
     
     // Update document theme
     document.documentElement.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-theme', theme);
     
     // Update active button
     themeOptions.forEach(option => {
@@ -405,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update indicator position
+    // Update indicator position with animation
     if (themeIndicator) {
       themeIndicator.className = 'theme-toggle__indicator';
       if (theme === 'dark') {
@@ -415,11 +430,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // Update button icon
+    const btnIcon = themeToggleBtn?.querySelector('i');
+    if (btnIcon) {
+      btnIcon.className = theme === 'dark' ? 'fas fa-moon' : theme === 'surprise' ? 'fas fa-magic' : 'fas fa-sun';
+    }
+
     // Apply theme-specific animations
     applyThemeAnimations(theme);
     
     // Save theme
     localStorage.setItem('theme', theme);
+    
+    // Remove transition class after animation
+    setTimeout(() => {
+      document.body.classList.remove('theme-transitioning');
+    }, 300);
   }
 
   function applyThemeAnimations(theme) {
