@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       code: "ECE 20002", 
       name: "Electrical Engineering Fundamentals II",
       description: "AC circuits, phasors, frequency response, and operational amplifiers",
-      grade: "Currently Enrolled in",
+      grade: "B",
       icon: "🔌", // Fixed electrical symbol
       color: "#e74c3c"
     },
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       code: "ECE 36800",
       name: "Data Structures",
       description: "Algorithm analysis, arrays, linked lists, stacks, queues, trees, and graphs",
-      grade: "Currently Enrolled In", 
+      grade: "B", 
       icon: "🌳",
       color: "#27ae60"
     },

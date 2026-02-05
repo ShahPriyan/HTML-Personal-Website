@@ -77,7 +77,7 @@ const courseCategories = {
         semester: 'Spring 2025',
         description: 'AC circuits, phasors, frequency response, operational amplifiers, and filters.',
         skills: ['AC Circuits', 'Phasors', 'Frequency Response', 'Op-Amps', 'Filter Design'],
-        grade: 'Currently Enrolled'
+        grade: 'B'
       },
       {
         code: 'ECE 36800',
@@ -85,7 +85,7 @@ const courseCategories = {
         semester: 'Spring 2025',
         description: 'Arrays, linked lists, stacks, queues, trees, graphs, and algorithm analysis.',
         skills: ['Data Structures', 'Algorithms', 'C/C++', 'Algorithm Analysis', 'Problem Solving'],
-        grade: 'Currently Enrolled'
+        grade: 'B'
       }
     ]
   },
