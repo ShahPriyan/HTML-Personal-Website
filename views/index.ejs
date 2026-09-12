@@ -45,7 +45,10 @@
           </div>
           <ul class="quick-meta">
             <li><i class="fa-solid fa-location-dot"></i> <%= profile.location %></li>
-            <li><i class="fa-solid fa-envelope"></i> <a href="mailto:<%= profile.email %>"><%= profile.email %></a></li>
+            <li><i class="fa-solid fa-envelope"></i> School: <a href="mailto:<%= profile.schoolEmail %>"><%= profile.schoolEmail %></a></li>
+            <% if (profile.personalEmail) { %>
+              <li><i class="fa-solid fa-at"></i> Personal: <a href="mailto:<%= profile.personalEmail %>"><%= profile.personalEmail %></a></li>
+            <% } %>
             <li><i class="fa-brands fa-linkedin"></i> <a href="<%= profile.linkedin %>" target="_blank" rel="noopener">LinkedIn</a></li>
           </ul>
         </div>
@@ -238,7 +241,10 @@
           <p class="section-copy">I am open to internships, collaborative engineering projects, and technical conversations.</p>
           <ul class="quick-meta">
             <li><i class="fa-solid fa-phone"></i> <a href="tel:<%= profile.phone %>"><%= profile.phone %></a></li>
-            <li><i class="fa-solid fa-envelope"></i> <a href="mailto:<%= profile.email %>"><%= profile.email %></a></li>
+            <li><i class="fa-solid fa-envelope"></i> School: <a href="mailto:<%= profile.schoolEmail %>"><%= profile.schoolEmail %></a></li>
+            <% if (profile.personalEmail) { %>
+              <li><i class="fa-solid fa-at"></i> Personal: <a href="mailto:<%= profile.personalEmail %>"><%= profile.personalEmail %></a></li>
+            <% } %>
             <li><i class="fa-solid fa-globe"></i> <a href="<%= profile.website %>" target="_blank" rel="noopener">Personal Website</a></li>
           </ul>
         </div>

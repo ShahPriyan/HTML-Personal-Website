@@ -21,10 +21,11 @@ const profile = {
   summary:
     'I am a Computer Engineering student at Purdue University building practical systems across embedded hardware and software. I focus on shipping reliable solutions, learning quickly in technical teams, and translating complex engineering work into outcomes that matter.',
   phone: '317-734-9283',
-  email: 'shah899@purdue.edu',
+  schoolEmail: 'shah899@purdue.edu',
+  personalEmail: 'shah.priyan12@gmail.com',
   linkedin: 'https://www.linkedin.com/in/priyanshah12',
   website: 'https://priyanshah.vercel.app',
-  resumePath: '/Resume_Priyan_Shah_Embedded_Systems_Engineer_2026-09.pdf'
+  resumePath: '/files/Resume_Priyan_Shah_Embedded_Systems_Engineer_2026-09.pdf'
 };
 
 const education = [
@@ -153,23 +154,6 @@ const projects = [
     technologies: ['555 Timer IC', 'LED Control', 'Circuit Design', 'Hardware Testing']
   },
   {
-    title: 'PCB Design and Implementation',
-    date: 'Aug 2024 - Dec 2024',
-    type: 'PCB Engineering',
-    summary:
-      'Designed and implemented custom PCB layouts for embedded and hardware-focused applications.',
-    challenge:
-      'Translate schematic intent into manufacturable layouts while preserving routing quality and signal behavior.',
-    impact:
-      'Built end-to-end confidence from schematic capture through post-fabrication validation.',
-    bullets: [
-      'Created schematics and board layouts with CAD and PCB toolchains.',
-      'Applied multi-layer routing practices with attention to signal integrity considerations.',
-      'Performed bring-up and validation checks on produced boards.'
-    ],
-    technologies: ['PCB Design', 'Schematic Design', 'KiCAD', 'Altium', 'Hardware Validation']
-  },
-  {
     title: 'Self-Driving Data Analysis Tool',
     date: 'Jan 2024 - May 2024',
     type: 'Data Systems',
@@ -245,7 +229,7 @@ app.post('/contact', async (req, res) => {
 
       await transporter.sendMail({
         from: email,
-        to: profile.email,
+        to: profile.schoolEmail,
         subject: `Portfolio Contact from ${name}`,
         html: `
           <h3>New Contact Form Submission</h3>
