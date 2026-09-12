@@ -4,427 +4,272 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><%= title %></title>
-  <meta name="description" content="Welcome to my personal website. You can learn about my projects and about me!" />
+  <meta name="description" content="Priyan Shah portfolio: computer engineering projects, experience, and technical background." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="/css/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="/css/animations.css">
-  <!-- Three.js and Lottie DISABLED for performance -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
-  <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> -->
 </head>
-
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="navbar__container">
-      <a href="#home" id="navbar__logo" class="logo-animation">Priyan Shah</a>
-      <div class="navbar__toggle" id="menu-toggle">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-      <ul class="navbar__menu">
-        <li class="navbar__item">
-          <a href="#home" class="navbar__links">Home</a>
-        </li>
-        <li class="navbar__item">
-          <a href="#about" class="navbar__links">About</a>
-        </li>
-        <li class="navbar__item">
-          <a href="#courses" class="navbar__links">Courses</a>
-        </li>
-        <li class="navbar__item">
-          <a href="#projects" class="navbar__links">Projects</a>
-        </li>
-        <li class="navbar__item">
-          <a href="#experience" class="navbar__links">Experience</a>
-        </li>
-        <li class="navbar__item">
-          <a href="#testimonials" class="navbar__links">Testimonials</a>
-        </li>
-        <li class="navbar__item">
-          <a href="#contact" class="navbar__links">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <div class="backdrop"></div>
 
-  <!-- Theme Toggle -->
-  <div class="theme-toggle" id="themeToggle">
-    <div class="theme-toggle__container">
-      <div class="theme-toggle__options">
-        <button class="theme-option active" data-theme="light">
-          <i class="fas fa-sun"></i>
-          <span>Light</span>
-        </button>
-        <button class="theme-option" data-theme="dark">
-          <i class="fas fa-moon"></i>
-          <span>Dark</span>
-        </button>
-        <button class="theme-option" data-theme="surprise">
-          <i class="fas fa-magic"></i>
-          <span>Surprise</span>
-        </button>
-      </div>
-      <div class="theme-toggle__indicator"></div>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a href="#top" class="brand"><%= profile.name %></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="siteNav">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-    <button class="theme-toggle__button" id="themeToggleBtn">
-      <i class="fas fa-palette"></i>
-    </button>
-  </div>
+  </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero dot-pattern">
-    <!-- Three.js Background Animation - DISABLED for performance -->
-    <!-- <div id="hero-animation" class="threejs-background"></div> -->
-    <div class="hero__container">
-      <div class="hero__content" data-aos="fade-up">
-        <h1 class="hero__title">Hi, I'm <span class="gradient-text shimmer-text">Priyan Shah</span></h1>
-        <h2 class="hero__subtitle fade-in-up">Computer Engineering Student</h2>
-        <p class="hero__description fade-in-up" style="animation-delay: 0.3s;">
-          Passionate about technology and innovation, with expertise in circuit design, 
-          embedded systems, and software development. Currently pursuing Computer Engineering at Purdue University.
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Computer Engineering Portfolio</p>
+          <h1><%= profile.name %></h1>
+          <p class="headline"><%= profile.headline %></p>
+          <p class="summary"><%= profile.summary %></p>
+          <div class="hero-cta">
+            <a href="#portfolio" class="btn btn-primary">View Projects</a>
+            <a href="<%= profile.resumePath %>" class="btn btn-ghost" target="_blank" rel="noopener">Open Resume</a>
+          </div>
+          <ul class="quick-meta">
+            <li><i class="fa-solid fa-location-dot"></i> <%= profile.location %></li>
+            <li><i class="fa-solid fa-envelope"></i> <a href="mailto:<%= profile.email %>"><%= profile.email %></a></li>
+            <li><i class="fa-brands fa-linkedin"></i> <a href="<%= profile.linkedin %>" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+        <aside class="hero-card reveal">
+          <h2>At a Glance</h2>
+          <div class="fact-grid">
+            <div>
+              <span class="label">Current Focus</span>
+              <p>Embedded systems, PCB research, and practical software delivery</p>
+            </div>
+            <div>
+              <span class="label">Degree</span>
+              <p>BS in Computer Engineering, Purdue University</p>
+            </div>
+            <div>
+              <span class="label">Expected Graduation</span>
+              <p>May 2027</p>
+            </div>
+            <div>
+              <span class="label">Specialization</span>
+              <p>TinyML deployment and hardware-aware software</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">About</p>
+          <h2>Building across hardware and software</h2>
+        </div>
+        <p class="section-copy reveal">
+          I enjoy shipping work where circuit-level thinking meets software execution. Recent work includes high-volume configurable product systems at Spry Brands, PCB research and tooling with KiCAD and Altium, and TinyML deployments on resource-constrained hardware.
         </p>
-        <div class="hero__buttons fade-in-up" style="animation-delay: 0.5s;">
-          <a href="#projects" class="btn btn-primary pulse-hover glow-on-hover">View My Work</a>
-          <a href="#contact" class="btn btn-secondary pulse-hover glow-on-hover">Get In Touch</a>
-        </div>
       </div>
-      <div class="hero__image" data-aos="fade-left" data-aos-delay="200">
-        <div class="hero__img-container floating-animation">
-          <div class="hero__img-wrapper">
-            <img src="/images/Headshot.jpg" 
-                 alt="Priyan Shah - Computer Engineering Student" 
-                 class="hero__img" 
-                 onerror="this.src='/images/Headshot.png'; this.onerror=null;" 
-                 loading="lazy" />
-          </div>
-          <div class="hero__img-overlay"></div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- About Section -->
-  <section id="about" class="about__section">
-    <div class="container">
-      <div class="section__header" data-aos="fade-up">
-        <span class="section__tag bounce-in glow-on-hover">Introduction</span>
-        <h2 class="section__title shimmer-text">About Me</h2>
+    <section id="experience" class="section section-tint">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Experience</p>
+          <h2>Recent roles and outcomes</h2>
+        </div>
+        <div class="timeline">
+          <% experiences.forEach((item) => { %>
+            <article class="timeline-item reveal">
+              <div class="timeline-top">
+                <h3><%= item.role %></h3>
+                <p class="org"><%= item.company %> | <%= item.location %></p>
+                <p class="date"><%= item.date %></p>
+              </div>
+              <ul>
+                <% item.bullets.forEach((bullet) => { %>
+                  <li><%= bullet %></li>
+                <% }); %>
+              </ul>
+              <div class="chip-row">
+                <% item.stack.forEach((tech) => { %>
+                  <span class="chip"><%= tech %></span>
+                <% }); %>
+              </div>
+            </article>
+          <% }); %>
+        </div>
       </div>
-      <div class="about__content">
-        <div class="about__text" data-aos="fade-right">
-          <p class="about__description">
-            Hi there! I'm Priyan Shah, a motivated Computer Engineering student at Purdue University with a passion for solving complex problems through innovative design. 
-            My experience spans analog circuit design, embedded systems, and CAD modeling, complemented by a strong foundation in software development.
-          </p>
-          <p class="about__description">
-            I enjoy working on projects that bridge the gap between hardware and software, from designing PCBs to developing embedded applications. 
-            My goal is to contribute to cutting-edge technology that makes a positive impact.
-          </p>
-          <div class="skills__section">
-            <h3 class="skills__title">Technical Skills</h3>
-            <div class="skills__grid">
-              <div class="skill__category">
-                <h4>Programming Languages</h4>
-                <div class="skill__tags">
-                  <span class="skill__tag">Python</span>
-                  <span class="skill__tag">C/C++</span>
-                  <span class="skill__tag">Java</span>
-                  <span class="skill__tag">JavaScript</span>
-                  <span class="skill__tag">HTML/CSS</span>
-                  <span class="skill__tag">Assembly Language</span>
-                  <span class="skill__tag">Verilog</span>
-                  <span class="skill__tag">MATLAB</span>
-                  <span class="skill__tag">SQL</span>
-                </div>
+    </section>
+
+    <section id="portfolio" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Portfolio</p>
+          <h2>Project case studies</h2>
+          <p class="section-copy">Each project is framed as challenge, implementation, and measurable learning impact.</p>
+        </div>
+        <div class="portfolio-grid">
+          <% projects.forEach((project) => { %>
+            <article class="portfolio-card reveal">
+              <div class="portfolio-head">
+                <p class="project-type"><%= project.type %></p>
+                <p class="date"><%= project.date %></p>
               </div>
-              <div class="skill__category">
-                <h4>Software & Tools</h4>
-                <div class="skill__tags">
-                  <span class="skill__tag">SolidWorks</span>
-                  <span class="skill__tag">Autodesk Inventor</span>
-                  <span class="skill__tag">Fusion 360</span>
-                  <span class="skill__tag">Git/GitHub</span>
-                  <span class="skill__tag">VS Code</span>
-                  <span class="skill__tag">Node.js</span>
-                  <span class="skill__tag">Express.js</span>
-                  <span class="skill__tag">Microsoft Office Suite</span>
-                </div>
+              <h3><%= project.title %></h3>
+              <p><%= project.summary %></p>
+              <div class="project-panel">
+                <h4>Challenge</h4>
+                <p><%= project.challenge %></p>
               </div>
-              <div class="skill__category">
-                <h4>Hardware & Embedded Systems</h4>
-                <div class="skill__tags">
-                  <span class="skill__tag">Arduino</span>
-                  <span class="skill__tag">Raspberry Pi</span>
-                  <span class="skill__tag">PCB Design</span>
-                  <span class="skill__tag">Circuit Analysis</span>
-                  <span class="skill__tag">Microcontrollers</span>
-                  <span class="skill__tag">Digital Logic Design</span>
-                  <span class="skill__tag">Analog Circuits</span>
-                  <span class="skill__tag">Op-amps</span>
-                  <span class="skill__tag">555 Timer Circuits</span>
-                </div>
+              <div class="project-panel">
+                <h4>Impact</h4>
+                <p><%= project.impact %></p>
               </div>
-              <div class="skill__category">
-                <h4>Data Science & Analysis</h4>
-                <div class="skill__tags">
-                  <span class="skill__tag">Pandas</span>
-                  <span class="skill__tag">NumPy</span>
-                  <span class="skill__tag">Matplotlib</span>
-                  <span class="skill__tag">Data Visualization</span>
-                  <span class="skill__tag">Statistical Analysis</span>
-                  <span class="skill__tag">Machine Learning Basics</span>
-                  <span class="skill__tag">Research Methodology</span>
-                </div>
+              <ul>
+                <% project.bullets.forEach((bullet) => { %>
+                  <li><%= bullet %></li>
+                <% }); %>
+              </ul>
+              <div class="chip-row">
+                <% project.technologies.forEach((tech) => { %>
+                  <span class="chip"><%= tech %></span>
+                <% }); %>
               </div>
-              <div class="skill__category">
-                <h4>Engineering & Design</h4>
-                <div class="skill__tags">
-                  <span class="skill__tag">CAD Design</span>
-                  <span class="skill__tag">3D Modeling</span>
-                  <span class="skill__tag">3D Printing</span>
-                  <span class="skill__tag">Mechanical Design</span>
-                  <span class="skill__tag">Prototyping</span>
-                  <span class="skill__tag">Technical Drawing</span>
-                  <span class="skill__tag">Project Management</span>
-                  <span class="skill__tag">Team Leadership</span>
-                </div>
-              </div>
+            </article>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section section-tint">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Education</p>
+          <h2>Academic foundation</h2>
+        </div>
+        <div class="edu-grid">
+          <% education.forEach((item) => { %>
+            <article class="edu-card reveal">
+              <h3><%= item.school %></h3>
+              <p class="org"><%= item.degree %></p>
+              <p class="date"><%= item.date %> | <%= item.location %></p>
+              <ul>
+                <% item.highlights.forEach((note) => { %>
+                  <li><%= note %></li>
+                <% }); %>
+              </ul>
+            </article>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Skills</p>
+          <h2>Technical toolkit</h2>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card reveal">
+            <h3>Programming</h3>
+            <div class="chip-row">
+              <% skills.programming.forEach((skill) => { %>
+                <span class="chip"><%= skill %></span>
+              <% }); %>
             </div>
-          </div>
-        </div>
-        <div class="about__stats" data-aos="fade-left" data-aos-delay="200">
-          <div class="stat__item counter-animation">
-            <h3 class="stat__number" data-target="10">0</h3>
-            <p class="stat__label">Projects Completed</p>
-          </div>
-          <div class="stat__item counter-animation">
-            <h3 class="stat__number" data-target="3">0</h3>
-            <p class="stat__label">Years Experience</p>
-          </div>
-          <div class="stat__item counter-animation">
-            <h3 class="stat__number" data-target="7">0</h3>
-            <p class="stat__label">Programming Languages</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Courses Section -->
-  <section id="courses" class="courses__section dot-pattern">
-    <!-- <div class="threejs-background" id="education-animation"></div> -->
-    <div class="container">
-      <h2 data-aos="fade-up">
-        <span class="gradient-text shimmer-text">Relevant Coursework</span>
-        <div class="section__subtitle">Academic Excellence in Engineering & Computer Science</div>
-      </h2>
-      
-      <div class="courses__grid">
-        <!-- Courses will be populated by JavaScript -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="projects__section">
-    <!-- <div class="threejs-background" id="projects-animation"></div> -->
-    <div class="container">
-      <div class="section__header" data-aos="fade-up">
-        <span class="section__tag bounce-in glow-on-hover">Portfolio</span>
-        <h2 class="section__title shimmer-text">Featured Projects</h2>
-        <p class="section__description">Here are some of the projects I've worked on</p>
-      </div>
-      
-      <div class="projects__grid">
-        <% projects.forEach((project, index) => { %>
-        <div class="project__card card-hover threejs-hover scale-on-hover glow-on-hover" 
-             data-aos="fade-up" 
-             data-aos-delay="<%= (index + 1) * 100 %>">
-          <div class="project__header">
-            <div class="project__icon icon-bounce bounce-icon">
-              <i class="<%= project.icon %>"></i>
+          </article>
+          <article class="skill-card reveal">
+            <h3>Hardware</h3>
+            <div class="chip-row">
+              <% skills.hardware.forEach((skill) => { %>
+                <span class="chip"><%= skill %></span>
+              <% }); %>
             </div>
-            <span class="project__date"><%= project.date %></span>
-          </div>
-          <h3 class="project__title"><%= project.title %></h3>
-          <p class="project__description"><%= project.description %></p>
-          <ul class="project__features">
-            <% project.features.forEach(feature => { %>
-            <li><%= feature %></li>
+          </article>
+          <article class="skill-card reveal">
+            <h3>Tools</h3>
+            <div class="chip-row">
+              <% skills.tools.forEach((skill) => { %>
+                <span class="chip"><%= skill %></span>
+              <% }); %>
+            </div>
+          </article>
+          <article class="skill-card reveal">
+            <h3>Spoken Languages</h3>
+            <div class="chip-row">
+              <% skills.languages.forEach((skill) => { %>
+                <span class="chip"><%= skill %></span>
+              <% }); %>
+            </div>
+          </article>
+        </div>
+
+        <article class="award-card reveal">
+          <h3>Certifications and Awards</h3>
+          <ul>
+            <% certificationsAndAwards.forEach((item) => { %>
+              <li><%= item %></li>
             <% }); %>
           </ul>
-          <div class="project__tech">
-            <% project.technologies.forEach(tech => { %>
-            <span class="tech__tag"><%= tech %></span>
-            <% }); %>
-          </div>
-        </div>
-        <% }); %>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Experience Section -->
-  <section id="experience" class="experience__section dot-pattern">
-    <!-- <div class="threejs-background" id="experience-animation"></div> -->
-    <div class="container">
-      <div class="section__header" data-aos="fade-up">
-        <span class="section__tag bounce-in glow-on-hover">Career</span>
-        <h2 class="section__title shimmer-text">Experience</h2>
-      </div>
-      
-      <div class="timeline">
-        <% experiences.forEach((experience, index) => { %>
-        <div class="timeline__item slide-in-left threejs-hover" 
-             data-aos="fade-up" 
-             data-aos-delay="<%= (index + 1) * 100 %>">
-          <div class="timeline__marker pulse-dot"></div>
-          <div class="timeline__content">
-            <div class="timeline__header">
-              <h3 class="timeline__title"><%= experience.title %></h3>
-              <span class="timeline__company"><%= experience.company %></span>
-              <span class="timeline__date"><%= experience.date %></span>
-            </div>
-            <ul class="timeline__description">
-              <% experience.description.forEach(desc => { %>
-              <li><%= desc %></li>
-              <% }); %>
-            </ul>
-            <div class="timeline__skills">
-              <% experience.skills.forEach(skill => { %>
-              <span class="skill__tag skill-hover"><%= skill %></span>
-              <% }); %>
-            </div>
-          </div>
+    <section id="contact" class="section section-tint">
+      <div class="container contact-wrap reveal">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Let us connect</h2>
+          <p class="section-copy">I am open to internships, collaborative engineering projects, and technical conversations.</p>
+          <ul class="quick-meta">
+            <li><i class="fa-solid fa-phone"></i> <a href="tel:<%= profile.phone %>"><%= profile.phone %></a></li>
+            <li><i class="fa-solid fa-envelope"></i> <a href="mailto:<%= profile.email %>"><%= profile.email %></a></li>
+            <li><i class="fa-solid fa-globe"></i> <a href="<%= profile.website %>" target="_blank" rel="noopener">Personal Website</a></li>
+          </ul>
         </div>
-        <% }); %>
-      </div>
-    </div>
-  </section>
 
-  <!-- Testimonials Section -->
-  <section id="testimonials" class="testimonials__section">
-    <div class="container">
-      <div class="section__header" data-aos="fade-up">
-        <span class="section__tag bounce-in glow-on-hover">Reviews</span>
-        <h2 class="section__title shimmer-text">What Others Say</h2>
-        <p class="section__description">
-          Feedback from colleagues, professors, and project collaborators
-        </p>
-      </div>
-      
-      <div class="testimonials__grid" data-aos="fade-up" data-aos-delay="100">
-        <div class="testimonial__card card-hover">
-          <div class="testimonial__content">
-            <div class="testimonial__quote">
-              <i class="fas fa-quote-left"></i>
-            </div>
-            <p class="testimonial__text">
-              "Priyan was a complete joy to work with over his summer internship with us at Spry. He demonstrated great creativity paired with quick and precise technical skills, allowing him to take on complex tasks with confidence and maturity. During our core migration initiative—a highly sensitive and technically demanding project—Priyan played a meaningful role in ensuring a smooth and successful transition. His ability to quickly grasp system architecture, adapt to new tools, and troubleshoot nuanced issues made him an invaluable asset to the team throughout the process. We are grateful for the impact he made during his time with us and look forward to seeing the remarkable things he will accomplish in the future."
-            </p>
-            <div class="testimonial__author">
-              <div class="testimonial__avatar">
-                <i class="fas fa-user-tie"></i>
-              </div>
-              <div class="testimonial__info">
-                <h4 class="testimonial__name">Josh G.</h4>
-                <p class="testimonial__role">Business Solutions Team Lead at Spry Co.</p>
-                <div class="testimonial__rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        <form id="contactForm" class="contact-form" novalidate>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact__section dot-pattern">
-    <div class="container">
-      <div class="section__header" data-aos="fade-up">
-        <span class="section__tag bounce-in glow-on-hover">Get In Touch</span>
-        <h2 class="section__title shimmer-text">Let's Connect</h2>
-        <p class="section__description">Feel free to reach out for collaborations or just a friendly chat</p>
-      </div>
-      
-      <div class="contact__content">
-        <div class="contact__info" data-aos="fade-right">
-          <div class="contact__card card-hover scale-on-hover glow-on-hover">
-            <div class="contact__icon icon-bounce bounce-icon">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <h3>Email</h3>
-            <p>shah899@purdue.edu</p>
-          </div>
-          
-          <div class="contact__card card-hover">
-            <div class="contact__icon icon-bounce">
-              <i class="fab fa-linkedin"></i>
-            </div>
-            <h3>LinkedIn</h3>
-            <a href="http://www.linkedin.com/in/priyanshah12" target="_blank">linkedin.com/in/priyanshah12</a>
-          </div>
-          
-          <div class="contact__card card-hover">
-            <div class="contact__icon icon-bounce">
-              <i class="fas fa-phone"></i>
-            </div>
-            <h3>Phone</h3>
-            <p>Let's connect first via email or LinkedIn</p>
-          </div>
-        </div>
-        
-        <div class="contact__form-container" data-aos="fade-left" data-aos-delay="200">
-          <form id="contactForm" class="contact__form">
-            <div class="form__group">
-              <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" placeholder="What's your name?" required class="input-focus" />
-            </div>
-            
-            <div class="form__group">
-              <label for="email">Your Email</label>
-              <input type="email" id="email" name="email" placeholder="What's your email?" required class="input-focus" />
-            </div>
-            
-            <div class="form__group">
-              <label for="message">Your Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="What would you like to say?" required class="input-focus"></textarea>
-            </div>
-            
-            <button type="submit" class="btn btn-primary btn-full pulse-hover">Send Message</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__content">
-        <p>&copy; 2025 Priyan Shah. All rights reserved.</p>
-        <div class="footer__social">
-          <a href="http://www.linkedin.com/in/priyanshah12" target="_blank" class="social-hover"><i class="fab fa-linkedin"></i></a>
-          <a href="mailto:shah899@purdue.edu" class="social-hover"><i class="fas fa-envelope"></i></a>
-        </div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>&copy; 2026 <%= profile.name %></p>
+      <div class="footer-links">
+        <a href="<%= profile.linkedin %>" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="<%= profile.resumePath %>" target="_blank" rel="noopener">Resume</a>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <!-- <script src="/js/threejs-animations.js"></script> -->
-  <script src="/js/animations.js"></script>
   <script src="/js/main.js"></script>
 </body>
 </html>
