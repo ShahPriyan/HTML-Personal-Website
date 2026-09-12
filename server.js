@@ -24,7 +24,7 @@ const profile = {
   email: 'shah899@purdue.edu',
   linkedin: 'https://www.linkedin.com/in/priyanshah12',
   website: 'https://priyanshah.vercel.app',
-  resumePath: '/Priyan_Shah_Resume_2025_2026.pdf'
+  resumePath: '/Resume_Priyan_Shah_Embedded_Systems_Engineer_2026-09.pdf'
 };
 
 const education = [
@@ -60,7 +60,7 @@ const experiences = [
     role: 'Software and Design Intern',
     company: 'Spry Brands Inc.',
     location: 'Anderson, IN',
-    date: 'May 2025 - Aug 2025',
+    date: 'May 2025 - Aug 2025; May 2026 - Aug 2026',
     bullets: [
       'Designed and developed 300+ customer-facing, fully customizable products using XML, PageFlex Studio, and backend tools including Liftoff.',
       'Streamlined production workflows by automating customization and data imports through licensed third-party software.',
@@ -103,7 +103,7 @@ const projects = [
   },
   {
     title: 'Rudimentary Game Boy System',
-    date: 'Dec 2025',
+    date: 'Nov 2025 - May 2026',
     type: 'Digital Systems',
     summary:
       'Designed a simplified Game Boy-inspired architecture spanning input control, game state logic, and rendered output behavior.',
@@ -116,14 +116,99 @@ const projects = [
       'Built control logic for user events, state transitions, and rendering-style updates.',
       'Debugged timing and responsiveness issues through iterative testing.'
     ],
-    technologies: ['Analog Circuit Design', 'Digital Logic', 'System Design', 'Debugging', 'Low-level Architecture']
+    technologies: ['C', 'RP2350', 'SD Card', 'Digital Logic', 'System Design']
+  },
+  {
+    title: 'Analog Audio Equalizer',
+    date: 'Aug 2024 - Dec 2024',
+    type: 'Analog Hardware',
+    summary:
+      'Built a hardware audio equalizer using op-amps and 555 timer circuits for frequency-specific sound control.',
+    challenge:
+      'Tune analog filtering and stage behavior to maintain stable output while allowing useful frequency shaping.',
+    impact:
+      'Gained practical signal-chain debugging and component-level design experience on physical hardware.',
+    bullets: [
+      'Designed analog processing stages for bass, mid, and treble bands.',
+      'Assembled and validated circuit behavior through breadboard prototyping and soldering workflows.',
+      'Stabilized output response for speaker-connected use cases through iterative testing.'
+    ],
+    technologies: ['Analog Circuit Design', 'Op-amps', '555 Timers', 'Breadboarding', 'Soldering']
+  },
+  {
+    title: 'Traffic Light Simulator',
+    date: 'Aug 2024 - Dec 2024',
+    type: 'Embedded Control',
+    summary:
+      'Developed a timer-driven LED control system to emulate real-world traffic sequencing behavior.',
+    challenge:
+      'Design reliable timing transitions and consistent signal ordering with hardware components.',
+    impact:
+      'Improved circuit timing design and hardware validation discipline under constrained lab setups.',
+    bullets: [
+      'Implemented LED sequencing logic with timer-based circuit control.',
+      'Assembled and tested the full circuit with LEDs, resistors, and timing components.',
+      'Optimized timing stability and power distribution for repeatable performance.'
+    ],
+    technologies: ['555 Timer IC', 'LED Control', 'Circuit Design', 'Hardware Testing']
+  },
+  {
+    title: 'PCB Design and Implementation',
+    date: 'Aug 2024 - Dec 2024',
+    type: 'PCB Engineering',
+    summary:
+      'Designed and implemented custom PCB layouts for embedded and hardware-focused applications.',
+    challenge:
+      'Translate schematic intent into manufacturable layouts while preserving routing quality and signal behavior.',
+    impact:
+      'Built end-to-end confidence from schematic capture through post-fabrication validation.',
+    bullets: [
+      'Created schematics and board layouts with CAD and PCB toolchains.',
+      'Applied multi-layer routing practices with attention to signal integrity considerations.',
+      'Performed bring-up and validation checks on produced boards.'
+    ],
+    technologies: ['PCB Design', 'Schematic Design', 'KiCAD', 'Altium', 'Hardware Validation']
+  },
+  {
+    title: 'Self-Driving Data Analysis Tool',
+    date: 'Jan 2024 - May 2024',
+    type: 'Data Systems',
+    summary:
+      'Built Python workflows for cleaning and visualizing autonomous vehicle sensor data.',
+    challenge:
+      'Handle noisy time-series data and convert it into actionable behavioral patterns.',
+    impact:
+      'Produced analysis modules that improved insight into anomaly and trend detection.',
+    bullets: [
+      'Implemented data cleaning, analysis, and plotting modules for sensor datasets.',
+      'Detected driving behavior patterns and outliers through structured analysis.',
+      'Collaborated via version control and review workflows across project contributors.'
+    ],
+    technologies: ['Python', 'Pandas', 'NumPy', 'Data Visualization', 'Git']
+  },
+  {
+    title: "Parkinson's Pressure Brace",
+    date: 'Jan 2023 - May 2023',
+    type: 'Assistive Technology',
+    summary:
+      'Designed a wearable assistive brace concept using pressure and vibration feedback loops.',
+    challenge:
+      'Balance responsiveness, comfort, and sensor integration in a wearable form factor.',
+    impact:
+      'Strengthened human-centered engineering decision making for embedded medical-adjacent design.',
+    bullets: [
+      'Integrated sensors and microcontroller behavior for tremor monitoring workflows.',
+      'Implemented pressure-modulation and haptic response concepts for localized feedback.',
+      'Iterated on usability and comfort through repeated test-driven design adjustments.'
+    ],
+    technologies: ['Embedded Systems', 'Microcontrollers', 'Sensors', 'Hardware Prototyping']
   }
 ];
 
 const skills = {
-  programming: ['Python', 'Java', 'C', 'HTML', 'CSS', 'MATLAB'],
-  hardware: ['Analog Circuit Design', 'Op-amps', '555 Timers', 'Breadboarding', 'Soldering', 'FPGA'],
-  tools: ['CAD', 'Arduino', 'Oscilloscope', 'KiCAD', 'Altium', 'PageFlex Studio', 'XML'],
+  programming: ['C', 'C++', 'Python', 'Verilog', 'Java', 'JavaScript', 'MATLAB'],
+  hardware: ['Embedded Systems', 'FPGA', 'Digital Logic', 'PCB Design', 'Arduino', 'RP2350', 'IMU Sensors', 'SRAM', 'Analog Circuit Design', 'Op-amps', 'Soldering'],
+  tools: ['Git', 'GitHub', 'Linux', 'KiCAD', 'Altium', 'CAD', 'VS Code', 'PageFlex Studio', 'Liftoff', 'XML', 'Zapier', 'NetSuite'],
   languages: ['English (Fluent)', 'Spanish (Conversational)', 'Hindi (Conversational)', 'Gujarati (Conversational)']
 };
 
