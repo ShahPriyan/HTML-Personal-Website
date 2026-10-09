@@ -25,7 +25,7 @@ const profile = {
   personalEmail: 'shah.priyan12@gmail.com',
   linkedin: 'https://www.linkedin.com/in/priyanshah12',
   website: 'https://priyanshah.vercel.app',
-  resumePath: '/files/Resume_Priyan_Shah_Embedded_Systems_Engineer_2026-09.pdf'
+  resumePath: '/files/Priyan_Shah_Resume_2026_2027.pdf'
 };
 
 const education = [
@@ -71,10 +71,10 @@ const experiences = [
     stack: ['XML', 'PageFlex Studio', 'Liftoff', 'Template Systems', 'Workflow Automation']
   },
   {
-    role: 'Team Member',
-    company: 'PCB Implementation Research and Design',
+    role: 'PCB Implementation / Research and Design - Team for SoCET @ Purdue',
+    company: 'SoCET @ Purdue',
     location: 'West Lafayette, IN',
-    date: 'Aug 2025 - Jan 2026',
+    date: 'Aug 2025 - Present',
     bullets: [
       'Learned and applied industry PCB tools including KiCAD and Altium to build practical design fundamentals.',
       'Used an organizational database to coordinate project ideas, implementation details, and team progress.',
