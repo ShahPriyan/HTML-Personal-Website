@@ -1,6 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const root = document.documentElement;
   const menuToggle = document.getElementById('menuToggle');
   const nav = document.getElementById('siteNav');
+  const themeToggle = document.getElementById('themeToggle');
+  const backToTop = document.getElementById('backToTop');
+  const scrollProgress = document.getElementById('scrollProgress');
+  const toast = document.getElementById('toastMessage');
+
+  const setTheme = (theme) => {
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('site-theme', theme);
+    if (themeToggle) {
+      themeToggle.innerHTML = theme === 'dark' ? '<i class="fa-regular fa-sun"></i>' : '<i class="fa-regular fa-moon"></i>';
+      themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      themeToggle.setAttribute('title', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+  };
+
+  const savedTheme = localStorage.getItem('site-theme');
+  if (savedTheme === 'dark' || savedTheme === 'light') {
+    setTheme(savedTheme);
+  } else {
+    setTheme('light');
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  const showToast = (message) => {
+    if (!toast) {
+      return;
+    }
+
+    toast.textContent = message;
+    toast.classList.add('is-visible');
+    window.setTimeout(() => toast.classList.remove('is-visible'), 1700);
+  };
 
   if (menuToggle && nav) {
     menuToggle.addEventListener('click', () => {
@@ -70,6 +109,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach((section) => sectionObserver.observe(section));
   }
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+    if (scrollProgress) {
+      scrollProgress.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+    }
+
+    if (backToTop) {
+      if (scrollTop > 360) {
+        backToTop.classList.add('is-visible');
+      } else {
+        backToTop.classList.remove('is-visible');
+      }
+    }
+  });
+
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  document.querySelectorAll('[data-copy]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const value = button.getAttribute('data-copy') || '';
+      if (!value) {
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(value);
+        showToast('Email copied');
+      } catch (error) {
+        showToast('Copy failed. Please copy manually.');
+      }
+    });
+  });
 
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');

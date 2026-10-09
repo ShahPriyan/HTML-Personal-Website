@@ -13,6 +13,7 @@
 </head>
 <body>
   <div class="backdrop"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <header class="site-header" id="top">
     <div class="container nav-wrap">
@@ -21,13 +22,16 @@
         <span></span><span></span><span></span>
       </button>
       <nav class="nav" id="siteNav">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+        <a href="#about"><i class="fa-regular fa-user"></i> About</a>
+        <a href="#experience"><i class="fa-solid fa-briefcase"></i> Experience</a>
+        <a href="#portfolio"><i class="fa-solid fa-diagram-project"></i> Portfolio</a>
+        <a href="#education"><i class="fa-solid fa-graduation-cap"></i> Education</a>
+        <a href="#skills"><i class="fa-solid fa-code"></i> Skills</a>
+        <a href="#contact"><i class="fa-regular fa-envelope"></i> Contact</a>
       </nav>
+      <button class="widget-btn widget-btn-inline" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <i class="fa-regular fa-moon"></i>
+      </button>
     </div>
   </header>
 
@@ -79,7 +83,7 @@
     <section id="about" class="section">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">About</p>
+          <p class="eyebrow"><i class="fa-regular fa-user"></i> About</p>
           <h2>Building across hardware and software</h2>
         </div>
         <p class="section-copy reveal">
@@ -91,16 +95,16 @@
     <section id="experience" class="section section-tint">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">Experience</p>
+          <p class="eyebrow"><i class="fa-solid fa-briefcase"></i> Experience</p>
           <h2>Recent roles and outcomes</h2>
         </div>
         <div class="timeline">
           <% experiences.forEach((item) => { %>
             <article class="timeline-item reveal">
               <div class="timeline-top">
-                <h3><%= item.role %></h3>
-                <p class="org"><%= item.company %> | <%= item.location %></p>
-                <p class="date"><%= item.date %></p>
+                <h3><i class="fa-solid fa-screwdriver-wrench"></i> <%= item.role %></h3>
+                <p class="org"><i class="fa-regular fa-building"></i> <%= item.company %> | <%= item.location %></p>
+                <p class="date"><i class="fa-regular fa-calendar"></i> <%= item.date %></p>
               </div>
               <ul>
                 <% item.bullets.forEach((bullet) => { %>
@@ -121,7 +125,7 @@
     <section id="portfolio" class="section">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">Portfolio</p>
+          <p class="eyebrow"><i class="fa-solid fa-diagram-project"></i> Portfolio</p>
           <h2>Project case studies</h2>
           <p class="section-copy">Each project is framed as challenge, implementation, and measurable learning impact.</p>
         </div>
@@ -132,14 +136,14 @@
                 <p class="project-type"><%= project.type %></p>
                 <p class="date"><%= project.date %></p>
               </div>
-              <h3><%= project.title %></h3>
+              <h3><i class="fa-solid fa-microchip"></i> <%= project.title %></h3>
               <p><%= project.summary %></p>
               <div class="project-panel">
-                <h4>Challenge</h4>
+                <h4><i class="fa-solid fa-bullseye"></i> Challenge</h4>
                 <p><%= project.challenge %></p>
               </div>
               <div class="project-panel">
-                <h4>Impact</h4>
+                <h4><i class="fa-solid fa-chart-line"></i> Impact</h4>
                 <p><%= project.impact %></p>
               </div>
               <ul>
@@ -161,7 +165,7 @@
     <section id="education" class="section section-tint">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">Education</p>
+          <p class="eyebrow"><i class="fa-solid fa-graduation-cap"></i> Education</p>
           <h2>Academic foundation</h2>
         </div>
         <div class="edu-grid">
@@ -184,7 +188,7 @@
     <section id="skills" class="section">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">Skills</p>
+          <p class="eyebrow"><i class="fa-solid fa-code"></i> Skills</p>
           <h2>Technical toolkit</h2>
         </div>
         <div class="skills-grid">
@@ -236,7 +240,7 @@
     <section id="contact" class="section section-tint">
       <div class="container contact-wrap reveal">
         <div>
-          <p class="eyebrow">Contact</p>
+          <p class="eyebrow"><i class="fa-regular fa-envelope"></i> Contact</p>
           <h2>Let us connect</h2>
           <p class="section-copy">I am open to internships, collaborative engineering projects, and technical conversations.</p>
           <ul class="quick-meta">
@@ -247,6 +251,11 @@
             <% } %>
             <li><i class="fa-solid fa-globe"></i> <a href="<%= profile.website %>" target="_blank" rel="noopener">Personal Website</a></li>
           </ul>
+          <div class="contact-actions">
+            <button class="btn btn-ghost copy-btn" type="button" data-copy="<%= profile.schoolEmail %>">
+              <i class="fa-regular fa-copy"></i> Copy Email
+            </button>
+          </div>
         </div>
 
         <form id="contactForm" class="contact-form" novalidate>
@@ -275,6 +284,14 @@
       </div>
     </div>
   </footer>
+
+  <div class="floating-widgets">
+    <button class="widget-btn" id="backToTop" type="button" aria-label="Back to top" title="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <div class="toast" id="toastMessage" role="status" aria-live="polite"></div>
 
   <script src="/js/main.js"></script>
 </body>

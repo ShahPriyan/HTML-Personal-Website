@@ -12,6 +12,18 @@
   --radius-sm: 12px;
 }
 
+[data-theme='dark'] {
+  --bg: #0b1220;
+  --surface: #111b2e;
+  --surface-strong: #e2e8f0;
+  --text: #e7edf7;
+  --text-soft: #a8b4c7;
+  --brand: #63b3ff;
+  --brand-2: #46d6bd;
+  --line: #27344d;
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.42);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -84,10 +96,22 @@ a:hover {
   border-bottom: 1px solid rgba(217, 226, 236, 0.8);
 }
 
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  z-index: 30;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  transition: width 120ms linear;
+}
+
 .nav-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.7rem;
   min-height: 72px;
 }
 
@@ -137,6 +161,30 @@ a:hover {
 
 .hero {
   padding: 5.5rem 0 3.6rem;
+}
+
+.widget-btn {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.widget-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand);
+}
+
+.widget-btn-inline {
+  box-shadow: none;
 }
 
 .hero-grid {
@@ -385,6 +433,14 @@ h1 {
   gap: 0.45rem;
 }
 
+.contact-actions {
+  margin-top: 1rem;
+}
+
+.copy-btn i {
+  margin-right: 0.35rem;
+}
+
 .contact-form label {
   font-weight: 600;
   margin-top: 0.35rem;
@@ -431,6 +487,46 @@ h1 {
   gap: 1rem;
 }
 
+.floating-widgets {
+  position: fixed;
+  right: 1.15rem;
+  bottom: 1.15rem;
+  z-index: 25;
+}
+
+#backToTop {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+#backToTop.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%) translateY(14px);
+  background: var(--surface-strong);
+  color: var(--bg);
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: 220ms ease;
+  z-index: 40;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(14px);
@@ -458,6 +554,10 @@ h1 {
 @media (max-width: 820px) {
   .menu-toggle {
     display: block;
+  }
+
+  .widget-btn-inline {
+    display: none;
   }
 
   .nav {
